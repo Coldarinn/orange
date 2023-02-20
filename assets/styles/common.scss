@@ -1,0 +1,54 @@
+* {
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	font-family: 'FiraSans';
+  color: theme('colors.text.800');
+	font-size: 16px;
+	line-height: 1;
+  font-weight: 400;
+  background-color: theme('colors.background');
+}
+
+input {
+  background-color: transparent;
+  outline: none;
+  border: 1px solid transparent;
+  transition: 0.2s linear;
+  &:focus {
+    border: 1px solid theme('colors.brand.400');
+  }
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+ul li {
+	list-style: none;
+}
+
+.container {
+  max-width: 1320px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.pt-sans {
+  font-family: 'PTSans';
+}
+
+.ubuntu {
+  font-family: 'Ubuntu';
+}
