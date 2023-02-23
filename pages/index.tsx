@@ -1,6 +1,8 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import Button from '@/components/common/Button';
+import Link from 'next/link';
+import ProductCards from '@/components/common/Swiper/ProductCards';
+import Button from '@/components/common/UI/Button';
 import Lego from '@/assets/images/lego.png';
 import LegoMovie from '@/assets/images/lego-movie.png';
 
@@ -92,6 +94,30 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div className="container">
+        <div className="mb-[64px]">
+          <div className="flex justify-between items-center mb-[33px]">
+            <div className="text-2xl text-text-900 ubuntu text-shadow">
+              Вам может понравиться
+            </div>
+            <Link href="/asd" className="py-[10px] px-[16px] text-text-900 border border-solid border-text-800 rounded-[61px]">
+              Посмотреть ещё
+            </Link>
+          </div>
+          <ProductCards id="fir" />
+        </div>
+        <div className="mb-[90px]">
+          <div className="flex justify-between items-center mb-[33px]">
+            <div className="text-2xl text-text-900 ubuntu text-shadow">
+              Вы недавно смотрели
+            </div>
+            <Link href="/asd" className="py-[10px] px-[16px] text-text-900 border border-solid border-text-800 rounded-[61px]">
+              Посмотреть ещё
+            </Link>
+          </div>
+          <ProductCards id="sec" />
         </div>
       </div>
     </>

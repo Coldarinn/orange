@@ -1,3 +1,4 @@
+import Footer from './common/Footer';
 import Header from './common/Header';
 
 interface Props {
@@ -9,6 +10,7 @@ export default function Layout({ children } : Props) {
     <>
       <Header />
       <main>{children}</main>
+      <Footer />
     </>
   );
 }

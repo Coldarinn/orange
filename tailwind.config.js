@@ -10,6 +10,7 @@ module.exports = {
       white: '#FFFFFF',
       stars: '#EDB013',
       background: '#FAF8F2',
+      red: '#FF0000',
       stroke: {
         brand: '#FEEBDA',
         dark: '#F2F2F2',

@@ -12,7 +12,7 @@ export default function Header() {
   const [selected, setSelected] = useState<Number>(0);
 
   return (
-    <header className="fixed left-0 top-0 w-full bg-white">
+    <header className="fixed left-0 top-0 z-[3] w-full bg-white">
       <div className="container pt-[20px] pb-[55px] relative">
         <div className="flex items-center">
           <Link href="/">
