@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Link from 'next/link';
 import menuItems from '@/constants/menu';
 import Logo from 'assets/images/logo.svg';
 import Location from 'assets/images/icons/location.svg';
@@ -6,7 +7,6 @@ import Search from 'assets/images/icons/search.svg';
 import User from 'assets/images/icons/user.svg';
 import Heart from 'assets/images/icons/heart.svg';
 import Cart from 'assets/images/icons/cart.svg';
-import Link from 'next/link';
 
 export default function Header() {
   const [selected, setSelected] = useState<Number>(0);
@@ -74,9 +74,14 @@ export default function Header() {
               </button>
               <div className="header-submenu">
                 {menuItem.subMenu.map((subMenuItem) => (
-                  <div key={subMenuItem.id.toString()} className="header-submenu__item">
+                  <Link
+                    href={`${subMenuItem.link}${subMenuItem.query}`}
+                    key={subMenuItem.id.toString()}
+                    className="header-submenu__item"
+                    onClick={() => setSelected(0)}
+                  >
                     {subMenuItem.title}
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>

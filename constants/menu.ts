@@ -1,6 +1,8 @@
 interface ISubMenu {
   id: Number,
   title: String,
+  link: String,
+  query: String,
 }
 
 interface IMenuItems {
@@ -17,18 +19,26 @@ const menuItems: IMenuItems[] = [
       {
         id: 2,
         title: 'Верхняя одежда',
+        link: '/catalog',
+        query: '?category=games&subcategory=game',
       },
       {
         id: 3,
         title: 'Обувь',
+        link: '/catalog',
+        query: '?category=games&subcategory=game',
       },
       {
         id: 4,
         title: 'Футболки',
+        link: '/catalog',
+        query: '?category=games&subcategory=game',
       },
       {
         id: 5,
         title: 'Шорты',
+        link: '/catalog',
+        query: '?category=games&subcategory=game',
       },
     ],
   },
@@ -39,18 +49,26 @@ const menuItems: IMenuItems[] = [
       {
         id: 7,
         title: 'Верхняя одежда',
+        link: '/catalog',
+        query: '?category=games&subcategory=game',
       },
       {
         id: 8,
         title: 'Обувь',
+        link: '/catalog',
+        query: '?category=games&subcategory=game',
       },
       {
         id: 9,
         title: 'Футболки',
+        link: '/catalog',
+        query: '?category=games&subcategory=game',
       },
       {
         id: 10,
         title: 'Шорты',
+        link: '/catalog',
+        query: '?category=games&subcategory=game',
       },
     ],
   },
@@ -61,18 +79,26 @@ const menuItems: IMenuItems[] = [
       {
         id: 12,
         title: 'Верхняя одежда',
+        link: '/catalog',
+        query: '?category=games&subcategory=game',
       },
       {
         id: 13,
         title: 'Обувь',
+        link: '/catalog',
+        query: '?category=games&subcategory=game',
       },
       {
         id: 14,
         title: 'Футболки',
+        link: '/catalog',
+        query: '?category=games&subcategory=game',
       },
       {
         id: 15,
         title: 'Шорты',
+        link: '/catalog',
+        query: '?category=games&subcategory=game',
       },
     ],
   },
@@ -83,18 +109,26 @@ const menuItems: IMenuItems[] = [
       {
         id: 16,
         title: 'Верхняя одежда',
+        link: '/catalog',
+        query: '?category=games&subcategory=game',
       },
       {
         id: 18,
         title: 'Обувь',
+        link: '/catalog',
+        query: '?category=games&subcategory=game',
       },
       {
         id: 19,
         title: 'Футболки',
+        link: '/catalog',
+        query: '?category=games&subcategory=game',
       },
       {
         id: 20,
         title: 'Шорты',
+        link: '/catalog',
+        query: '?category=games&subcategory=game',
       },
     ],
   },

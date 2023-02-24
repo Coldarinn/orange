@@ -19,10 +19,16 @@ const arr = [
 function ProductCards({ id }: { id: String }) {
   return (
     <div className="relative">
-      <button className={`product-card-button-prev ${id}`} type="button">
+      <button
+        className={`product-card-button-prev ${id}`}
+        type="button"
+      >
         <Arrow />
       </button>
-      <button className={`product-card-button-next ${id}`} type="button">
+      <button
+        className={`product-card-button-next ${id}`}
+        type="button"
+      >
         <Arrow />
       </button>
       <Swiper
@@ -33,7 +39,10 @@ function ProductCards({ id }: { id: String }) {
         slidesPerView="auto"
       >
         {arr.map((item) => (
-          <SwiperSlide key={item.id.toString()} className="!w-auto">
+          <SwiperSlide
+            key={item.id.toString()}
+            className="!w-auto"
+          >
             <div className="w-[224px] p-[16px] bg-white border border-solid border-stroke-dark rounded-[24px]">
               <ProductCard />
             </div>

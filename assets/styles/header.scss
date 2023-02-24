@@ -54,6 +54,8 @@
   position: absolute;
   left: 0;
   top: 100%;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   background-color: theme('colors.white');
   padding: 10px 15px 10px 32px;
@@ -67,5 +69,11 @@
     color: theme('colors.text.700');
     padding: 6px 0;
     cursor: pointer;
+    transition: 0.2s linear;
+    @media (any-hover: hover) {
+      &:hover{
+        color: theme('colors.brand.700');
+      }
+    }
   }
 }
