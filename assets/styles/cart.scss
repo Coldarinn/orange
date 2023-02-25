@@ -1,0 +1,8 @@
+.cart-checkbox {
+  span {
+    font-size: 0;
+    &::before{
+      margin-right: 0;
+    }
+  }
+}

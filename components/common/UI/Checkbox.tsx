@@ -8,7 +8,7 @@ interface ICheckbox {
 function Checkbox({ id, title }: ICheckbox) {
   return (
     <label
-      className="item-catalog-filters__checkbox"
+      className="checkbox"
       htmlFor={id}
     >
       <input
@@ -17,7 +17,7 @@ function Checkbox({ id, title }: ICheckbox) {
         id={id}
       />
       <span>{title}</span>
-      <Accept />
+      <Accept className="fill-white" />
     </label>
   );
 }

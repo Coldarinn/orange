@@ -28,6 +28,10 @@ input {
   &:focus {
     border: 1px solid theme('colors.brand.400');
   }
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
 }
 
 a {
@@ -55,4 +59,46 @@ ul li {
 
 .text-shadow {
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.checkbox {
+  position: relative;
+  width: fit-content;
+  display: block;
+  span {
+    display: flex;
+    align-items: center;
+    color: theme('colors.text.700');
+    cursor: pointer;
+    &::before {
+      content:'';
+      width: 24px;
+      height: 24px;
+      background-color: theme('colors.brand.200');
+      border: 1px solid theme('colors.stroke.brand');
+      border-radius: 4px;
+      margin-right: 12px;
+      transition: 0.2s linear;
+    }
+  }
+  svg {
+    position: absolute;
+    left: 5px;
+    top: 7px;
+    width: 14px;
+    height: 10px;
+    opacity: 0;
+    cursor: pointer;
+    transition: 0.2s linear;
+  }
+  input:checked {
+    & ~ span {
+      &::before{
+        background-color: theme('colors.brand.700');
+      }
+    }
+    & ~ svg {
+      opacity: 1;
+    }
+  }
 }

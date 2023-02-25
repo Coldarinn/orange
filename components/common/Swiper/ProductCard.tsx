@@ -18,7 +18,7 @@ function ProductCard({ showRating = false, sale }: { showRating?: boolean, sale?
           pagination={{ clickable: true, el: '.product-card-pagination' }}
         >
           <SwiperSlide>
-            <Link href="/asd">
+            <Link href={`/catalog/${1}`}>
               <Image
                 src={Product}
                 alt="Изображение товара"
@@ -27,7 +27,7 @@ function ProductCard({ showRating = false, sale }: { showRating?: boolean, sale?
             </Link>
           </SwiperSlide>
           <SwiperSlide>
-            <Link href="/asd">
+            <Link href={`/catalog/${1}`}>
               <Image
                 src={Product}
                 alt="Изображение товара"
@@ -58,7 +58,7 @@ function ProductCard({ showRating = false, sale }: { showRating?: boolean, sale?
         )}
       </div>
       <Link
-        href="/asd"
+        href={`/catalog/${1}`}
         className="ease-in duration-200 hover:text-brand-700"
       >
         Конструктор для детей
@@ -66,10 +66,10 @@ function ProductCard({ showRating = false, sale }: { showRating?: boolean, sale?
       {showRating && (
         <>
           <div className="flex items-center mt-[10px]">
-            <Star className="stroke-brand-700 fill-brand-700" />
-            <Star className="stroke-brand-700 fill-brand-700 ml-[6px]" />
-            <Star className="stroke-brand-700 fill-brand-700 ml-[6px]" />
-            <Star className="stroke-brand-700 fill-brand-700 ml-[6px]" />
+            <Star className="stroke-stars fill-stars" />
+            <Star className="stroke-stars fill-stars ml-[6px]" />
+            <Star className="stroke-stars fill-stars ml-[6px]" />
+            <Star className="stroke-stars fill-stars ml-[6px]" />
             <Star className="stroke-text-700 ml-[6px]" />
             <span className="text-sm text-text-600 ml-[12px] pt-[4px]">
               12

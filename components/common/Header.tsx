@@ -30,32 +30,26 @@ export default function Header() {
             />
           </div>
           <div className="flex ml-auto gap-[16px]">
-            <Link href="/">
-              <button
-                className="flex items-center h-[48px] px-[24.5px] border-2 border-solid border-[#F2F2F2] rounded-[24px]"
-                type="button"
-              >
-                <User className="fill-[#FF8700]" />
-                <span className="ml-[10px] pt-sans">Профиль</span>
-              </button>
+            <Link
+              href="/"
+              className="flex items-center h-[48px] px-[24.5px] border-2 border-solid border-[#F2F2F2] rounded-[24px]"
+            >
+              <User className="fill-[#FF8700]" />
+              <span className="ml-[10px] pt-sans">Профиль</span>
             </Link>
-            <Link href="/">
-              <button
-                className="flex items-center h-[48px] px-[24.5px] border-2 border-solid border-[#F2F2F2] rounded-[24px]"
-                type="button"
-              >
-                <Heart className="fill-[#FF8700]" />
-                <span className="ml-[10px] pt-sans">Избранное</span>
-              </button>
+            <Link
+              href="/"
+              className="flex items-center h-[48px] px-[24.5px] border-2 border-solid border-[#F2F2F2] rounded-[24px]"
+            >
+              <Heart className="fill-[#FF8700]" />
+              <span className="ml-[10px] pt-sans">Избранное</span>
             </Link>
-            <Link href="/">
-              <button
-                className="flex items-center h-[48px] px-[24.5px] bg-[#FF8700] rounded-[24px]"
-                type="button"
-              >
-                <Cart className="fill-white" />
-                <span className="ml-[10px] text-white font-bold">Корзина</span>
-              </button>
+            <Link
+              href="/cart"
+              className="flex items-center h-[48px] px-[24.5px] bg-[#FF8700] rounded-[24px]"
+            >
+              <Cart className="fill-white" />
+              <span className="ml-[10px] text-white font-bold">Корзина</span>
             </Link>
           </div>
         </div>

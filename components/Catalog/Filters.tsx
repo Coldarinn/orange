@@ -5,7 +5,7 @@ import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
 function Filters() {
-  const [value, setValue] = useState<number[]>([0, 100000]);
+  const [value, setValue] = useState<number | number[]>([0, 100000]);
   const [isPriceOpen, setIsPriceOpen] = useState<boolean>(false);
   const [isBrandsOpen, setIsBrandsOpen] = useState<boolean>(false);
   const [isThemeOpen, setIsThemeOpen] = useState<boolean>(false);
@@ -38,13 +38,17 @@ function Filters() {
             <input
               type="number"
               className="flex items-center w-[106px] h-[35px] px-[12px] border border-solid border-text-400 rounded-[40px]"
+              // @ts-ignore
               value={value[0]}
+              // @ts-ignore
               onChange={(e) => setValue((prev) => [+e.target.value, prev[1]])}
             />
             <input
               type="number"
               className="flex items-center w-[106px] h-[35px] px-[12px] border border-solid border-text-400 rounded-[40px]"
+              // @ts-ignore
               value={value[1]}
+              // @ts-ignore
               onChange={(e) => setValue((prev) => [prev[0], +e.target.value])}
             />
           </div>

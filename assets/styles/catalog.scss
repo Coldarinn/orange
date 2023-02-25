@@ -48,44 +48,6 @@
       }
     }
   }
-  &__checkbox {
-    position: relative;
-    span {
-      display: flex;
-      align-items: center;
-      color: theme('colors.text.700');
-      cursor: pointer;
-      &::before {
-        content:'';
-        width: 24px;
-        height: 24px;
-        background-color: theme('colors.brand.200');
-        border: 1px solid theme('colors.stroke.brand');
-        border-radius: 4px;
-        margin-right: 12px;
-        transition: 0.2s linear;
-      }
-    }
-    svg {
-      position: absolute;
-      left: 5px;
-      top: 7px;
-      width: 14px;
-      height: 10px;
-      opacity: 0;
-      transition: 0.2s linear;
-    }
-    input:checked {
-      & ~ span {
-        &::before{
-          background-color: theme('colors.brand.700');
-        }
-      }
-      & ~ svg {
-        opacity: 1;
-      }
-    }
-  }
 }
 
 .product-card__button {
