@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import Link from 'next/link';
 import ProductCards from '@/components/Common/Swiper/ProductCards';
 import Discounts from '@/components/Common/Discounts';
 import Button from '@/components/Common/UI/Button';
@@ -47,6 +46,7 @@ export default function Home() {
               <Button
                 type="white"
                 text="Подробнее"
+                customStyles="w-[148px] h-[52px]"
               />
               <div className="w-full mt-[29px]">
                 <Image
@@ -67,6 +67,7 @@ export default function Home() {
                 <Button
                   type="white"
                   text="Подробнее"
+                  customStyles="w-[148px] h-[52px]"
                 />
               </div>
               <div className="p-[40px] rounded-[40px] bg-brand-300">
@@ -79,6 +80,7 @@ export default function Home() {
                 <Button
                   type="white"
                   text="Подробнее"
+                  customStyles="w-[148px] h-[52px]"
                 />
               </div>
             </div>
@@ -92,12 +94,10 @@ export default function Home() {
             <div className="text-2xl text-text-900 ubuntu text-shadow">
               Вам может понравиться
             </div>
-            <Link
-              href="/asd"
-              className="py-[10px] px-[16px] text-text-900 border border-solid border-text-800 rounded-[61px]"
-            >
-              Посмотреть ещё
-            </Link>
+            <Button
+              type="black"
+              text="Посмотреть ещё"
+            />
           </div>
           <ProductCards id="fir" />
         </div>
@@ -106,12 +106,10 @@ export default function Home() {
             <div className="text-2xl text-text-900 ubuntu text-shadow">
               Вы недавно смотрели
             </div>
-            <Link
-              href="/asd"
-              className="py-[10px] px-[16px] text-text-900 border border-solid border-text-800 rounded-[61px]"
-            >
-              Посмотреть ещё
-            </Link>
+            <Button
+              type="black"
+              text="Посмотреть ещё"
+            />
           </div>
           <ProductCards id="sec" />
         </div>

@@ -1,5 +1,5 @@
 import Arrow from '@/assets/images/icons/arrow.svg';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 
 export interface IOption {
   id: number,
@@ -50,4 +50,4 @@ function Select({ title, options, select }:ISelect) {
   );
 }
 
-export default Select;
+export default memo(Select);

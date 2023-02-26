@@ -20,8 +20,9 @@ function Discounts() {
               placeholder="Электронная почта"
             />
             <Button
-              type="white"
-              text="Подробнее"
+              type="orange"
+              text="Подписаться"
+              customStyles="w-[160px] h-[52px]"
             />
           </div>
         </div>
@@ -46,6 +47,7 @@ function Discounts() {
               <Button
                 type="white"
                 text="Подробнее"
+                customStyles="w-[148px] h-[52px]"
               />
             </div>
             <div className="w-[339px]">

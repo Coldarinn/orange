@@ -1,8 +1,8 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import ProductCards from '@/components/Common/Swiper/ProductCards';
 import Discounts from '@/components/Common/Discounts';
 import CartBody from '@/components/Cart/CartBody';
+import Button from '@/components/Common/UI/Button';
 
 export default function Cart() {
   return (
@@ -36,12 +36,10 @@ export default function Cart() {
             <div className="text-2xl text-text-900 ubuntu">
               Вам может понравиться
             </div>
-            <Link
-              href="/asd"
-              className="py-[10px] px-[16px] text-text-900 border border-solid border-text-800 rounded-[61px]"
-            >
-              Посмотреть ещё
-            </Link>
+            <Button
+              type="black"
+              text="Посмотреть ещё"
+            />
           </div>
           <ProductCards id="sixth" />
           <div className="mt-[90px]">

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Button from '@/components/Common/UI/Button';
 import Arrow from '@/assets/images/icons/arrow.svg';
 
 const pages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -10,14 +11,13 @@ function Pagination() {
   return (
     <div className="flex justify-center mt-[35px] relative">
       {selected > 1 && (
-        <button
-          type="button"
-          className="absolute left-0 top-0 flex items-center bg-white py-[9px] px-[16px] border border-solid border-stroke-dark rounded-[20px]"
+        <Button
+          type="white"
+          text="предыдущая"
+          icon={<Arrow className="stroke-brand-700 rotate-90" />}
+          customStyles="absolute left-0 top-0 py-[9px] px-[16px]"
           onClick={() => setSelected((prev) => prev - 1)}
-        >
-          <Arrow className="stroke-brand-700 rotate-90 mr-[15px]" />
-          предыдущая
-        </button>
+        />
       )}
       <div className="flex bg-white border border-solid border-stroke-dark rounded-[20px]">
         {selected > 2 && (
@@ -96,14 +96,14 @@ function Pagination() {
         )}
       </div>
       {selected < pagesLength && (
-        <button
-          type="button"
-          className="absolute right-0 top-0 flex items-center bg-white py-[9px] px-[16px] border border-solid border-stroke-dark rounded-[20px]"
+        <Button
+          type="white"
+          text="следующая"
+          icon={<Arrow className="stroke-brand-700 -rotate-90" />}
+          iconLeft={false}
+          customStyles="absolute right-0 top-0 py-[9px] px-[16px]"
           onClick={() => setSelected((prev) => prev + 1)}
-        >
-          следующая
-          <Arrow className="stroke-brand-700 -rotate-90 ml-[15px]" />
-        </button>
+        />
       )}
     </div>
   );

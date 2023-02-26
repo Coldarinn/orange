@@ -1,10 +1,10 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import ProductCards from '@/components/Common/Swiper/ProductCards';
 import Breadcrumbs from '@/components/Common/Breadcrumbs';
 import Filters from '@/components/Catalog/Filters';
 import Products from '@/components/Catalog/Products';
 import Discounts from '@/components/Common/Discounts';
+import Button from '@/components/Common/UI/Button';
 
 const list = [
   {
@@ -60,12 +60,10 @@ export default function Catalog() {
             <div className="text-2xl text-text-900 ubuntu">
               Вы недавно смотрели
             </div>
-            <Link
-              href="/asd"
-              className="py-[10px] px-[16px] text-text-900 border border-solid border-text-800 rounded-[61px]"
-            >
-              Посмотреть ещё
-            </Link>
+            <Button
+              type="black"
+              text="Посмотреть ещё"
+            />
           </div>
           <ProductCards id="third" />
           <div className="mt-[90px]">

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { sortItems, countOptions } from '@/constants/catalog';
 import Select, { IOption } from '../Common/Select';
 import ProductCard from '../Common/Swiper/ProductCard';
@@ -44,7 +44,7 @@ function Products() {
         <Select
           title={count.title}
           options={countOptions}
-          select={(item) => setCount(item)}
+          select={useCallback((item) => setCount(item), [])}
         />
       </div>
       <div className="flex items-start flex-wrap gap-x-[32px] gap-y-[28px]">

@@ -86,7 +86,7 @@ function Filters() {
               34
             </span>
           </div>
-          <div className="flex items-center justify-between mb-[16px]">
+          <div className="flex items-center justify-between">
             <Checkbox
               id="Reobrix"
               title="Reobrix"
@@ -95,9 +95,6 @@ function Filters() {
               26
             </span>
           </div>
-          <span className="text-sm text-text-700 cursor-pointer transition duration-300 hover:text-brand-700">
-            Показать все 14...
-          </span>
         </div>
         )}
       </div>
@@ -123,7 +120,7 @@ function Filters() {
               210
             </span>
           </div>
-          <div className="flex items-center justify-between mb-[16px]">
+          <div className="flex items-center justify-between">
             <Checkbox
               id="theme2"
               title="Тематика 2"
@@ -132,9 +129,6 @@ function Filters() {
               34
             </span>
           </div>
-          <span className="text-sm text-text-700 cursor-pointer transition duration-300 hover:text-brand-700">
-            Показать все 14...
-          </span>
         </div>
         )}
       </div>
@@ -160,7 +154,7 @@ function Filters() {
               210
             </span>
           </div>
-          <div className="flex items-center justify-between mb-[16px]">
+          <div className="flex items-center justify-between">
             <Checkbox
               id="female"
               title="Женский"
@@ -169,9 +163,6 @@ function Filters() {
               34
             </span>
           </div>
-          <span className="text-sm text-text-700 cursor-pointer transition duration-300 hover:text-brand-700">
-            Показать все 14...
-          </span>
         </div>
         )}
       </div>
@@ -197,7 +188,7 @@ function Filters() {
               210
             </span>
           </div>
-          <div className="flex items-center justify-between mb-[16px]">
+          <div className="flex items-center justify-between">
             <Checkbox
               id="german"
               title="Германия"
@@ -206,9 +197,6 @@ function Filters() {
               34
             </span>
           </div>
-          <span className="text-sm text-text-700 cursor-pointer transition duration-300 hover:text-brand-700">
-            Показать все 14...
-          </span>
         </div>
         )}
       </div>

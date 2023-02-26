@@ -1,16 +1,29 @@
+import { ReactNode } from 'react';
+
 interface IButton {
-  type: String,
+  type: 'white' | 'orange' | 'black',
   text: String,
-  customStyles?: String
+  icon?: ReactNode,
+  iconLeft?: boolean,
+  customStyles?: string,
+  onClick?: () => void
 }
 
-function Button({ type, text, customStyles }: IButton) {
+function Button({
+  type, text, icon, iconLeft = true, customStyles, onClick,
+}: IButton) {
   return (
     <button
-      className={`px-[32px] py-[16px] rounded-[64px] transition-opacity duration-300 ease-linear hover:opacity-70 ${type === 'white' ? 'bg-white' : 'bg-brand-700'} ${customStyles}`}
+      className={`button ${type} ${iconLeft ? '' : 'right'} ${customStyles}`}
       type="button"
+      onClick={() => onClick && onClick()}
     >
-      {text}
+      {icon ? (
+        <>
+          {icon}
+          {text}
+        </>
+      ) : text}
     </button>
   );
 }

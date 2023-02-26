@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import ProductCards from '@/components/Common/Swiper/ProductCards';
 import Breadcrumbs from '@/components/Common/Breadcrumbs';
 import Discounts from '@/components/Common/Discounts';
@@ -8,6 +7,7 @@ import ProductPrice from '@/components/Catalog/ProductPrice';
 import Star from '@/assets/images/icons/star.svg';
 import Reviews from '@/components/Catalog/Reviews';
 import About from '@/components/Catalog/About';
+import Button from '@/components/Common/UI/Button';
 
 const list = [
   {
@@ -77,24 +77,20 @@ export default function Product() {
             <div className="text-2xl text-text-900 ubuntu">
               С этим товаром покупают
             </div>
-            <Link
-              href="/asd"
-              className="py-[10px] px-[16px] text-text-900 border border-solid border-text-800 rounded-[61px]"
-            >
-              Посмотреть ещё
-            </Link>
+            <Button
+              type="black"
+              text="Посмотреть ещё"
+            />
           </div>
           <ProductCards id="third" />
           <div className="flex justify-between items-center mt-[64px] mb-[38px]">
             <div className="text-2xl text-text-900 ubuntu">
               Вы недавно смотрели
             </div>
-            <Link
-              href="/asd"
-              className="py-[10px] px-[16px] text-text-900 border border-solid border-text-800 rounded-[61px]"
-            >
-              Посмотреть ещё
-            </Link>
+            <Button
+              type="black"
+              text="Посмотреть ещё"
+            />
           </div>
           <ProductCards id="fourth" />
           <div className="mt-[90px]">

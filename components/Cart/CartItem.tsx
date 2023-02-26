@@ -16,7 +16,7 @@ function CartItem({
   deleteItem: (id:number) => void,
 }) {
   return (
-    <div className="flex p-[24px] border-b border-solid border-stroke-dark">
+    <div className="flex p-[24px] border-b border-solid border-stroke-dark last:border-0">
       <div className="cart-checkbox">
         <label
           className="checkbox"

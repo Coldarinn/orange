@@ -1,10 +1,14 @@
-import { useEffect, useState } from 'react';
+import {
+  useEffect, useState,
+} from 'react';
 import Accept from '@/assets/images/icons/accept.svg';
 import cartItems, { ICartItem } from '@/constants/cart';
 import CartItem from './CartItem';
+import CartTotal from './CartTotal';
 
 function CartBody() {
   const [items, setItems] = useState<ICartItem[]>(cartItems);
+  const [count, setCount] = useState<number>(0);
   const [totalPrice, setTotalPrice] = useState<number>(
     items.reduce((accumulator, currentValue) => (currentValue.isSelected
       ? accumulator + currentValue.totalPrice : accumulator), 0),
@@ -41,8 +45,16 @@ function CartBody() {
   };
 
   useEffect(() => {
-    setTotalPrice(items.reduce((accumulator, currentValue) => (currentValue.isSelected
-      ? accumulator + currentValue.totalPrice : accumulator), 0));
+    let newPrice = 0;
+    let newCount = 0;
+    items.forEach((item) => {
+      if (item.isSelected) {
+        newPrice += item.totalPrice;
+        newCount += item.count;
+      }
+    });
+    setTotalPrice(newPrice);
+    setCount(newCount);
   }, [items]);
 
   return (
@@ -76,46 +88,10 @@ function CartBody() {
           ))}
         </div>
       </div>
-      <div className="flex-auto py-[32px] rounded-[20px] bg-white border border-solid border-stroke-dark">
-        <div className="flex items-center justify-between font-bold ubuntu pb-[24px] px-[32px] border-b border-solid border-stroke-dark">
-          <span className="text-2xl">
-            Итого:
-          </span>
-          <span className="text-[32px] text-text-900">
-            {totalPrice}
-            {' '}
-            ₽
-          </span>
-        </div>
-        <div className="py-[20px] px-[32px] border-b border-solid border-stroke-dark text-text-600">
-          <div className="flex items-center justify-between mb-[16px]">
-            2 товара
-            <div className="text-xl pt-sans">
-              2198 ₽
-            </div>
-          </div>
-          <div className="flex items-center justify-between">
-            Доставка
-            <div className="text-xl pt-sans">
-              199 ₽
-            </div>
-          </div>
-        </div>
-        <div className="px-[32px] pt-[24px]">
-          <button
-            type="button"
-            className="w-full h-[56px] flex justify-center items-center rounded-[30px] bg-brand-700 text-white font-bold text-xl mb-[16px]"
-          >
-            Перейти к оформлению
-          </button>
-          <div className="flex items-center">
-            <Accept className="fill-brand-700 basis-[18px] shrink-0 grow-0" />
-            <p className="ml-[18px] text-text-500">
-              Согласен с условиями Правил пользования торговой площадкой и правилами возврата
-            </p>
-          </div>
-        </div>
-      </div>
+      <CartTotal
+        totalPrice={totalPrice}
+        count={count}
+      />
     </div>
   );
 }
