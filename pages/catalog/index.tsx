@@ -3,7 +3,7 @@ import ProductCards from '@/components/Common/Swiper/ProductCards';
 import Breadcrumbs from '@/components/Common/Breadcrumbs';
 import Filters from '@/components/Catalog/Filters';
 import Products from '@/components/Catalog/Products';
-import Discounts from '@/components/Common/Discounts';
+import Discounts from '@/components/Common/Subscribe/Discounts';
 import Button from '@/components/Common/UI/Button';
 
 const list = [

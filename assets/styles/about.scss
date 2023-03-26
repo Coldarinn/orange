@@ -1,0 +1,39 @@
+.benefits-button {
+  &-next,
+  &-prev {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    background-color: theme('colors.white');
+    border: 1px solid theme('colors.stroke.dark');
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.2s linear;
+    svg {
+      stroke: theme('colors.brand.700')
+    }
+    &.swiper-button-disabled {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+  &-prev {
+    left: 0;
+    transform: translate(-50%,-50%);
+    svg {
+      transform: rotate(90deg);
+    }
+  }
+  &-next {
+    right: 0;
+    transform: translate(50%,-50%);
+    svg {
+      transform: rotate(-90deg);
+    }
+  }
+}

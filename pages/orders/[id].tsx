@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import ProductCards from '@/components/Common/Swiper/ProductCards';
-import Discounts from '@/components/Common/Discounts';
+import Discounts from '@/components/Common/Subscribe/Discounts';
 import Button from '@/components/Common/UI/Button';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
@@ -8,15 +8,19 @@ import Link from 'next/link';
 import ProductImage from '@/assets/images/products/1.png';
 import Cross from '@/assets/images/icons/cross.svg';
 
-export default function Product() {
+export default function Order() {
   const router = useRouter();
   return (
     <>
       <Head>
-        <title>Весёлый апельсин | Карточка товара</title>
+        <title>
+          Весёлый апельсин | Заказ №
+          {' '}
+          {router.query.id}
+        </title>
         <meta
           name="description"
-          content="Весёлый апельсин Карточка товара"
+          content={`Весёлый апельсин Заказ ${router.query.id}`}
         />
         <meta
           name="viewport"

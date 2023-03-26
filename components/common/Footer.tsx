@@ -14,7 +14,7 @@ export default function Footer() {
               Интернет-магазин
             </div>
             <Link
-              href="/asd"
+              href="/delivery"
               className="text-text-600 mb-[12px] transition duration-300 hover:text-brand-700"
             >
               Доставка и оплата
@@ -26,7 +26,7 @@ export default function Footer() {
               Обмен и возврат
             </Link>
             <Link
-              href="/asd"
+              href="/confidentiality"
               className="text-text-600 transition duration-300 hover:text-brand-700"
             >
               Конфиденциальность

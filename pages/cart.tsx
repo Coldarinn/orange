@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import ProductCards from '@/components/Common/Swiper/ProductCards';
-import Discounts from '@/components/Common/Discounts';
+import Discounts from '@/components/Common/Subscribe/Discounts';
 import CartBody from '@/components/Cart/CartBody';
 import Button from '@/components/Common/UI/Button';
 
