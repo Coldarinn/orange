@@ -45,7 +45,7 @@ export default function Product() {
           href="/favicon.ico"
         />
       </Head>
-      <div className="pt-[200px] pb-[60px] border-b border-solid border-text-100 mb-[60px]">
+      <div className="pt-[200px] pb-[60px] border-b border-text-100 mb-[60px]">
         <div className="container !max-w-[1331px]">
           <Breadcrumbs list={list} />
           <div className="text-[32px] text-text-900 mb-[18px] ubuntu">

@@ -49,6 +49,10 @@ ul li {
   margin: 0 auto;
 }
 
+[class*="border"] {
+  border-style: solid;
+}
+
 .pt-sans {
   font-family: 'PTSans';
 }
@@ -87,6 +91,16 @@ ul li {
     height: 39px;
     border: 1.5px solid theme('colors.text.800');
     color: theme('colors.text.900');
+  }
+  &.thick {
+    border: 2px solid theme('colors.text.700');
+    border-radius: 24px;
+    font-weight: 700;
+    color: theme('colors.text.700');
+    &:focus {
+      background-color: theme('colors.brand.700');
+      color: theme('colors.white');
+    }
   }
   &.right {
     flex-direction: row-reverse;

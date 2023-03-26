@@ -43,7 +43,7 @@ function ProductCards({ id }: { id: String }) {
             key={item.id.toString()}
             className="!w-auto"
           >
-            <div className="w-[224px] p-[16px] bg-white border border-solid border-stroke-dark rounded-[24px]">
+            <div className="w-[224px] p-[16px] bg-white border border-stroke-dark rounded-[24px]">
               <ProductCard />
             </div>
           </SwiperSlide>

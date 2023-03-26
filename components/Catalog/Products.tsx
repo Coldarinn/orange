@@ -51,7 +51,7 @@ function Products() {
         {arr.slice(0, +count.title).map((item) => (
           <div
             key={item.id.toString()}
-            className="catalog-product w-[224px] p-[16px] bg-white border border-solid border-stroke-dark rounded-[24px]"
+            className="catalog-product w-[224px] p-[16px] bg-white border border-stroke-dark rounded-[24px]"
           >
             <ProductCard
               showRating

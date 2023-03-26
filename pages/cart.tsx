@@ -22,7 +22,7 @@ export default function Cart() {
           href="/favicon.ico"
         />
       </Head>
-      <div className="pt-[200px] pb-[60px] border-b border-solid border-text-100 mb-[60px]">
+      <div className="pt-[200px] pb-[60px] border-b border-text-100 mb-[60px]">
         <div className="container">
           <h2 className="text-[32px] font-bold mb-[32px] ubuntu">
             Корзина

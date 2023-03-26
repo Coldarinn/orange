@@ -32,14 +32,14 @@ export default function Header() {
           <div className="flex ml-auto gap-[16px]">
             <Link
               href="/"
-              className="flex items-center h-[48px] px-[24.5px] border-2 border-solid border-[#F2F2F2] rounded-[24px]"
+              className="flex items-center h-[48px] px-[24.5px] border-2 border-[#F2F2F2] rounded-[24px]"
             >
               <User className="fill-[#FF8700]" />
               <span className="ml-[10px] pt-sans">Профиль</span>
             </Link>
             <Link
               href="/"
-              className="flex items-center h-[48px] px-[24.5px] border-2 border-solid border-[#F2F2F2] rounded-[24px]"
+              className="flex items-center h-[48px] px-[24.5px] border-2 border-[#F2F2F2] rounded-[24px]"
             >
               <Heart className="fill-[#FF8700]" />
               <span className="ml-[10px] pt-sans">Избранное</span>

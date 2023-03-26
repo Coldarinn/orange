@@ -5,8 +5,16 @@ import Discounts from '@/components/Common/Discounts';
 import Button from '@/components/Common/UI/Button';
 import Lego from '@/assets/images/lego.png';
 import LegoMovie from '@/assets/images/lego-movie.png';
+import { useEffect } from 'react';
 
 export default function Home() {
+  const getCity = () => fetch('https://api.db-ip.com/v2/free/self')
+    .then(async (res) => console.log('res: ', await res.json()));
+
+  useEffect(() => {
+    getCity();
+  }, []);
+
   return (
     <>
       <Head>
@@ -24,7 +32,7 @@ export default function Home() {
           href="/favicon.ico"
         />
       </Head>
-      <div className="pt-[200px] pb-[60px] border-b border-solid border-text-100 mb-[60px]">
+      <div className="pt-[200px] pb-[60px] border-b border-text-100 mb-[60px]">
         <div className="container">
           <div className="flex gap-[40px] mb-[51px]">
             <div className="p-[40px] rounded-[40px] bg-brand-400">

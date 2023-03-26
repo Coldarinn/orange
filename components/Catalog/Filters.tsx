@@ -37,7 +37,7 @@ function Filters() {
           <div className="flex justify-between mt-[16px]">
             <input
               type="number"
-              className="flex items-center w-[106px] h-[35px] px-[12px] border border-solid border-text-400 rounded-[40px]"
+              className="flex items-center w-[106px] h-[35px] px-[12px] border border-text-400 rounded-[40px]"
               // @ts-ignore
               value={value[0]}
               // @ts-ignore
@@ -45,7 +45,7 @@ function Filters() {
             />
             <input
               type="number"
-              className="flex items-center w-[106px] h-[35px] px-[12px] border border-solid border-text-400 rounded-[40px]"
+              className="flex items-center w-[106px] h-[35px] px-[12px] border border-text-400 rounded-[40px]"
               // @ts-ignore
               value={value[1]}
               // @ts-ignore

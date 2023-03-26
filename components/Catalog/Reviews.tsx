@@ -5,11 +5,11 @@ function Reviews() {
   return (
     <>
 
-      <div className="bg-white py-[32px] rounded-[20px] border border-solid border-stroke-dark mb-[20px]">
+      <div className="bg-white py-[32px] rounded-[20px] border border-stroke-dark mb-[20px]">
         <div className="mb-[25px] ubuntu text-2xl px-[32px]">
           Отзывы
         </div>
-        <div className="flex items-center px-[32px] pb-[32px] border-b border-solid border-stroke-dark">
+        <div className="flex items-center px-[32px] pb-[32px] border-b border-stroke-dark">
           <div className="basis-[182px] mr-[40px]">
             <div className="flex items-center mb-[14px] text-text-700">
               <span className="text-[40px] font-bold  mr-[16px]">
@@ -21,7 +21,7 @@ function Reviews() {
             </div>
             <button
               type="button"
-              className="w-full h-[52px] flex items-center justify-center text-white font-bold gap-[10px] bg-brand-700 border border-solid border-stroke-dark rounded-[30px]"
+              className="w-full h-[52px] flex items-center justify-center text-white font-bold gap-[10px] bg-brand-700 border border-stroke-dark rounded-[30px]"
             >
               Оставить отзыв
             </button>
@@ -84,7 +84,7 @@ function Reviews() {
             </div>
           </div>
         </div>
-        <div className="px-[32px] py-[28px] border-b border-solid border-stroke-dark">
+        <div className="px-[32px] py-[28px] border-b border-stroke-dark">
           <div className="flex items-center mb-[20px]">
             <Star className="stroke-stars fill-stars mr-[8px]" />
             <Star className="stroke-stars fill-stars mr-[8px]" />
@@ -124,7 +124,7 @@ function Reviews() {
             </div>
           </div>
         </div>
-        <div className="px-[32px] py-[28px] border-b border-solid border-stroke-dark">
+        <div className="px-[32px] py-[28px] border-b border-stroke-dark">
           <div className="flex items-center mb-[20px]">
             <Star className="stroke-stars fill-stars mr-[8px]" />
             <Star className="stroke-stars fill-stars mr-[8px]" />
@@ -164,7 +164,7 @@ function Reviews() {
             </div>
           </div>
         </div>
-        <div className="px-[32px] py-[28px] border-b border-solid border-stroke-dark">
+        <div className="px-[32px] py-[28px] border-b border-stroke-dark">
           <div className="flex items-center mb-[20px]">
             <Star className="stroke-stars fill-stars mr-[8px]" />
             <Star className="stroke-stars fill-stars mr-[8px]" />
@@ -207,7 +207,7 @@ function Reviews() {
       </div>
       <button
         type="button"
-        className="w-full h-[52px] flex items-center justify-center text-text-900 bg-white rounded-[62px] border border-solid border-stroke-dark cursor-pointer"
+        className="w-full h-[52px] flex items-center justify-center text-text-900 bg-white rounded-[62px] border border-stroke-dark cursor-pointer"
       >
         Смотреть все отзывы (46)
       </button>

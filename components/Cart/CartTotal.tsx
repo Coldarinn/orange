@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import Button from '@/components//Common/UI/Button';
 import Accept from '@/assets/images/icons/accept.svg';
+import { useRouter } from 'next/router';
 
 function getNoun(number:number, one:string, two:string, five:string) {
   let n = Math.abs(number);
@@ -19,9 +20,10 @@ function getNoun(number:number, one:string, two:string, five:string) {
 }
 
 function CartTotal({ totalPrice, count }:{ totalPrice:number, count:number }) {
+  const router = useRouter();
   return (
-    <div className="flex-auto py-[32px] rounded-[20px] bg-white border border-solid border-stroke-dark">
-      <div className="flex items-center justify-between font-bold ubuntu pb-[24px] px-[32px] border-b border-solid border-stroke-dark">
+    <div className="flex-auto py-[32px] rounded-[20px] bg-white border border-stroke-dark">
+      <div className="flex items-center justify-between font-bold ubuntu pb-[24px] px-[32px] border-b border-stroke-dark">
         <span className="text-2xl">
           Итого:
         </span>
@@ -31,7 +33,7 @@ function CartTotal({ totalPrice, count }:{ totalPrice:number, count:number }) {
           ₽
         </span>
       </div>
-      <div className="py-[20px] px-[32px] border-b border-solid border-stroke-dark text-text-600">
+      <div className="py-[20px] px-[32px] border-b border-stroke-dark text-text-600">
         <div className="flex items-center justify-between mb-[16px]">
           {count}
           {' '}
@@ -54,6 +56,7 @@ function CartTotal({ totalPrice, count }:{ totalPrice:number, count:number }) {
           type="orange"
           text="Перейти к оформлению"
           customStyles="w-full h-[56px] mb-[16px] text-xl"
+          onClick={() => router.push(`orders/${1}`)}
         />
         <div className="flex items-center">
           <Accept className="fill-brand-700 basis-[18px] shrink-0 grow-0" />

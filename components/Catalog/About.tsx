@@ -1,6 +1,6 @@
 function About() {
   return (
-    <div className="my-[60px] bg-white p-[32px] rounded-[20px] border border-solid border-stroke-dark">
+    <div className="my-[60px] bg-white p-[32px] rounded-[20px] border border-stroke-dark">
       <div className="mb-[32px] ubuntu text-2xl">
         О товаре
       </div>

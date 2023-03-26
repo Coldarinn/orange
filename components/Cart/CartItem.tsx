@@ -16,7 +16,7 @@ function CartItem({
   deleteItem: (id:number) => void,
 }) {
   return (
-    <div className="flex p-[24px] border-b border-solid border-stroke-dark last:border-0">
+    <div className="flex p-[24px] border-b border-stroke-dark last:border-0">
       <div className="cart-checkbox">
         <label
           className="checkbox"
@@ -51,21 +51,21 @@ function CartItem({
         <div className="relative w-fit">
           <input
             type="number"
-            className="w-[139px] h-[48px] px-[48px] text-xl text-center bg-brand-200 border border-solid border-stroke-dark rounded-[24px]"
+            className="w-[139px] h-[48px] px-[48px] text-xl text-center bg-brand-200 border border-stroke-dark rounded-[24px]"
             min={1}
             value={item.count}
             onChange={(e) => changeCount(item.id, +e.target.value)}
           />
           <button
             type="button"
-            className="absolute top-0 left-0 w-[48px] h-[48px] flex items-center justify-center rounded-full bg-white border border-solid border-stroke-dark text-brand-700"
+            className="absolute top-0 left-0 w-[48px] h-[48px] flex items-center justify-center rounded-full bg-white border border-stroke-dark text-brand-700"
             onClick={() => item.count - 1 > 0 && changeCount(item.id, item.count - 1)}
           >
             <Minus />
           </button>
           <button
             type="button"
-            className="absolute top-0 right-0 w-[48px] h-[48px] flex items-center justify-center rounded-full bg-white border border-solid border-stroke-dark text-brand-700"
+            className="absolute top-0 right-0 w-[48px] h-[48px] flex items-center justify-center rounded-full bg-white border border-stroke-dark text-brand-700"
             onClick={() => changeCount(item.id, item.count + 1)}
           >
             <Plus />
@@ -80,7 +80,7 @@ function CartItem({
         </div>
         <button
           type="button"
-          className="w-[48px] h-[48px] flex items-center justify-center rounded-full bg-white border border-solid border-stroke-dark text-brand-700"
+          className="w-[48px] h-[48px] flex items-center justify-center rounded-full bg-white border border-stroke-dark text-brand-700"
           onClick={() => deleteItem(item.id)}
         >
           <Trash className="fill-text-700" />

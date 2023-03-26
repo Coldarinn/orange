@@ -9,7 +9,7 @@ export default function Footer() {
     <footer className="bg-brand-200">
       <div className="container">
         <div className="flex h-[240px]">
-          <div className="basis-[248px] h-full pt-[60px] flex flex-col border-r border-solid border-stroke-brand">
+          <div className="basis-[248px] h-full pt-[60px] flex flex-col border-r border-stroke-brand">
             <div className="font-bold mb-[20px] text-text-700">
               Интернет-магазин
             </div>
@@ -32,12 +32,12 @@ export default function Footer() {
               Конфиденциальность
             </Link>
           </div>
-          <div className="basis-[248px] h-full ml-[88px] pt-[60px] flex flex-col border-r border-solid border-stroke-brand">
+          <div className="basis-[248px] h-full ml-[88px] pt-[60px] flex flex-col border-r border-stroke-brand">
             <div className="font-bold mb-[20px] text-text-700">
               Компания
             </div>
             <Link
-              href="/asd"
+              href="/about"
               className="text-text-600 mb-[12px] transition duration-300 hover:text-brand-700"
             >
               О нас
@@ -55,7 +55,7 @@ export default function Footer() {
               Контакты
             </Link>
           </div>
-          <div className="basis-[248px] h-full ml-[88px] pt-[60px] flex flex-col border-r border-solid border-stroke-brand">
+          <div className="basis-[248px] h-full ml-[88px] pt-[60px] flex flex-col border-r border-stroke-brand">
             <a
               href="tel:88008453535"
               className="text-xl font-bold mb-[8px] transition duration-300 hover:text-brand-700"

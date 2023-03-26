@@ -19,7 +19,7 @@ function Pagination() {
           onClick={() => setSelected((prev) => prev - 1)}
         />
       )}
-      <div className="flex bg-white border border-solid border-stroke-dark rounded-[20px]">
+      <div className="flex bg-white border border-stroke-dark rounded-[20px]">
         {selected > 2 && (
           <button
             type="button"
