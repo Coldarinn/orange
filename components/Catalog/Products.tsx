@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react';
 import { sortItems, countOptions } from '@/constants/catalog';
 import Select, { IOption } from '../Common/Select';
-import ProductCard from '../Common/Swiper/ProductCard';
-import Pagination from './Pagination';
+import ProductCard from '../Common/Products/ProductCard';
+import Pagination from '../Common/Pagination';
 import 'swiper/css';
 
 const arr = [

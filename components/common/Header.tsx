@@ -31,7 +31,7 @@ export default function Header() {
           </div>
           <div className="flex ml-auto gap-[16px]">
             <Link
-              href="/"
+              href="/profile"
               className="flex items-center h-[48px] px-[24.5px] border-2 border-[#F2F2F2] rounded-[24px]"
             >
               <User className="fill-[#FF8700]" />

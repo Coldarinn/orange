@@ -2,7 +2,7 @@ import Accept from '@/assets/images/icons/accept.svg';
 
 interface ICheckbox {
   id: string,
-  title: String,
+  title: string,
 }
 
 function Checkbox({ id, title }: ICheckbox) {

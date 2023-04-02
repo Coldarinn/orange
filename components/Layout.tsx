@@ -1,11 +1,11 @@
 import Footer from './Common/Footer';
 import Header from './Common/Header';
 
-interface Props {
+interface ILayout {
   children: JSX.Element
 }
 
-export default function Layout({ children } : Props) {
+export default function Layout({ children } : ILayout) {
   return (
     <>
       <Header />

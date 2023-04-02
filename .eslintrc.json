@@ -8,6 +8,7 @@
     "react/react-in-jsx-scope": "off",
     "no-nested-ternary": "off",
     "react/require-default-props": "off",
-    "react/jsx-max-props-per-line": [2, { "maximum": 1, "when": "always" }]
+    "react/jsx-max-props-per-line": [2, { "maximum": 1, "when": "always" }],
+    "react/button-has-type": "off"
   }
 }

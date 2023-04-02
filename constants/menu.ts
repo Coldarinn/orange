@@ -1,13 +1,13 @@
 interface ISubMenu {
-  id: Number,
-  title: String,
-  link: String,
-  query: String,
+  id: number,
+  title: string,
+  link: string,
+  query: string,
 }
 
 interface IMenuItems {
-  id: Number,
-  title: String,
+  id: number,
+  title: string,
   subMenu: ISubMenu[]
 }
 

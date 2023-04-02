@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import ProductCards from '@/components/Common/Swiper/ProductCards';
+import ProductCards from '@/components/Common/Products/ProductCards';
 import Button from '@/components/Common/UI/Button';
 import { useState } from 'react';
 import Location from '@/assets/images/icons/duble-location.svg';

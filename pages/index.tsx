@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import ProductCards from '@/components/Common/Swiper/ProductCards';
+import ProductCards from '@/components/Common/Products/ProductCards';
 import Discounts from '@/components/Common/Subscribe/Discounts';
 import Button from '@/components/Common/UI/Button';
 import Lego from '@/assets/images/lego.png';

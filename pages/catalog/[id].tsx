@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import ProductCards from '@/components/Common/Swiper/ProductCards';
+import ProductCards from '@/components/Common/Products/ProductCards';
 import Breadcrumbs from '@/components/Common/Breadcrumbs';
 import Discounts from '@/components/Common/Subscribe/Discounts';
 import ProductSLider from '@/components/Catalog/ProductSLider';

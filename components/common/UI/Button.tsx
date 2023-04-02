@@ -1,8 +1,9 @@
 import { ReactNode } from 'react';
 
 interface IButton {
+  buttonType?: 'button' | 'submit',
   type: 'white' | 'orange' | 'black' | 'thick',
-  text: String,
+  text: string,
   icon?: ReactNode,
   iconLeft?: boolean,
   customStyles?: string,
@@ -10,12 +11,12 @@ interface IButton {
 }
 
 function Button({
-  type, text, icon, iconLeft = true, customStyles, onClick,
+  buttonType = 'button', type, text, icon, iconLeft = true, customStyles, onClick,
 }: IButton) {
   return (
     <button
       className={`button ${customStyles || ''} ${type} ${iconLeft ? '' : 'right'}`}
-      type="button"
+      type={buttonType}
       onClick={() => onClick && onClick()}
     >
       {icon ? (
