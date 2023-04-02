@@ -1,3 +1,4 @@
+import ConfidentialityText from '@/components/Confidentiality/ConfidentialityText';
 import Head from 'next/head';
 
 export default function Confidentiality() {
@@ -23,6 +24,7 @@ export default function Confidentiality() {
           <h2 className="text-[32px] font-bold mb-[60px] ubuntu">
             Политика конфиденциальности
           </h2>
+          <ConfidentialityText />
         </div>
       </div>
     </>
