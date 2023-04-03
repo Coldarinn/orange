@@ -38,7 +38,7 @@ export default function Header() {
               <span className="ml-[10px] pt-sans">Профиль</span>
             </Link>
             <Link
-              href="/"
+              href="/profile/favorites"
               className="flex items-center h-[48px] px-[24.5px] border-2 border-[#F2F2F2] rounded-[24px]"
             >
               <Heart className="fill-[#FF8700]" />

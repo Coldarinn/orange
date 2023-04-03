@@ -1,5 +1,6 @@
 // tailwind.config.js
 module.exports = {
+  mode: 'jit',
   content: [
     './app/**/*.{js,ts,jsx,tsx}',
     './pages/**/*.{js,ts,jsx,tsx}',
@@ -8,9 +9,11 @@ module.exports = {
   theme: {
     colors: {
       white: '#FFFFFF',
+      black: '#000000',
       stars: '#EDB013',
       background: '#FAF8F2',
       red: '#FF0000',
+      success: '#7ECC00',
       stroke: {
         brand: '#FEEBDA',
         dark: '#F2F2F2',

@@ -71,6 +71,9 @@ ul li {
   align-items: center;
   border-radius: 62px;
   transition: 0.2s linear;
+  path {
+    transition: 0.2s linear;
+  }
   @media (any-hover: hover) {
     &:hover{
       opacity: 0.75;
@@ -100,6 +103,9 @@ ul li {
     &:focus {
       background-color: theme('colors.brand.700');
       color: theme('colors.white');
+      path {
+        stroke: theme('colors.white');
+      }
     }
   }
   &.right {

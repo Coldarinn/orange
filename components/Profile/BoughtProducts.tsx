@@ -26,7 +26,7 @@ function BoughtProducts({ count }: IBoughtProducts) {
   return (
     <div className="flex-auto pt-[10px] relative">
       <div className="absolute right-0 top-[-72px]" />
-      <div className="flex items-start flex-wrap gap-x-[28px] gap-y-[28px]">
+      <div className="flex items-start flex-wrap gap-[28px]">
         {arr.slice(0, count).map((item) => (
           <div
             key={item.id.toString()}

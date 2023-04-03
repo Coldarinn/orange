@@ -36,12 +36,12 @@ const profileMenu: IProfileMenu[] = [
     link: '/profile/favorites',
     notifs: 0,
   },
-  {
-    id: 5,
-    name: 'Настройки',
-    link: '/profile/settings',
-    notifs: 0,
-  },
+  // {
+  //   id: 5,
+  //   name: 'Настройки',
+  //   link: '/profile/settings',
+  //   notifs: 0,
+  // },
 ];
 
 export default profileMenu;

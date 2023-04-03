@@ -8,11 +8,19 @@ import Cart from 'assets/images/icons/cart.svg';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper';
 
-function ProductCard({ showRating = false, sale }: { showRating?: boolean, sale?: string }) {
+interface IProductCard {
+  showRating?: boolean,
+  sale?: string,
+  isFavorite?:boolean,
+}
+
+function ProductCard({ showRating = false, sale, isFavorite = false }: IProductCard) {
   return (
     <>
       <div className="product-card mb-[12px] relative">
-        <Heart className="absolute right-0 stroke-text-500 cursor-pointer z-[2] transition duration-300 hover:stroke-red" />
+        <Heart
+          className={`absolute right-0 stroke-text-500 cursor-pointer z-[2] transition duration-300 hover:stroke-red${isFavorite ? ' fill-red stroke-red' : ''}`}
+        />
         <Swiper
           modules={[Pagination]}
           pagination={{ clickable: true, el: '.product-card-pagination' }}
