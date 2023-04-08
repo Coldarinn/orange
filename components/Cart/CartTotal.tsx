@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import Button from '@/components//Common/UI/Button';
+import Button from '@/components/Common/UI/Button';
 import Accept from '@/assets/images/icons/accept.svg';
 import { useRouter } from 'next/router';
 
