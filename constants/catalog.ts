@@ -1,52 +1,52 @@
-import { IOption } from '@/components/Common/Select';
+import { IOption } from "@/components/common/Select";
 
 interface ISortItems {
-  id: number,
-  title: string
+  id: number;
+  title: string;
 }
 
 export const sortItems: ISortItems[] = [
   {
     id: 1,
-    title: 'по популярности',
+    title: "по популярности",
   },
   {
     id: 2,
-    title: 'по рейтингу',
+    title: "по рейтингу",
   },
   {
     id: 3,
-    title: 'по скидке',
+    title: "по скидке",
   },
   {
     id: 4,
-    title: 'сначала новые',
+    title: "сначала новые",
   },
   {
     id: 5,
-    title: 'сначала дорогие',
+    title: "сначала дорогие",
   },
   {
     id: 6,
-    title: 'сначала дешевые',
+    title: "сначала дешевые",
   },
 ];
 
 export const countOptions: IOption[] = [
   {
     id: 1,
-    title: '4',
+    title: "4",
   },
   {
     id: 2,
-    title: '8',
+    title: "8",
   },
   {
     id: 3,
-    title: '12',
+    title: "12",
   },
   {
     id: 4,
-    title: '16',
+    title: "16",
   },
 ];

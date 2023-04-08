@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import Button from '@/components/Common/UI/Button';
-import Arrow from '@/assets/images/icons/arrow.svg';
+import { useState } from "react";
+import Button from "@/components/common/UI/Button";
+import Arrow from "@/assets/images/icons/arrow.svg";
 
 const pages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 const pagesLength = pages.length;
@@ -30,11 +30,7 @@ function Pagination() {
           </button>
         )}
         {selected > 3 && (
-          <div
-            className="text-text-900 px-[16px] py-[10px]"
-          >
-            ...
-          </div>
+          <div className="text-text-900 px-[16px] py-[10px]">...</div>
         )}
         {selected === pagesLength && (
           <button
@@ -79,11 +75,7 @@ function Pagination() {
           </button>
         )}
         {selected < pagesLength - 2 && (
-          <div
-            className="text-text-900 px-[16px] py-[10px]"
-          >
-            ...
-          </div>
+          <div className="text-text-900 px-[16px] py-[10px]">...</div>
         )}
         {selected < pagesLength - 1 && (
           <button

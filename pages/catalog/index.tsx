@@ -1,21 +1,21 @@
-import Head from 'next/head';
-import ProductCards from '@/components/Common/Products/ProductCards';
-import Breadcrumbs from '@/components/Common/Breadcrumbs';
-import Filters from '@/components/Catalog/Filters';
-import Products from '@/components/Catalog/Products';
-import Discounts from '@/components/Common/Subscribe/Discounts';
-import Button from '@/components/Common/UI/Button';
+import Head from "next/head";
+import ProductCards from "@/components/common/Products/ProductCards";
+import Breadcrumbs from "@/components/common/Breadcrumbs";
+import Filters from "@/components/Catalog/Filters";
+import Products from "@/components/Catalog/Products";
+import Discounts from "@/components/common/Subscribe/Discounts";
+import Button from "@/components/common/UI/Button";
 
 const list = [
   {
     id: 1,
-    title: 'Конструкторы ',
-    link: '/',
+    title: "Конструкторы ",
+    link: "/",
   },
   {
     id: 2,
-    title: 'LEGO ',
-    link: '/',
+    title: "LEGO ",
+    link: "/",
   },
 ];
 
@@ -24,18 +24,9 @@ export default function Catalog() {
     <>
       <Head>
         <title>Весёлый апельсин | Каталог товаров</title>
-        <meta
-          name="description"
-          content="Весёлый апельсин Каталог товаров"
-        />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1"
-        />
-        <link
-          rel="icon"
-          href="/favicon.ico"
-        />
+        <meta name="description" content="Весёлый апельсин Каталог товаров" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="pt-[200px] pb-[60px] border-b border-text-100 mb-[60px]">
         <div className="container">
@@ -44,9 +35,7 @@ export default function Catalog() {
             <span className="text-[32px] text-text-900 mr-[24px] ubuntu">
               LEGO
             </span>
-            <span className="text-text-600 pt-[5px]">
-              328 товаров
-            </span>
+            <span className="text-text-600 pt-[5px]">328 товаров</span>
           </div>
           <div className="flex items-start">
             <Filters />
@@ -60,10 +49,7 @@ export default function Catalog() {
             <div className="text-2xl text-text-900 ubuntu">
               Вы недавно смотрели
             </div>
-            <Button
-              type="black"
-              text="Посмотреть ещё"
-            />
+            <Button type="black" text="Посмотреть ещё" />
           </div>
           <ProductCards id="third" />
           <div className="mt-[90px]">

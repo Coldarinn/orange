@@ -1,28 +1,28 @@
-import Button from '@/components/Common/UI/Button';
-import User from '@/assets/images/icons/profile-user.svg';
-import { useState } from 'react';
+import Button from "@/components/common/UI/Button";
+import User from "@/assets/images/icons/profile-user.svg";
+import { useState } from "react";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PATTERN = /\D/g; // все символы, которые не числа
 
 function Form() {
-  const [name, setName] = useState<string>('Палкин Кирилл');
-  const [email, setEmail] = useState<string>('test@mail.ru');
-  const [phone, setPhone] = useState<string>('');
+  const [name, setName] = useState<string>("Палкин Кирилл");
+  const [email, setEmail] = useState<string>("test@mail.ru");
+  const [phone, setPhone] = useState<string>("");
   const [phoneError, setPhoneError] = useState<boolean>(false);
-  const [born, setBorn] = useState<string>('2023-01-01');
+  const [born, setBorn] = useState<string>("2023-01-01");
 
-  const getInputNumbersValue = (value: string) => value.replace(PATTERN, '');
+  const getInputNumbersValue = (value: string) => value.replace(PATTERN, "");
 
   const handlePhoneInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     const input = event.target;
 
     let inputNumbersValue = getInputNumbersValue(input.value);
-    let formattedInputValue = '';
+    let formattedInputValue = "";
     const { selectionStart } = input;
 
     if (!inputNumbersValue) {
-      setPhone('');
+      setPhone("");
       return;
     }
 
@@ -30,12 +30,12 @@ function Form() {
       return;
     }
 
-    if (['7', '8', '9'].indexOf(inputNumbersValue[0]) > -1) {
-      if (inputNumbersValue[0] === '9') {
+    if (["7", "8", "9"].indexOf(inputNumbersValue[0]) > -1) {
+      if (inputNumbersValue[0] === "9") {
         inputNumbersValue = `7${inputNumbersValue}`;
       }
 
-      const firstSymbols = inputNumbersValue[0] === '8' ? '8' : '+7';
+      const firstSymbols = inputNumbersValue[0] === "8" ? "8" : "+7";
       formattedInputValue = `${firstSymbols} `;
 
       if (inputNumbersValue.length > 1) {
@@ -53,7 +53,7 @@ function Form() {
     } else {
       formattedInputValue = `+${inputNumbersValue.substring(0, 16)}`;
     }
-    if (formattedInputValue[0] === '+' && formattedInputValue[1] === '7') {
+    if (formattedInputValue[0] === "+" && formattedInputValue[1] === "7") {
       if (formattedInputValue.length < 18) {
         setPhoneError(true);
       } else {
@@ -70,8 +70,11 @@ function Form() {
 
   const handlePhoneKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     const input = event.target as HTMLInputElement;
-    if (event.key === 'Backspace' && getInputNumbersValue(input.value).length === 1) {
-      setPhone('');
+    if (
+      event.key === "Backspace" &&
+      getInputNumbersValue(input.value).length === 1
+    ) {
+      setPhone("");
     }
 
     return input;
@@ -83,7 +86,7 @@ function Form() {
     const inputNumbersValue = getInputNumbersValue(input.value);
 
     if (pasted) {
-      const pastedText = pasted.getData('Text');
+      const pastedText = pasted.getData("Text");
       if (PATTERN.test(pastedText)) {
         setPhone(inputNumbersValue);
       }
@@ -104,60 +107,45 @@ function Form() {
           <User />
         </div>
         <div className="flex-1 ml-[24px]">
-          <label
-            htmlFor="name"
-            className="profile-label no-border"
-          >
-            <span className="profile-label__text">
-              Имя
-            </span>
+          <label htmlFor="name" className="profile-label no-border">
+            <span className="profile-label__text">Имя</span>
             <input
               id="name"
-              className={`profile-label__input${!name ? ' error' : ''}`}
+              className={`profile-label__input${!name ? " error" : ""}`}
               type="text"
               placeholder="Введите имя"
               value={name}
-              onInput={(event) => setName((event.target as HTMLInputElement).value)}
+              onInput={(event) =>
+                setName((event.target as HTMLInputElement).value)
+              }
             />
-            {!name && (
-            <span className="profile-label__error">
-              Введите имя
-            </span>
-            )}
+            {!name && <span className="profile-label__error">Введите имя</span>}
           </label>
         </div>
       </div>
-      <label
-        htmlFor="email"
-        className="profile-label"
-      >
-        <span className="profile-label__text">
-          Почта
-        </span>
+      <label htmlFor="email" className="profile-label">
+        <span className="profile-label__text">Почта</span>
         <input
           id="email"
-          className={`profile-label__input${(!email || !emailRegex.test(email)) ? ' error' : ''}`}
+          className={`profile-label__input${
+            !email || !emailRegex.test(email) ? " error" : ""
+          }`}
           type="email"
           placeholder="Введите почту"
           value={email}
-          onInput={(event) => setEmail((event.target as HTMLInputElement).value)}
+          onInput={(event) =>
+            setEmail((event.target as HTMLInputElement).value)
+          }
         />
         {(!name || !emailRegex.test(email)) && (
-        <span className="profile-label__error">
-          Введите корректную почту
-        </span>
+          <span className="profile-label__error">Введите корректную почту</span>
         )}
       </label>
-      <label
-        htmlFor="phone"
-        className="profile-label"
-      >
-        <span className="profile-label__text">
-          Телефон
-        </span>
+      <label htmlFor="phone" className="profile-label">
+        <span className="profile-label__text">Телефон</span>
         <input
           id="phone"
-          className={`profile-label__input${phoneError ? ' error' : ''}`}
+          className={`profile-label__input${phoneError ? " error" : ""}`}
           type="tel"
           placeholder="Введите номера телефона"
           maxLength={18}
@@ -167,30 +155,23 @@ function Form() {
           onPaste={handlePhonePaste}
         />
         {phoneError && (
-        <span className="profile-label__error">
-          Введите корректный номер телефона
-        </span>
+          <span className="profile-label__error">
+            Введите корректный номер телефона
+          </span>
         )}
       </label>
-      <label
-        htmlFor="born"
-        className="profile-label"
-      >
-        <span className="profile-label__text">
-          Дата рождения
-        </span>
+      <label htmlFor="born" className="profile-label">
+        <span className="profile-label__text">Дата рождения</span>
         <input
           id="born"
-          className={`profile-label__input${!born ? ' error' : ''}`}
+          className={`profile-label__input${!born ? " error" : ""}`}
           type="date"
           placeholder="Введите Имя"
           value={born}
           onInput={(event) => setBorn((event.target as HTMLInputElement).value)}
         />
         {!born && (
-        <span className="profile-label__error">
-          Введите дату рождения
-        </span>
+          <span className="profile-label__error">Введите дату рождения</span>
         )}
       </label>
       <div className="px-[24px]">

@@ -1,17 +1,15 @@
-import Footer from './Common/Footer';
-import Header from './Common/Header';
+import Footer from "./common/Footer";
+import Header from "./common/Header";
 
 interface ILayout {
-  children: JSX.Element
+  children: JSX.Element;
 }
 
-export default function Layout({ children } : ILayout) {
+export default function Layout({ children }: ILayout) {
   return (
     <>
       <Header />
-      <main>
-        {children}
-      </main>
+      <main>{children}</main>
       <Footer />
     </>
   );

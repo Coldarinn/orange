@@ -1,32 +1,21 @@
-import Head from 'next/head';
-import Image from 'next/image';
-import Link from 'next/link';
-import Layout from '@/components/Profile/Layout';
-import Button from '@/components/Common/UI/Button';
-import User from '@/assets/images/icons/profile-user.svg';
-import Notif from '@/assets/images/icons/notif.svg';
-import Mastercard from '@/assets/images/icons/mastercard.svg';
-import Product from '@/assets/images/products/1.png';
+import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
+import Layout from "@/components/Profile/Layout";
+import Button from "@/components/common/UI/Button";
+import User from "@/assets/images/icons/profile-user.svg";
+import Notif from "@/assets/images/icons/notif.svg";
+import Mastercard from "@/assets/images/icons/mastercard.svg";
+import Product from "@/assets/images/products/1.png";
 
 function Profile() {
   return (
     <>
       <Head>
-        <title>
-          Весёлый апельсин | Профиль
-        </title>
-        <meta
-          name="description"
-          content="Весёлый апельсин | Профиль"
-        />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1"
-        />
-        <link
-          rel="icon"
-          href="/favicon.ico"
-        />
+        <title>Весёлый апельсин | Профиль</title>
+        <meta name="description" content="Весёлый апельсин | Профиль" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="pt-[200px]">
         <Layout>
@@ -47,20 +36,12 @@ function Profile() {
                 <div className="flex justify-between items-end">
                   <div className="text-text-600">
                     <div className="flex items-center mb-[8px]">
-                      <div className="w-[67px] font-medium">
-                        Телефон
-                      </div>
-                      <div className="ml-[24px]">
-                        +7 (952) 305-89-23
-                      </div>
+                      <div className="w-[67px] font-medium">Телефон</div>
+                      <div className="ml-[24px]">+7 (952) 305-89-23</div>
                     </div>
                     <div className="flex items-center">
-                      <div className="w-[67px] font-medium">
-                        Почта
-                      </div>
-                      <div className="ml-[24px]">
-                        ivanovmax@mail.ru
-                      </div>
+                      <div className="w-[67px] font-medium">Почта</div>
+                      <div className="ml-[24px]">ivanovmax@mail.ru</div>
                     </div>
                   </div>
                   <Button
@@ -72,22 +53,15 @@ function Profile() {
               </div>
               <div className="p-[24px] bg-white border border-stroke-dark rounded-[20px]">
                 <div className="flex justify-between items-center mb-[24px]">
-                  <div className="text-2xl ubuntu">
-                    Иванов Максим
-                  </div>
-                  <button
-                    type="button"
-                    className="font-bold text-brand-700"
-                  >
+                  <div className="text-2xl ubuntu">Иванов Максим</div>
+                  <button type="button" className="font-bold text-brand-700">
                     Изменить
                   </button>
                 </div>
                 <div className="flex justify-between items-center">
                   <div className="text-text-600">
                     553092******9831
-                    <span className="ml-[16px] inline-block">
-                      04/28
-                    </span>
+                    <span className="ml-[16px] inline-block">04/28</span>
                   </div>
                   <Mastercard />
                 </div>
@@ -95,20 +69,14 @@ function Profile() {
             </div>
             <div className="w-full max-w-[392px] ml-[24px]">
               <div className="p-[24px] bg-white border border-stroke-dark rounded-[20px] mb-[24px]">
-                <div className="text-2xl ubuntu mb-[24px]">
-                  Купленное
-                </div>
+                <div className="text-2xl ubuntu mb-[24px]">Купленное</div>
                 <div className="relative h-[80px]">
                   <Link
                     href="/catalog/1"
                     className="absolute top-0 left-0 w-[80px] h-full bg-white border border-stroke-dark rounded-[12px] transition duration-300 hover:border-brand-700"
                   >
                     <span className="absolute left-[8px] top-[8px] right-[8px] bottom-[8px]">
-                      <Image
-                        src={Product}
-                        alt="Картинка продукта"
-                        fill
-                      />
+                      <Image src={Product} alt="Картинка продукта" fill />
                     </span>
                   </Link>
                   <Link
@@ -116,11 +84,7 @@ function Profile() {
                     className="absolute top-0 left-[48px] w-[80px] h-full bg-white border border-stroke-dark rounded-[12px] transition duration-300 hover:border-brand-700"
                   >
                     <span className="absolute left-[8px] top-[8px] right-[8px] bottom-[8px]">
-                      <Image
-                        src={Product}
-                        alt="Картинка продукта"
-                        fill
-                      />
+                      <Image src={Product} alt="Картинка продукта" fill />
                     </span>
                   </Link>
                   <Link
@@ -128,11 +92,7 @@ function Profile() {
                     className="absolute top-0 left-[96px] w-[80px] h-full bg-white border border-stroke-dark rounded-[12px] transition duration-300 hover:border-brand-700"
                   >
                     <span className="absolute left-[8px] top-[8px] right-[8px] bottom-[8px]">
-                      <Image
-                        src={Product}
-                        alt="Картинка продукта"
-                        fill
-                      />
+                      <Image src={Product} alt="Картинка продукта" fill />
                     </span>
                   </Link>
                   <Link
@@ -140,11 +100,7 @@ function Profile() {
                     className="absolute top-0 left-[144px] w-[80px] h-full bg-white border border-stroke-dark rounded-[12px] transition duration-300 hover:border-brand-700"
                   >
                     <span className="absolute left-[8px] top-[8px] right-[8px] bottom-[8px]">
-                      <Image
-                        src={Product}
-                        alt="Картинка продукта"
-                        fill
-                      />
+                      <Image src={Product} alt="Картинка продукта" fill />
                     </span>
                   </Link>
                   <Link
@@ -156,20 +112,14 @@ function Profile() {
                 </div>
               </div>
               <div className="p-[24px] bg-white border border-stroke-dark rounded-[20px]">
-                <div className="text-2xl ubuntu mb-[24px]">
-                  Избранное
-                </div>
+                <div className="text-2xl ubuntu mb-[24px]">Избранное</div>
                 <div className="relative h-[80px]">
                   <Link
                     href="/catalog/1"
                     className="absolute top-0 left-0 w-[80px] h-full bg-white border border-stroke-dark rounded-[12px] transition duration-300 hover:border-brand-700"
                   >
                     <span className="absolute left-[8px] top-[8px] right-[8px] bottom-[8px]">
-                      <Image
-                        src={Product}
-                        alt="Картинка продукта"
-                        fill
-                      />
+                      <Image src={Product} alt="Картинка продукта" fill />
                     </span>
                   </Link>
                   <Link
@@ -177,11 +127,7 @@ function Profile() {
                     className="absolute top-0 left-[48px] w-[80px] h-full bg-white border border-stroke-dark rounded-[12px] transition duration-300 hover:border-brand-700"
                   >
                     <span className="absolute left-[8px] top-[8px] right-[8px] bottom-[8px]">
-                      <Image
-                        src={Product}
-                        alt="Картинка продукта"
-                        fill
-                      />
+                      <Image src={Product} alt="Картинка продукта" fill />
                     </span>
                   </Link>
                   <Link
@@ -189,11 +135,7 @@ function Profile() {
                     className="absolute top-0 left-[96px] w-[80px] h-full bg-white border border-stroke-dark rounded-[12px] transition duration-300 hover:border-brand-700"
                   >
                     <span className="absolute left-[8px] top-[8px] right-[8px] bottom-[8px]">
-                      <Image
-                        src={Product}
-                        alt="Картинка продукта"
-                        fill
-                      />
+                      <Image src={Product} alt="Картинка продукта" fill />
                     </span>
                   </Link>
                   <Link
@@ -201,11 +143,7 @@ function Profile() {
                     className="absolute top-0 left-[144px] w-[80px] h-full bg-white border border-stroke-dark rounded-[12px] transition duration-300 hover:border-brand-700"
                   >
                     <span className="absolute left-[8px] top-[8px] right-[8px] bottom-[8px]">
-                      <Image
-                        src={Product}
-                        alt="Картинка продукта"
-                        fill
-                      />
+                      <Image src={Product} alt="Картинка продукта" fill />
                     </span>
                   </Link>
                   <Link

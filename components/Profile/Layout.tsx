@@ -1,12 +1,12 @@
-import Link from 'next/link';
-import ProductCards from '@/components/Common/Products/ProductCards';
-import Discounts from '@/components/Common/Subscribe/Discounts';
-import Button from '@/components/Common/UI/Button';
-import profileMenu from '@/constants/profile';
-import { useRouter } from 'next/router';
+import Link from "next/link";
+import ProductCards from "@/components/common/Products/ProductCards";
+import Discounts from "@/components/common/Subscribe/Discounts";
+import Button from "@/components/common/UI/Button";
+import profileMenu from "@/constants/profile";
+import { useRouter } from "next/router";
 
 interface ILayout {
-  children: JSX.Element
+  children: JSX.Element;
 }
 
 function Layout({ children }: ILayout) {
@@ -24,22 +24,23 @@ function Layout({ children }: ILayout) {
                 >
                   <Link
                     href={item.link}
-                    className={`transition duration-300 hover:text-brand-700 ${pathname === item.link ? 'text-brand-700 pointer-events-none' : 'text-text-700'}`}
+                    className={`transition duration-300 hover:text-brand-700 ${
+                      pathname === item.link
+                        ? "text-brand-700 pointer-events-none"
+                        : "text-text-700"
+                    }`}
                   >
                     {item.name}
                   </Link>
-                  {!!item.notifs
-                  && (
-                  <div className="flex items-center justify-center basis-[20px] shrink-0 h-[20px] bg-brand-700 rounded-full text-white text-sm">
-                    {item.notifs}
-                  </div>
+                  {!!item.notifs && (
+                    <div className="flex items-center justify-center basis-[20px] shrink-0 h-[20px] bg-brand-700 rounded-full text-white text-sm">
+                      {item.notifs}
+                    </div>
                   )}
                 </div>
               ))}
             </div>
-            <div className="ml-[48px] flex-1">
-              {children}
-            </div>
+            <div className="ml-[48px] flex-1">{children}</div>
           </div>
         </div>
       </div>
@@ -48,10 +49,7 @@ function Layout({ children }: ILayout) {
           <div className="text-2xl text-text-900 ubuntu">
             Вы недавно смотрели
           </div>
-          <Button
-            type="black"
-            text="Посмотреть ещё"
-          />
+          <Button type="black" text="Посмотреть ещё" />
         </div>
         <ProductCards id="seventh" />
         <div className="mt-[90px]">
