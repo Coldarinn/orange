@@ -1,29 +1,29 @@
-import Head from "next/head";
-import ProductCards from "@/components/common/Products/ProductCards";
-import Breadcrumbs from "@/components/common/Breadcrumbs";
-import Discounts from "@/components/common/Subscribe/Discounts";
-import ProductSLider from "@/components/Catalog/ProductSLider";
-import ProductPrice from "@/components/Catalog/ProductPrice";
-import Star from "@/assets/images/icons/star.svg";
-import Reviews from "@/components/Catalog/Reviews";
-import About from "@/components/Catalog/About";
-import Button from "@/components/common/UI/Button";
+import Head from 'next/head';
+import ProductCards from '@/components/common/Products/ProductCards';
+import Breadcrumbs from '@/components/common/Breadcrumbs';
+import Discounts from '@/components/common/Subscribe/Discounts';
+import ProductSLider from '@/components/Catalog/ProductSLider';
+import ProductPrice from '@/components/Catalog/ProductPrice';
+import Star from '@/assets/images/icons/star.svg';
+import Reviews from '@/components/Catalog/Reviews';
+import About from '@/components/Catalog/About';
+import Button from '@/components/common/UI/Button';
 
 const list = [
   {
     id: 1,
-    title: "Конструкторы ",
-    link: "/",
+    title: 'Конструкторы ',
+    link: '/',
   },
   {
     id: 2,
-    title: "Детские конструкторы ",
-    link: "/",
+    title: 'Детские конструкторы ',
+    link: '/',
   },
   {
     id: 3,
-    title: "LEGO ",
-    link: "/",
+    title: 'LEGO ',
+    link: '/',
   },
 ];
 
@@ -32,9 +32,18 @@ export default function Product() {
     <>
       <Head>
         <title>Весёлый апельсин | Карточка товара</title>
-        <meta name="description" content="Весёлый апельсин Карточка товара" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="description"
+          content="Весёлый апельсин Карточка товара"
+        />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1"
+        />
+        <link
+          rel="icon"
+          href="/favicon.ico"
+        />
       </Head>
       <div className="pt-[200px] pb-[60px] border-b border-text-100 mb-[60px]">
         <div className="container !max-w-[1331px]">
@@ -68,14 +77,20 @@ export default function Product() {
             <div className="text-2xl text-text-900 ubuntu">
               С этим товаром покупают
             </div>
-            <Button type="black" text="Посмотреть ещё" />
+            <Button
+              type="black"
+              text="Посмотреть ещё"
+            />
           </div>
           <ProductCards id="third" />
           <div className="flex justify-between items-center mt-[64px] mb-[38px]">
             <div className="text-2xl text-text-900 ubuntu">
               Вы недавно смотрели
             </div>
-            <Button type="black" text="Посмотреть ещё" />
+            <Button
+              type="black"
+              text="Посмотреть ещё"
+            />
           </div>
           <ProductCards id="fourth" />
           <div className="mt-[90px]">

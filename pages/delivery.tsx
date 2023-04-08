@@ -1,23 +1,32 @@
-import Head from "next/head";
-import ProductCards from "@/components/common/Products/ProductCards";
-import Button from "@/components/common/UI/Button";
-import { useState } from "react";
-import Location from "@/assets/images/icons/duble-location.svg";
-import CarIcon from "@/assets/images/icons/delivery.svg";
+import Head from 'next/head';
+import ProductCards from '@/components/common/Products/ProductCards';
+import Button from '@/components/common/UI/Button';
+import { useState } from 'react';
+import Location from '@/assets/images/icons/duble-location.svg';
+import CarIcon from '@/assets/images/icons/delivery.svg';
 
 export default function Delivery() {
   const [selected, setSelected] = useState<{ id: number; city: string }>({
     id: 0,
-    city: "Москва",
+    city: 'Москва',
   });
   const [showAll, setShowAll] = useState<boolean>(false);
   return (
     <>
       <Head>
         <title>Весёлый апельсин | Доставка и оплата</title>
-        <meta name="description" content="Весёлый апельсин Доставка и оплата" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="description"
+          content="Весёлый апельсин Доставка и оплата"
+        />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1"
+        />
+        <link
+          rel="icon"
+          href="/favicon.ico"
+        />
       </Head>
       <div className="pt-[200px] pb-[120px] border-b border-text-100 mb-[60px]">
         <div className="container">
@@ -31,10 +40,10 @@ export default function Delivery() {
                 type="button"
                 className={`px-[16px] py-[12px] hover:opacity-60 rounded-[22px] transition duration-300 ${
                   selected.id === idx
-                    ? "text-white bg-brand-700"
-                    : "text-text-700 bg-white"
+                    ? 'text-white bg-brand-700'
+                    : 'text-text-700 bg-white'
                 }`}
-                onClick={() => setSelected({ id: idx, city: "Москва" })}
+                onClick={() => setSelected({ id: idx, city: 'Москва' })}
               >
                 Москва
               </button>
@@ -128,14 +137,20 @@ export default function Delivery() {
             <div className="text-2xl text-text-900 ubuntu text-shadow">
               Вам может понравиться
             </div>
-            <Button type="black" text="Посмотреть ещё" />
+            <Button
+              type="black"
+              text="Посмотреть ещё"
+            />
           </div>
           <ProductCards id="fir" />
           <div className="flex justify-between items-center mt-[64px] mb-[33px]">
             <div className="text-2xl text-text-900 ubuntu text-shadow">
               Вы недавно смотрели
             </div>
-            <Button type="black" text="Посмотреть ещё" />
+            <Button
+              type="black"
+              text="Посмотреть ещё"
+            />
           </div>
           <ProductCards id="sec" />
         </div>

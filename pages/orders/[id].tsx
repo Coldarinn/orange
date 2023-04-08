@@ -1,31 +1,44 @@
-import Head from "next/head";
-import ProductCards from "@/components/common/Products/ProductCards";
-import Discounts from "@/components/common/Subscribe/Discounts";
-import Button from "@/components/common/UI/Button";
-import { useRouter } from "next/router";
-import Image from "next/image";
-import Link from "next/link";
-import ProductImage from "@/assets/images/products/1.png";
-import Cross from "@/assets/images/icons/cross.svg";
+import Head from 'next/head';
+import ProductCards from '@/components/common/Products/ProductCards';
+import Discounts from '@/components/common/Subscribe/Discounts';
+import Button from '@/components/common/UI/Button';
+import { useRouter } from 'next/router';
+import Image from 'next/image';
+import Link from 'next/link';
+import ProductImage from '@/assets/images/products/1.png';
+import Cross from '@/assets/images/icons/cross.svg';
 
 export default function Order() {
   const router = useRouter();
   return (
     <>
       <Head>
-        <title>Весёлый апельсин | Заказ № {router.query.id}</title>
+        <title>
+          Весёлый апельсин | Заказ №
+          {router.query.id}
+        </title>
         <meta
           name="description"
           content={`Весёлый апельсин Заказ ${router.query.id}`}
         />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1"
+        />
+        <link
+          rel="icon"
+          href="/favicon.ico"
+        />
       </Head>
       <div className="pt-[200px] pb-[60px] border-b border-text-100 mb-[60px]">
         <div className="pb-[120px] border-b border-text-100">
           <div className="container">
             <div className="text-[32px] text-text-900 mb-[32px] ubuntu">
-              Заказ № {router.query.id} оформлен
+              Заказ №
+              {' '}
+              {router.query.id}
+              {' '}
+              оформлен
             </div>
             <div className="bg-white border border-stroke-dark rounded-[40px] py-[32px] mb-[32px]">
               <div className="flex items-center justify-between px-[32px] pb-[24px] mb-[24px] border-b border-stroke-dark">
@@ -75,7 +88,11 @@ export default function Order() {
                         href="/catalog/1"
                         className="absolute left-[8px] top-[8px] right-[8px] bottom-[8px]"
                       >
-                        <Image src={ProductImage} alt="Картинка товара" fill />
+                        <Image
+                          src={ProductImage}
+                          alt="Картинка товара"
+                          fill
+                        />
                       </Link>
                     </div>
                     <div className="w-[156px] h-[156px] relative border border-stroke-dark rounded-[16px] mr-[12px]">
@@ -83,7 +100,11 @@ export default function Order() {
                         href="/catalog/1"
                         className="absolute left-[8px] top-[8px] right-[8px] bottom-[8px]"
                       >
-                        <Image src={ProductImage} alt="Картинка товара" fill />
+                        <Image
+                          src={ProductImage}
+                          alt="Картинка товара"
+                          fill
+                        />
                       </Link>
                     </div>
                     <Link
@@ -112,13 +133,13 @@ export default function Order() {
                 type="orange"
                 text="Мои заказы"
                 customStyles="!w-[200px] !h-[43px] mr-[24px]"
-                onClick={() => router.push("/")}
+                onClick={() => router.push('/')}
               />
               <Button
                 type="thick"
                 text="На главную"
                 customStyles="!w-[200px] !h-[43px]"
-                onClick={() => router.push("/")}
+                onClick={() => router.push('/')}
               />
             </div>
           </div>
@@ -128,7 +149,10 @@ export default function Order() {
             <div className="text-2xl text-text-900 ubuntu">
               Вам может понравиться
             </div>
-            <Button type="black" text="Посмотреть ещё" />
+            <Button
+              type="black"
+              text="Посмотреть ещё"
+            />
           </div>
           <ProductCards id="fivth" />
           <div className="mt-[90px]">

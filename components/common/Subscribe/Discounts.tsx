@@ -1,7 +1,7 @@
-import Image from "next/image";
-import Button from "@/components/common/UI/Button";
-import Lego from "@/assets/images/lego.png";
-import LegoMovie from "@/assets/images/lego-movie.png";
+import Image from 'next/image';
+import Button from '@/components/common/UI/Button';
+import Lego from '@/assets/images/lego.png';
+import LegoMovie from '@/assets/images/lego-movie.png';
 
 function Discounts() {
   return (
@@ -32,7 +32,11 @@ function Discounts() {
             Скидка 10% на конструкторы LEGO
           </div>
           <div className="w-[50px]">
-            <Image src={Lego} alt="Лего" style={{ width: "100%" }} />
+            <Image
+              src={Lego}
+              alt="Лего"
+              style={{ width: '100%' }}
+            />
           </div>
         </div>
         <div className="flex justify-between">
@@ -47,7 +51,11 @@ function Discounts() {
             />
           </div>
           <div className="w-[339px]">
-            <Image src={LegoMovie} alt="Лего" style={{ width: "100%" }} />
+            <Image
+              src={LegoMovie}
+              alt="Лего"
+              style={{ width: '100%' }}
+            />
           </div>
         </div>
       </div>

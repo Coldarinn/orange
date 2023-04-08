@@ -1,17 +1,26 @@
-import Head from "next/head";
-import ProductCards from "@/components/common/Products/ProductCards";
-import Discounts from "@/components/common/Subscribe/Discounts";
-import CartBody from "@/components/Cart/CartBody";
-import Button from "@/components/common/UI/Button";
+import Head from 'next/head';
+import ProductCards from '@/components/common/Products/ProductCards';
+import Discounts from '@/components/common/Subscribe/Discounts';
+import CartBody from '@/components/Cart/CartBody';
+import Button from '@/components/common/UI/Button';
 
 export default function Cart() {
   return (
     <>
       <Head>
         <title>Весёлый апельсин | Корзина</title>
-        <meta name="description" content="Весёлый апельсин Корзина" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="description"
+          content="Весёлый апельсин Корзина"
+        />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1"
+        />
+        <link
+          rel="icon"
+          href="/favicon.ico"
+        />
       </Head>
       <div className="pt-[200px] pb-[60px] border-b border-text-100 mb-[60px]">
         <div className="container">
@@ -25,7 +34,10 @@ export default function Cart() {
             <div className="text-2xl text-text-900 ubuntu">
               Вам может понравиться
             </div>
-            <Button type="black" text="Посмотреть ещё" />
+            <Button
+              type="black"
+              text="Посмотреть ещё"
+            />
           </div>
           <ProductCards id="sixth" />
           <div className="mt-[90px]">

@@ -1,11 +1,11 @@
-import Image from "next/image";
-import Link from "next/link";
-import orderStatuses from "@/constants/orders";
-import Cross from "@/assets/images/icons/cross.svg";
-import Arrow from "@/assets/images/icons/arrow.svg";
-import ProductImage from "@/assets/images/products/1.png";
-import { useState } from "react";
-import Button from "../common/UI/Button";
+import Image from 'next/image';
+import Link from 'next/link';
+import orderStatuses from '@/constants/orders';
+import Cross from '@/assets/images/icons/cross.svg';
+import Arrow from '@/assets/images/icons/arrow.svg';
+import ProductImage from '@/assets/images/products/1.png';
+import { useState } from 'react';
+import Button from '../common/UI/Button';
 
 interface IOrder {
   order: {
@@ -52,7 +52,7 @@ function Order({ order }: IOrder) {
         <div>
           <div
             className={`text-xl text-right ubuntu${
-              order.status < 5 ? " text-brand-700" : " text-success"
+              order.status < 5 ? ' text-brand-700' : ' text-success'
             }`}
           >
             {status.title}
@@ -69,7 +69,11 @@ function Order({ order }: IOrder) {
               href={`/catalog/${1}`}
               className="absolute left-[8px] top-[8px] bottom-[8px] right-[8px]"
             >
-              <Image src={ProductImage} alt="Изображение товара" fill />
+              <Image
+                src={ProductImage}
+                alt="Изображение товара"
+                fill
+              />
             </Link>
           </div>
           <div className="w-[156px] h-[156px] relative border border-white rounded-[8px] transition duration-300 hover:border-brand-700">
@@ -77,12 +81,20 @@ function Order({ order }: IOrder) {
               href={`/catalog/${1}`}
               className="absolute left-[8px] top-[8px] bottom-[8px] right-[8px]"
             >
-              <Image src={ProductImage} alt="Изображение товара" fill />
+              <Image
+                src={ProductImage}
+                alt="Изображение товара"
+                fill
+              />
             </Link>
           </div>
         </div>
         <div className="flex flex-col min-h-full justify-between items-end">
-          <div className="text-[32px] ubuntu">{order.summ} ₽</div>
+          <div className="text-[32px] ubuntu">
+            {order.summ}
+            {' '}
+            ₽
+          </div>
           <Button
             type="thick"
             text="Отменить заказ"
@@ -96,22 +108,25 @@ function Order({ order }: IOrder) {
           <div className="text-xl font-medium mb-[32px]">Самовывоз</div>
           <div className="relative flex items-center justify-between mb-[80px]">
             {orderStatuses.map((item, idx) => (
-              <div key={item.title} className="basis-[32px]">
+              <div
+                key={item.title}
+                className="basis-[32px]"
+              >
                 <span
                   className={`relative z-[2] mb-[10px] flex items-center justify-center w-[32px] h-[32px] rounded-full font-bold ${
                     order.status > idx
-                      ? "bg-success text-white"
-                      : "bg-text-200 text-text-600"
+                      ? 'bg-success text-white'
+                      : 'bg-text-200 text-text-600'
                   }`}
                 >
                   {idx + 1}
                   <span
                     className={`absolute bottom-[-40px] text-text-800 font-normal whitespace-nowrap ${
                       idx === 0
-                        ? "left-0 text-left"
+                        ? 'left-0 text-left'
                         : idx === 4
-                        ? "right-0 text-right"
-                        : "left-1/2 -translate-x-1/2 text-center"
+                          ? 'right-0 text-right'
+                          : 'left-1/2 -translate-x-1/2 text-center'
                     }`}
                     dangerouslySetInnerHTML={{ __html: item.step }}
                   />
@@ -119,7 +134,7 @@ function Order({ order }: IOrder) {
                 {idx !== 4 && (
                   <div
                     className={`absolute top-[16px] w-1/4 h-[2px] z-[1] ${
-                      order.status > idx + 1 ? "bg-success" : "bg-text-200"
+                      order.status > idx + 1 ? 'bg-success' : 'bg-text-200'
                     }`}
                     style={{ left: `calc(25%*${idx})` }}
                   />
@@ -159,7 +174,7 @@ function Order({ order }: IOrder) {
         >
           <Arrow
             className={`mr-[12px] stroke-black ${
-              isOpen ? "rotate-180" : "rotate-0"
+              isOpen ? 'rotate-180' : 'rotate-0'
             }`}
           />
           Детали

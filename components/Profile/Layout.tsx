@@ -1,9 +1,9 @@
-import Link from "next/link";
-import ProductCards from "@/components/common/Products/ProductCards";
-import Discounts from "@/components/common/Subscribe/Discounts";
-import Button from "@/components/common/UI/Button";
-import profileMenu from "@/constants/profile";
-import { useRouter } from "next/router";
+import Link from 'next/link';
+import ProductCards from '@/components/common/Products/ProductCards';
+import Discounts from '@/components/common/Subscribe/Discounts';
+import Button from '@/components/common/UI/Button';
+import profileMenu from '@/constants/profile';
+import { useRouter } from 'next/router';
 
 interface ILayout {
   children: JSX.Element;
@@ -26,8 +26,8 @@ function Layout({ children }: ILayout) {
                     href={item.link}
                     className={`transition duration-300 hover:text-brand-700 ${
                       pathname === item.link
-                        ? "text-brand-700 pointer-events-none"
-                        : "text-text-700"
+                        ? 'text-brand-700 pointer-events-none'
+                        : 'text-text-700'
                     }`}
                   >
                     {item.name}
@@ -49,7 +49,10 @@ function Layout({ children }: ILayout) {
           <div className="text-2xl text-text-900 ubuntu">
             Вы недавно смотрели
           </div>
-          <Button type="black" text="Посмотреть ещё" />
+          <Button
+            type="black"
+            text="Посмотреть ещё"
+          />
         </div>
         <ProductCards id="seventh" />
         <div className="mt-[90px]">

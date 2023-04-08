@@ -1,8 +1,8 @@
-import { useState } from "react";
-import Checkbox from "@/components/common/UI/Checkbox";
-import Arrow from "@/assets/images/icons/arrow.svg";
-import Slider from "rc-slider";
-import "rc-slider/assets/index.css";
+import { useState } from 'react';
+import Checkbox from '@/components/common/UI/Checkbox';
+import Arrow from '@/assets/images/icons/arrow.svg';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
 
 function Filters() {
   const [value, setValue] = useState<number | number[]>([0, 100000]);
@@ -23,7 +23,7 @@ function Filters() {
           <div className="item-catalog-filters__title">Цена, ₽</div>
           <Arrow
             className={`item-catalog-filters__arrow ${
-              isPriceOpen && "is-open"
+              isPriceOpen && 'is-open'
             }`}
           />
         </button>
@@ -66,22 +66,31 @@ function Filters() {
           <div className="item-catalog-filters__title">Бренд</div>
           <Arrow
             className={`item-catalog-filters__arrow ${
-              isBrandsOpen && "is-open"
+              isBrandsOpen && 'is-open'
             }`}
           />
         </button>
         {isBrandsOpen && (
           <div className="item-catalog-filters__body">
             <div className="flex items-center justify-between mb-[16px]">
-              <Checkbox id="lego" title="LEGO" />
+              <Checkbox
+                id="lego"
+                title="LEGO"
+              />
               <span className="text-text-400">210</span>
             </div>
             <div className="flex items-center justify-between mb-[16px]">
-              <Checkbox id="MORK" title="MORK" />
+              <Checkbox
+                id="MORK"
+                title="MORK"
+              />
               <span className="text-text-400">34</span>
             </div>
             <div className="flex items-center justify-between">
-              <Checkbox id="Reobrix" title="Reobrix" />
+              <Checkbox
+                id="Reobrix"
+                title="Reobrix"
+              />
               <span className="text-text-400">26</span>
             </div>
           </div>
@@ -96,18 +105,24 @@ function Filters() {
           <div className="item-catalog-filters__title">Тематика</div>
           <Arrow
             className={`item-catalog-filters__arrow ${
-              isThemeOpen && "is-open"
+              isThemeOpen && 'is-open'
             }`}
           />
         </button>
         {isThemeOpen && (
           <div className="item-catalog-filters__body">
             <div className="flex items-center justify-between mb-[16px]">
-              <Checkbox id="theme1" title="Тематика 1" />
+              <Checkbox
+                id="theme1"
+                title="Тематика 1"
+              />
               <span className="text-text-400">210</span>
             </div>
             <div className="flex items-center justify-between">
-              <Checkbox id="theme2" title="Тематика 2" />
+              <Checkbox
+                id="theme2"
+                title="Тематика 2"
+              />
               <span className="text-text-400">34</span>
             </div>
           </div>
@@ -122,18 +137,24 @@ function Filters() {
           <div className="item-catalog-filters__title">Пол</div>
           <Arrow
             className={`item-catalog-filters__arrow ${
-              isGenderOpen && "is-open"
+              isGenderOpen && 'is-open'
             }`}
           />
         </button>
         {isGenderOpen && (
           <div className="item-catalog-filters__body">
             <div className="flex items-center justify-between mb-[16px]">
-              <Checkbox id="male" title="Мужской" />
+              <Checkbox
+                id="male"
+                title="Мужской"
+              />
               <span className="text-text-400">210</span>
             </div>
             <div className="flex items-center justify-between">
-              <Checkbox id="female" title="Женский" />
+              <Checkbox
+                id="female"
+                title="Женский"
+              />
               <span className="text-text-400">34</span>
             </div>
           </div>
@@ -148,18 +169,24 @@ function Filters() {
           <div className="item-catalog-filters__title">Страна производства</div>
           <Arrow
             className={`item-catalog-filters__arrow ${
-              isCountryOpen && "is-open"
+              isCountryOpen && 'is-open'
             }`}
           />
         </button>
         {isCountryOpen && (
           <div className="item-catalog-filters__body">
             <div className="flex items-center justify-between mb-[16px]">
-              <Checkbox id="russia" title="Россия" />
+              <Checkbox
+                id="russia"
+                title="Россия"
+              />
               <span className="text-text-400">210</span>
             </div>
             <div className="flex items-center justify-between">
-              <Checkbox id="german" title="Германия" />
+              <Checkbox
+                id="german"
+                title="Германия"
+              />
               <span className="text-text-400">34</span>
             </div>
           </div>

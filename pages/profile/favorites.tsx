@@ -1,18 +1,18 @@
-import Head from "next/head";
-import Layout from "@/components/Profile/Layout";
-import Breadcrumbs from "@/components/common/Breadcrumbs";
-import FavoriteProducts from "@/components/Profile/FavoriteProducts";
+import Head from 'next/head';
+import Layout from '@/components/Profile/Layout';
+import Breadcrumbs from '@/components/common/Breadcrumbs';
+import FavoriteProducts from '@/components/Profile/FavoriteProducts';
 
 const list = [
   {
     id: 1,
-    title: "Профиль ",
-    link: "/profile",
+    title: 'Профиль ',
+    link: '/profile',
   },
   {
     id: 2,
-    title: "Избранное ",
-    link: "/profile/favorites",
+    title: 'Избранное ',
+    link: '/profile/favorites',
   },
 ];
 
@@ -21,9 +21,18 @@ function Favorites() {
     <>
       <Head>
         <title>Весёлый апельсин | Профиль</title>
-        <meta name="description" content="Весёлый апельсин | Профиль" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="description"
+          content="Весёлый апельсин | Профиль"
+        />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1"
+        />
+        <link
+          rel="icon"
+          href="/favicon.ico"
+        />
       </Head>
       <div className="container pt-[200px]">
         <Breadcrumbs list={list} />

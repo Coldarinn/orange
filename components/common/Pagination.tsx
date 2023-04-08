@@ -1,6 +1,6 @@
-import { useState } from "react";
-import Button from "@/components/common/UI/Button";
-import Arrow from "@/assets/images/icons/arrow.svg";
+import { useState } from 'react';
+import Button from '@/components/common/UI/Button';
+import Arrow from '@/assets/images/icons/arrow.svg';
 
 const pages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 const pagesLength = pages.length;
