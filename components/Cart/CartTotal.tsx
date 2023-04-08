@@ -1,7 +1,7 @@
 import { memo } from 'react';
-import Button from '@/components/Common/UI/Button';
 import Accept from '@/assets/images/icons/accept.svg';
 import { useRouter } from 'next/router';
+import Button from '../Common/UI/Button';
 
 function getNoun(number:number, one:string, two:string, five:string) {
   let n = Math.abs(number);
