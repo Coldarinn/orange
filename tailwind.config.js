@@ -7,6 +7,13 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    screens: {
+      '2xl': { max: '1439px' },
+      xl: { max: '1279px' },
+      lg: { max: '1023px' },
+      md: { max: '767px' },
+      sm: { max: '479px' },
+    },
     colors: {
       white: '#FFFFFF',
       black: '#000000',
