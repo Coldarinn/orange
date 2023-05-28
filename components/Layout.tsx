@@ -9,8 +9,7 @@ export default function Layout({ children }: ILayout) {
   return (
     <>
       <Header />
-      {/* <main>{children}</main> */}
-      <main className="h-[500px]">asda</main>
+      <main>{children}</main>
       <Footer />
     </>
   );

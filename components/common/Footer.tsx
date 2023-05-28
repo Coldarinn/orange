@@ -6,7 +6,7 @@ import Logo from '@/assets/images/logo.svg';
 
 export default function Footer() {
   return (
-    <footer className="bg-brand-200">
+    <footer className="bg-brand-200 relative md:z-[2]">
       <div className="container">
         <div className="flex h-[240px] md:flex-wrap md:h-auto">
           <div className="basis-[248px] md:basis-1/2 h-full pt-[60px] md:pt-[24px] md:pl-[24px] md:pb-[20px] flex flex-col border-r md:border-r-0 md:border-b border-stroke-brand">

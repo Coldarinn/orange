@@ -21,6 +21,9 @@
       opacity: 0;
       visibility: hidden;
     }
+    @media (max-width: theme('screens.md.max')) {
+      display: none;
+    }
   }
   &-prev {
     left: 0;
@@ -35,5 +38,18 @@
     svg {
       transform: rotate(-90deg);
     }
+  }
+}
+
+@media (max-width: theme('screens.md.max')) {
+  .about-background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255,230,202);
+    background-image: linear-gradient(180deg, rgba(255,230,202,1) 0%, rgba(255,248,229,1) 60%, rgba(255,230,202,1) 100%);
   }
 }

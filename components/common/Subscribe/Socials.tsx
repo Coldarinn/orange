@@ -7,9 +7,9 @@ import Button from '../UI/Button';
 
 function Socials() {
   return (
-    <div className="flex gap-[40px]">
-      <div className="w-[632px] basis-[632px] p-[40px] rounded-[40px] bg-brand-350">
-        <div className="text-[32px] ubuntu mb-[24px]">
+    <div className="flex md:flex-col gap-[40px] md:gap-[20px] md:px-[24px] ">
+      <div className="w-[632px] md:w-full basis-[632px] md:basis-auto p-[40px] md:p-[32px] rounded-[40px] bg-brand-350 md:bg-white">
+        <div className="text-[32px] md:text-[24px] ubuntu mb-[24px]">
           Узнавайте о скидках первыми!
         </div>
         <div className="text-text-600 mb-[32px]">
@@ -27,9 +27,9 @@ function Socials() {
           />
         </div>
       </div>
-      <div className="relative grow p-[40px] pb-[30px] rounded-[40px] bg-brand-300">
-        <div className="text-[32px] mb-[24px] ubuntu">
-          Следите за нами социальных сетях
+      <div className="relative grow p-[40px] pb-[30px] md:p-[32px] rounded-[40px] bg-brand-300 md:bg-white">
+        <div className="text-[32px] md:text-[24px] mb-[24px] ubuntu">
+          Следите за нами в социальных сетях
         </div>
         <p className="leading-5 text-text-600 mb-[32px] max-w-[460px]">
           Подпишитесь на наши социальные сети, чтобы видеть
@@ -40,7 +40,7 @@ function Socials() {
             <a
               href="https://www.youtube.com/"
               target="blank"
-              className="flex items-center justify-center rounded-full bg-white w-[52px] h-[52px] transition duration-300 hover:opacity-60"
+              className="flex items-center justify-center rounded-full bg-white w-[52px] h-[52px] transition duration-300 hover:opacity-60 md:border md:border-stroke-dark"
             >
               <Whatsapp />
             </a>
@@ -49,7 +49,7 @@ function Socials() {
             <a
               href="https://www.youtube.com/"
               target="blank"
-              className="flex items-center justify-center rounded-full bg-white w-[52px] h-[52px] transition duration-300 hover:opacity-60"
+              className="flex items-center justify-center rounded-full bg-white w-[52px] h-[52px] transition duration-300 hover:opacity-60 md:border md:border-stroke-dark"
             >
               <Vk />
             </a>
@@ -58,7 +58,7 @@ function Socials() {
             <a
               href="https://www.youtube.com/"
               target="blank"
-              className="flex items-center justify-center rounded-full bg-white w-[52px] h-[52px] transition duration-300 hover:opacity-60"
+              className="flex items-center justify-center rounded-full bg-white w-[52px] h-[52px] transition duration-300 hover:opacity-60 md:border md:border-stroke-dark"
             >
               <Tg />
             </a>

@@ -18,9 +18,14 @@ function ProductCard({ showRating = false, sale, isFavorite = false }: IProductC
   return (
     <>
       <div className="product-card mb-[12px] relative">
-        <Heart
-          className={`absolute right-0 stroke-text-500 cursor-pointer z-[2] transition duration-300 hover:stroke-red${isFavorite ? ' fill-red stroke-red' : ''}`}
-        />
+        <button
+          type="button"
+          className="w-[36px] h-[36px] flex justify-center items-center rounded-full bg-white absolute right-[-8px] cursor-pointer z-[2]"
+        >
+          <Heart
+            className={`stroke-text-500 transition duration-300 hover:stroke-red${isFavorite ? ' fill-red stroke-red' : ''}`}
+          />
+        </button>
         <Swiper
           modules={[Pagination]}
           pagination={{ clickable: true, el: '.product-card-pagination' }}
@@ -67,7 +72,7 @@ function ProductCard({ showRating = false, sale, isFavorite = false }: IProductC
       </div>
       <Link
         href={`/catalog/${1}`}
-        className="ease-in duration-200 hover:text-brand-700"
+        className="ease-in duration-200 hover:text-brand-700 inline-block"
       >
         Конструктор для детей
       </Link>

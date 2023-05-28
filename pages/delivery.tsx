@@ -134,7 +134,7 @@ export default function Delivery() {
       <div className="container">
         <div className="mb-[90px]">
           <div className="flex justify-between items-center mb-[33px]">
-            <div className="text-2xl text-text-900 ubuntu text-shadow">
+            <div className="text-2xl text-text-900 ubuntu">
               Вам может понравиться
             </div>
             <Button
@@ -144,7 +144,7 @@ export default function Delivery() {
           </div>
           <ProductCards id="fir" />
           <div className="flex justify-between items-center mt-[64px] mb-[33px]">
-            <div className="text-2xl text-text-900 ubuntu text-shadow">
+            <div className="text-2xl text-text-900 ubuntu">
               Вы недавно смотрели
             </div>
             <Button
