@@ -32,7 +32,7 @@ export default function Footer() {
               Конфиденциальность
             </Link>
           </div>
-          <div className="basis-[248px] md:basis-1/2 h-full pt-[60px] md:pt-[24px] md:pl-[24px] md:pb-[20px] flex flex-col border-r md:border-r-0 md:border-b border-stroke-brand">
+          <div className="basis-[248px] md:basis-1/2 h-full ml-[88px] md:ml-0 pt-[60px] md:pt-[24px] md:pl-[24px] md:pb-[20px] flex flex-col border-r md:border-r-0 md:border-b border-stroke-brand">
             <div className="font-bold mb-[20px] text-text-700">
               Компания
             </div>
