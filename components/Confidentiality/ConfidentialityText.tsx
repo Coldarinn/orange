@@ -2,7 +2,7 @@ import React from 'react';
 
 function ConfidentialityText() {
   return (
-    <>
+    <div className="md:px-[24px]">
       <div className="mb-[40px] text-text-700 text-base">
         <div className="text-xl font-medium mb-[15px]">
           1. Общие положения
@@ -516,7 +516,7 @@ function ConfidentialityText() {
           в сети Интернет по адресу https://happy-orange/privacy-policy.
         </p>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -19,9 +19,9 @@ export default function Confidentiality() {
           href="/favicon.ico"
         />
       </Head>
-      <div className="pt-[200px] pb-[120px] border-b border-text-100 mb-[60px]">
+      <div className="pt-[200px] md:pt-[230px] pb-[120px] md:pb-[72px] border-b md:border-0 border-text-100 mb-[60px] md:mb-0">
         <div className="container">
-          <h2 className="text-[32px] font-bold mb-[60px] ubuntu">
+          <h2 className="text-[32px] font-bold mb-[60px] md:mb-[24px] ubuntu md:px-[24px]">
             Политика конфиденциальности
           </h2>
           <ConfidentialityText />
