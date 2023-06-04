@@ -43,15 +43,15 @@ function Order({ order }: IOrder) {
   const status = generateStatus(order.status);
 
   return (
-    <div className="w-full bg-white rounded-[20px] border border-stroke-dark py-[24px] mb-[28px]">
-      <div className="flex justify-between items-center px-[24px] pb-[16px]">
-        <div className="flex items-center text-xl">
+    <div className="w-full bg-white rounded-[20px] border border-stroke-dark py-[24px] mb-[28px] md:mb-[24px]">
+      <div className="flex justify-between items-center md:block px-[24px] pb-[16px]">
+        <div className="flex items-center text-xl md:mb-[15px]">
           <div className="ubuntu">{order.title}</div>
-          <div className="text-text-700 pt-sans ml-[32px]">{order.number}</div>
+          <div className="text-text-700 pt-sans ml-[32px] md:ml-auto">{order.number}</div>
         </div>
         <div>
           <div
-            className={`text-xl text-right ubuntu${
+            className={`text-xl text-right md:text-left ubuntu${
               order.status < 5 ? ' text-brand-700' : ' text-success'
             }`}
           >
@@ -62,9 +62,9 @@ function Order({ order }: IOrder) {
           )}
         </div>
       </div>
-      <div className="flex justify-between px-[24px] border-t border-stroke-dark py-[24px]">
-        <div className="flex">
-          <div className="w-[156px] h-[156px] relative border border-white rounded-[8px] transition duration-300 hover:border-brand-700 mr-[12px]">
+      <div className="flex justify-between md:block px-[24px] border-t border-stroke-dark py-[24px]">
+        <div className="flex items-center relative md:mb-[20px]">
+          <div className="w-[156px] h-[156px] relative border border-white md:border-stroke-dark rounded-[8px] transition duration-300 hover:border-brand-700 mr-[12px]">
             <Link
               href={`/catalog/${1}`}
               className="absolute left-[8px] top-[8px] bottom-[8px] right-[8px]"
@@ -76,7 +76,7 @@ function Order({ order }: IOrder) {
               />
             </Link>
           </div>
-          <div className="w-[156px] h-[156px] relative border border-white rounded-[8px] transition duration-300 hover:border-brand-700">
+          <div className="w-[156px] h-[156px] relative border border-white md:border-stroke-dark rounded-[8px] transition duration-300 hover:border-brand-700 mr-[12px]">
             <Link
               href={`/catalog/${1}`}
               className="absolute left-[8px] top-[8px] bottom-[8px] right-[8px]"
@@ -87,9 +87,12 @@ function Order({ order }: IOrder) {
                 fill
               />
             </Link>
+          </div>
+          <div className="flex justify-center items-center w-[48px] h-[48px] rounded-full border border-stroke-dark text-text-600">
+            +4
           </div>
         </div>
-        <div className="flex flex-col min-h-full justify-between items-end">
+        <div className="flex flex-col md:flex-row-reverse min-h-full justify-between items-end md:items-center">
           <div className="text-[32px] ubuntu">
             {order.summ}
             {' '}
@@ -105,15 +108,15 @@ function Order({ order }: IOrder) {
       </div>
       {isOpen && (
         <div className="px-[24px] pb-[16px] pt-[24px] border-t border-stroke-dark">
-          <div className="text-xl font-medium mb-[32px]">Самовывоз</div>
-          <div className="relative flex items-center justify-between mb-[80px]">
+          <div className="text-xl font-medium mb-[32px] md:mb-[28px]">Самовывоз</div>
+          <div className="relative flex md:block items-center justify-between mb-[80px] md:mb-[32px]">
             {orderStatuses.map((item, idx) => (
               <div
                 key={item.title}
-                className="basis-[32px]"
+                className="basis-[32px] md:basis-auto md:flex items-center md:mb-[16px]"
               >
                 <span
-                  className={`relative z-[2] mb-[10px] flex items-center justify-center w-[32px] h-[32px] rounded-full font-bold ${
+                  className={`relative z-[2] mb-[10px] md:mb-0 flex items-center justify-center w-[32px] h-[32px] rounded-full font-bold ${
                     order.status > idx
                       ? 'bg-success text-white'
                       : 'bg-text-200 text-text-600'
@@ -121,7 +124,7 @@ function Order({ order }: IOrder) {
                 >
                   {idx + 1}
                   <span
-                    className={`absolute bottom-[-40px] text-text-800 font-normal whitespace-nowrap ${
+                    className={`md:hidden absolute bottom-[-40px] text-text-800 font-normal whitespace-nowrap ${
                       idx === 0
                         ? 'left-0 text-left'
                         : idx === 4
@@ -131,36 +134,47 @@ function Order({ order }: IOrder) {
                     dangerouslySetInnerHTML={{ __html: item.step }}
                   />
                 </span>
+                <span className={`hidden md:inline-block ml-[10px] ${order.status === idx + 1 ? 'text-text-700 font-medium' : 'text-text-500'}`}>
+                  {item.mobileStep}
+                </span>
                 {idx !== 4 && (
-                  <div
-                    className={`absolute top-[16px] w-1/4 h-[2px] z-[1] ${
-                      order.status > idx + 1 ? 'bg-success' : 'bg-text-200'
-                    }`}
-                    style={{ left: `calc(25%*${idx})` }}
-                  />
+                  <>
+                    <div
+                      className={`absolute top-[15px] w-1/4 h-[2px] z-[1] md:hidden ${
+                        order.status > idx + 1 ? 'bg-success' : 'bg-text-200'
+                      }`}
+                      style={{ left: `calc(25%*${idx})` }}
+                    />
+                    <div
+                      className={`hidden md:block absolute left-[15px]  w-[2px] h-[16px] z-[1] ${
+                        order.status > idx + 1 ? 'bg-success' : 'bg-text-200'
+                      }`}
+                      style={{ top: `calc(32px*${idx + 1} + 16px*${idx})` }}
+                    />
+                  </>
                 )}
               </div>
             ))}
           </div>
-          <div className="flex">
-            <div className="basis-1/2">
+          <div className="flex md:block">
+            <div className="basis-1/2 md:mb-[16px]">
               <div className="flex text-text-600 mb-[16px]">
-                <div className="basis-[111px] font-medium">Статус оплаты:</div>
-                <div className="ml-[32px]">{order.status}</div>
+                <div className="basis-[111px] md:basis-[132px] shrink-0 font-medium">Статус оплаты:</div>
+                <div className="ml-[32px] md:ml-[16px]">{order.status}</div>
               </div>
               <div className="flex text-text-600">
-                <div className="basis-[111px] font-medium">Адрес:</div>
-                <div className="ml-[32px]">{order.address}</div>
+                <div className="basis-[111px] md:basis-[132px] shrink-0 font-medium">Адрес:</div>
+                <div className="ml-[32px] md:ml-[16px]">{order.address}</div>
               </div>
             </div>
             <div className="basis-1/2">
               <div className="flex text-text-600 mb-[16px]">
-                <div className="basis-[122px] font-medium">Срок доставки:</div>
-                <div className="ml-[32px]">{order.deliveryDate}</div>
+                <div className="basis-[122px] md:basis-[132px] shrink-0 font-medium">Срок доставки:</div>
+                <div className="ml-[32px] md:ml-[16px]">{order.deliveryDate}</div>
               </div>
               <div className="flex text-text-600">
-                <div className="basis-[122px] font-medium">График работы:</div>
-                <div className="ml-[32px]">{order.schedule}</div>
+                <div className="basis-[122px] md:basis-[132px] shrink-0 font-medium">График работы:</div>
+                <div className="ml-[32px] md:ml-[16px]">{order.schedule}</div>
               </div>
             </div>
           </div>

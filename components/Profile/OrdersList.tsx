@@ -38,14 +38,14 @@ const arr = [
 
 function OrdersList() {
   return (
-    <>
+    <div className="md:px-[24px]">
       {arr.map((item) => (
         <Order
           key={item.id}
           order={item}
         />
       ))}
-    </>
+    </div>
   );
 }
 

@@ -34,11 +34,10 @@ function Orders() {
           href="/favicon.ico"
         />
       </Head>
-      <div className="container pt-[200px]">
+      <div className="container pt-[200px] md:pt-[230px] md:px-[24px]">
         <Breadcrumbs list={list} />
-        <div className="flex items-center mb-[32px]">
-          <div className="text-[32px] ubuntu text-text-900">Избранное</div>
-          <div className="ml-[16px] mt-[8px] text-text-600">16 товаров</div>
+        <div className="text-[32px] ubuntu text-text-900 mb-[32px] md:mb-[24px]">
+          Мои заказы
         </div>
       </div>
       <Layout>
