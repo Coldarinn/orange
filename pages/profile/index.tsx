@@ -26,10 +26,10 @@ function Profile() {
           href="/favicon.ico"
         />
       </Head>
-      <div className="pt-[200px]">
+      <div className="pt-[200px] md:pt-[230px]">
         <Layout>
-          <div className="flex">
-            <div className="w-full max-w-[480px]">
+          <div className="flex md:block">
+            <div className="w-full max-w-[480px] md:max-w-full md:mb-[24px] md:px-[24px]">
               <div className="p-[24px] bg-white rounded-[20px] mb-[24px] border border-stroke-dark">
                 <div className="flex justify-between items-start mb-[24px] pb-[24px] border-b border-stroke-dark">
                   <div className="flex justify-between items-center">
@@ -60,7 +60,7 @@ function Profile() {
                   />
                 </div>
               </div>
-              <div className="p-[24px] bg-white border border-stroke-dark rounded-[20px]">
+              <div className="md:hidden p-[24px] bg-white border border-stroke-dark rounded-[20px]">
                 <div className="flex justify-between items-center mb-[24px]">
                   <div className="text-2xl ubuntu">Иванов Максим</div>
                   <button
@@ -78,8 +78,86 @@ function Profile() {
                   <Mastercard />
                 </div>
               </div>
+              <div className="hidden md:block w-full ml-0">
+                <div className="flex gap-[20px]">
+                  <div className="basis-1/2">
+                    <div className="p-[24px] bg-white border border-stroke-dark rounded-[20px]">
+                      <div className="text-2xl ubuntu mb-[24px]">Купленное</div>
+                      <div className="relative h-[80px]">
+                        <Link
+                          href="/catalog/1"
+                          className="absolute top-0 left-0 w-[80px] h-full bg-white border border-stroke-dark rounded-[12px] transition duration-300 hover:border-brand-700"
+                        >
+                          <span className="absolute left-[8px] top-[8px] right-[8px] bottom-[8px]">
+                            <Image
+                              src={Product}
+                              alt="Картинка продукта"
+                              fill
+                            />
+                          </span>
+                        </Link>
+                        <Link
+                          href="/catalog/1"
+                          className="absolute top-0 left-[32px] w-[80px] h-full bg-white border border-stroke-dark rounded-[12px] transition duration-300 hover:border-brand-700"
+                        >
+                          <span className="absolute left-[8px] top-[8px] right-[8px] bottom-[8px]">
+                            <Image
+                              src={Product}
+                              alt="Картинка продукта"
+                              fill
+                            />
+                          </span>
+                        </Link>
+                        <Link
+                          href="/profile/bought"
+                          className="absolute top-0 left-[64px] w-[80px] h-full bg-white border border-stroke-dark rounded-[12px] transition duration-300 hover:border-brand-700 flex items-center justify-center text-xl pt-sans text-text-600"
+                        >
+                          +4
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="basis-1/2">
+                    <div className="p-[24px] bg-white border border-stroke-dark rounded-[20px]">
+                      <div className="text-2xl ubuntu mb-[24px]">Избранное</div>
+                      <div className="relative h-[80px]">
+                        <Link
+                          href="/catalog/1"
+                          className="absolute top-0 left-0 w-[80px] h-full bg-white border border-stroke-dark rounded-[12px] transition duration-300 hover:border-brand-700"
+                        >
+                          <span className="absolute left-[8px] top-[8px] right-[8px] bottom-[8px]">
+                            <Image
+                              src={Product}
+                              alt="Картинка продукта"
+                              fill
+                            />
+                          </span>
+                        </Link>
+                        <Link
+                          href="/catalog/1"
+                          className="absolute top-0 left-[32px] w-[80px] h-full bg-white border border-stroke-dark rounded-[12px] transition duration-300 hover:border-brand-700"
+                        >
+                          <span className="absolute left-[8px] top-[8px] right-[8px] bottom-[8px]">
+                            <Image
+                              src={Product}
+                              alt="Картинка продукта"
+                              fill
+                            />
+                          </span>
+                        </Link>
+                        <Link
+                          href="/profile/bought"
+                          className="absolute top-0 left-[64px] w-[80px] h-full bg-white border border-stroke-dark rounded-[12px] transition duration-300 hover:border-brand-700 flex items-center justify-center text-xl pt-sans text-text-600"
+                        >
+                          +4
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="w-full max-w-[392px] ml-[24px]">
+            <div className="md:hidden w-full max-w-[392px] ml-[24px]">
               <div className="p-[24px] bg-white border border-stroke-dark rounded-[20px] mb-[24px]">
                 <div className="text-2xl ubuntu mb-[24px]">Купленное</div>
                 <div className="relative h-[80px]">
@@ -196,6 +274,26 @@ function Profile() {
                   >
                     +12
                   </Link>
+                </div>
+              </div>
+            </div>
+            <div className="hidden md:block px-[24px]">
+              <div className="p-[24px] bg-white border border-stroke-dark rounded-[20px]">
+                <div className="flex justify-between items-center mb-[24px]">
+                  <div className="text-2xl ubuntu">Иванов Максим</div>
+                  <button
+                    type="button"
+                    className="font-bold text-brand-700"
+                  >
+                    Изменить
+                  </button>
+                </div>
+                <div className="flex justify-between items-center">
+                  <div className="text-text-600">
+                    553092******9831
+                    <span className="ml-[16px] inline-block">04/28</span>
+                  </div>
+                  <Mastercard />
                 </div>
               </div>
             </div>

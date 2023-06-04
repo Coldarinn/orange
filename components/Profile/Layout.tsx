@@ -12,11 +12,11 @@ interface ILayout {
 function Layout({ children }: ILayout) {
   const { pathname } = useRouter();
   return (
-    <div className="pb-[60px] border-b border-text-100 mb-[60px]">
-      <div className="pb-[120px] border-b border-text-100">
+    <div className="pb-[60px] border-b border-text-100 mb-[60px] md:mb-[32px]">
+      <div className="pb-[120px] md:pb-[72px] border-b border-text-100">
         <div className="container">
-          <div className="flex items-start">
-            <div className="w-full basis-[288px] shrink-0 bg-white border border-stroke-dark rounded-[20px]">
+          <div className="flex items-start md:block">
+            <div className="w-full basis-[288px] shrink-0 bg-white border border-stroke-dark rounded-[20px] md:hidden">
               {profileMenu.map((item) => (
                 <div
                   key={item.id}
@@ -40,22 +40,25 @@ function Layout({ children }: ILayout) {
                 </div>
               ))}
             </div>
-            <div className="ml-[48px] flex-1">{children}</div>
+            <div className="ml-[48px] flex-1 md:m-0">{children}</div>
           </div>
         </div>
       </div>
       <div className="container">
-        <div className="flex justify-between items-center mt-[64px] mb-[38px]">
-          <div className="text-2xl text-text-900 ubuntu">
-            Вы недавно смотрели
+        <div className="md:px-[24px]">
+          <div className="flex justify-between items-center mt-[64px] md:mt-[32px] mb-[38px] md:mb-[24px]">
+            <div className="text-2xl text-text-900 ubuntu">
+              Вы недавно смотрели
+            </div>
+            <Button
+              type="black"
+              text="Посмотреть ещё"
+              customStyles="md:hidden"
+            />
           </div>
-          <Button
-            type="black"
-            text="Посмотреть ещё"
-          />
+          <ProductCards id="seventh" />
         </div>
-        <ProductCards id="seventh" />
-        <div className="mt-[90px]">
+        <div className="mt-[90px] md:mt-[40px]">
           <Discounts />
         </div>
       </div>

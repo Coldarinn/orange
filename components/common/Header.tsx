@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import menuItems from '@/constants/menu';
+import profileMenu from '@/constants/profile';
 import Logo from 'assets/images/logo.svg';
 import LogoMobile from 'assets/images/logo-mobile.svg';
 import Location from 'assets/images/icons/location.svg';
@@ -8,9 +9,11 @@ import Search from 'assets/images/icons/search.svg';
 import User from 'assets/images/icons/user.svg';
 import Heart from 'assets/images/icons/heart.svg';
 import Cart from 'assets/images/icons/cart.svg';
+import { useRouter } from 'next/router';
 
 export default function Header() {
   const [selected, setSelected] = useState<Number>(0);
+  const router = useRouter();
 
   return (
     <header className="fixed left-0 top-0 z-[3] w-full bg-white">
@@ -63,34 +66,58 @@ export default function Header() {
             </Link>
           </div>
         </div>
-        <div className="header-menu">
-          {menuItems.map((menuItem) => (
-            <div
-              key={menuItem.id.toString()}
-              className={`header-menu__item ${selected === menuItem.id ? 'active' : ''}`}
-            >
-              <button
-                className="header-menu__title"
-                type="button"
-                onClick={() => setSelected(selected === menuItem.id ? 0 : menuItem.id)}
-              >
-                {menuItem.title}
-              </button>
-              <div className="header-submenu">
-                {menuItem.subMenu.map((subMenuItem) => (
-                  <Link
-                    href={`${subMenuItem.link}${subMenuItem.query}`}
-                    key={subMenuItem.id.toString()}
-                    className="header-submenu__item"
-                    onClick={() => setSelected(0)}
+        {router.pathname.includes('profile')
+          ? (
+            <div className="header-menu">
+              {profileMenu.map((profileItem) => {
+                const isActive = router.pathname === profileItem.link;
+                return !isActive && (
+                  <div
+                    key={profileItem.id}
+                    className="header-menu__item"
                   >
-                    {subMenuItem.title}
-                  </Link>
-                ))}
-              </div>
+                    <button
+                      className="header-menu__title"
+                      type="button"
+                      onClick={() => router.push(profileItem.link)}
+                    >
+                      {profileItem.name}
+                    </button>
+                  </div>
+                );
+              })}
             </div>
-          ))}
-        </div>
+          )
+          : (
+            <div className="header-menu">
+              {menuItems.map((menuItem) => (
+                <div
+                  key={menuItem.id}
+                  className={`header-menu__item ${selected === menuItem.id ? 'active' : ''}`}
+                >
+                  <button
+                    className="header-menu__title"
+                    type="button"
+                    onClick={() => setSelected(selected === menuItem.id ? 0 : menuItem.id)}
+                  >
+                    {menuItem.title}
+                  </button>
+                  <div className="header-submenu">
+                    {menuItem.subMenu.map((subMenuItem) => (
+                      <Link
+                        href={`${subMenuItem.link}${subMenuItem.query}`}
+                        key={subMenuItem.id}
+                        className="header-submenu__item"
+                        onClick={() => setSelected(0)}
+                      >
+                        {subMenuItem.title}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
       </div>
     </header>
   );
