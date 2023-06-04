@@ -34,14 +34,16 @@ function Data() {
           href="/favicon.ico"
         />
       </Head>
-      <div className="container pt-[200px]">
+      <div className="container pt-[200px] md:pt-[230px] md:px-[24px]">
         <Breadcrumbs list={list} />
-        <div className="text-[32px] ubuntu text-text-900 mb-[32px]">
+        <div className="text-[32px] ubuntu text-text-900 mb-[32px] md:mb-[24px]">
           Личные данные
         </div>
       </div>
       <Layout>
-        <Form />
+        <div className="md:px-[24px]">
+          <Form />
+        </div>
       </Layout>
     </>
   );

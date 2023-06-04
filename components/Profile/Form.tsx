@@ -99,7 +99,7 @@ function Form() {
 
   return (
     <form
-      className="w-full max-w-[358px] bg-white border border-stroke-dark rounded-[20px] py-[24px]"
+      className="w-full max-w-[358px] md:max-w-full bg-white border border-stroke-dark rounded-[20px] py-[24px]"
       onSubmit={submitHandler}
     >
       <div className="flex justify-between items-start border-b border-stroke-dark mb-[16px] pb-[16px] px-[24px]">
