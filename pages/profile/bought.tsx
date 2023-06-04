@@ -38,18 +38,20 @@ function Bought() {
           href="/favicon.ico"
         />
       </Head>
-      <div className="container pt-[200px]">
+      <div className="container pt-[200px] md:pt-[230px] md:px-[24px]">
         <Breadcrumbs list={list} />
         <div className="flex items-center justify-between mb-[32px]">
           <div className="flex items-center">
             <div className="text-[32px] ubuntu text-text-900">Купленное</div>
             <div className="ml-[16px] mt-[8px] text-text-600">16 товаров</div>
           </div>
-          <Select
-            title={count.title}
-            options={countOptions}
-            select={useCallback((item) => setCount(item), [])}
-          />
+          <div className="md:hidden">
+            <Select
+              title={count.title}
+              options={countOptions}
+              select={useCallback((item) => setCount(item), [])}
+            />
+          </div>
         </div>
       </div>
       <Layout>

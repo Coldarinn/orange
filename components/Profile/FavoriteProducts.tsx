@@ -23,25 +23,32 @@ const arr = [
 ];
 
 function FavoriteProducts() {
-  const [selected, setSelected] = useState<number>(1);
+  const [selected, setSelected] = useState<string>(sortItems[0].title);
   const [count, setCount] = useState<IOption>(countOptions[0]);
 
   return (
-    <div className="flex-auto pt-[10px]">
-      <div className="flex items-center justify-between gap-[10px] mb-[32px]">
-        <div className="flex gap-[32px]">
+    <div className="flex-auto pt-[10px] md:px-[24px]">
+      <div className="flex items-center justify-between md:justify-end gap-[12px] mb-[32px] md:mb-[24px]">
+        <div className="flex md:hidden gap-[32px]">
           {sortItems.map((item) => (
             <button
               type="button"
               className={`text-text-600 transition duration-300 hover:text-brand-700 ${
-                item.id === selected && '!text-brand-700 font-bold'
+                item.title === selected && '!text-brand-700 font-bold'
               }`}
               key={item.id}
-              onClick={() => setSelected(item.id)}
+              onClick={() => setSelected(item.title)}
             >
               {item.title}
             </button>
           ))}
+        </div>
+        <div className="hidden md:block">
+          <Select
+            title={selected}
+            options={sortItems}
+            select={useCallback((item) => setSelected(item.title), [])}
+          />
         </div>
         <Select
           title={count.title}
@@ -49,11 +56,11 @@ function FavoriteProducts() {
           select={useCallback((item) => setCount(item), [])}
         />
       </div>
-      <div className="flex items-start flex-wrap gap-[28px]">
+      <div className="flex items-start flex-wrap gap-[28px] md:gap-[20px]">
         {arr.slice(0, +count.title).map((item) => (
           <div
             key={item.id.toString()}
-            className="catalog-product w-[224px] p-[16px] bg-white border border-stroke-dark rounded-[24px]"
+            className="catalog-product w-[224px] md:w-[206px] p-[16px] bg-white border border-stroke-dark rounded-[24px]"
           >
             <ProductCard
               showRating

@@ -34,9 +34,9 @@ function Favorites() {
           href="/favicon.ico"
         />
       </Head>
-      <div className="container pt-[200px]">
+      <div className="container pt-[200px] md:pt-[230px]">
         <Breadcrumbs list={list} />
-        <div className="flex items-center mb-[32px]">
+        <div className="flex items-center mb-[32px] md:px-[24px]">
           <div className="text-[32px] ubuntu text-text-900">Избранное</div>
           <div className="ml-[16px] mt-[8px] text-text-600">16 товаров</div>
         </div>

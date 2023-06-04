@@ -15,8 +15,9 @@ function Pagination() {
           type="white"
           text="предыдущая"
           icon={<Arrow className="stroke-brand-700 rotate-90" />}
-          customStyles="absolute left-0 top-0 py-[9px] px-[16px]"
+          customStyles="absolute left-0 top-0 py-[9px] md:py-[14px] px-[16px] md:px-[11px]"
           onClick={() => setSelected((prev) => prev - 1)}
+          hideTextOnMobile
         />
       )}
       <div className="flex bg-white border border-stroke-dark rounded-[20px]">
@@ -93,8 +94,9 @@ function Pagination() {
           text="следующая"
           icon={<Arrow className="stroke-brand-700 -rotate-90" />}
           iconLeft={false}
-          customStyles="absolute right-0 top-0 py-[9px] px-[16px]"
+          customStyles="absolute right-0 top-0 py-[9px] md:py-[14px] px-[16px] md:px-[11px]"
           onClick={() => setSelected((prev) => prev + 1)}
+          hideTextOnMobile
         />
       )}
     </div>

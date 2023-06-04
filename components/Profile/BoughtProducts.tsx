@@ -24,13 +24,12 @@ interface IBoughtProducts {
 
 function BoughtProducts({ count }: IBoughtProducts) {
   return (
-    <div className="flex-auto pt-[10px] relative">
-      <div className="absolute right-0 top-[-72px]" />
-      <div className="flex items-start flex-wrap gap-[28px]">
+    <div className="flex-auto pt-[10px] relative md:px-[24px]">
+      <div className="flex items-start flex-wrap gap-[28px] md:gap-[20px]">
         {arr.slice(0, count).map((item) => (
           <div
             key={item.id.toString()}
-            className="catalog-product w-[224px] p-[16px] bg-white border border-stroke-dark rounded-[24px]"
+            className="catalog-product w-[224px] md:w-[206px] p-[16px] bg-white border border-stroke-dark rounded-[24px]"
           >
             <BoughtProduct />
           </div>

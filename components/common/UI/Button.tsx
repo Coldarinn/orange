@@ -7,11 +7,12 @@ interface IButton {
   icon?: ReactNode,
   iconLeft?: boolean,
   customStyles?: string,
+  hideTextOnMobile?: boolean,
   onClick?: () => void
 }
 
 function Button({
-  buttonType = 'button', type, text, icon, iconLeft = true, customStyles, onClick,
+  buttonType = 'button', type, text, icon, iconLeft = true, customStyles, onClick, hideTextOnMobile = false,
 }: IButton) {
   return (
     <button
@@ -22,7 +23,7 @@ function Button({
       {icon ? (
         <>
           {icon}
-          <span className="ml-[10px]">
+          <span className={`ml-[10px]${hideTextOnMobile ? ' md:hidden' : ''}`}>
             {text}
           </span>
         </>

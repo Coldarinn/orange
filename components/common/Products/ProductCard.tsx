@@ -23,7 +23,7 @@ function ProductCard({ showRating = false, sale, isFavorite = false }: IProductC
           className="w-[36px] h-[36px] flex justify-center items-center rounded-full bg-white absolute right-[-8px] cursor-pointer z-[2]"
         >
           <Heart
-            className={`stroke-text-500 transition duration-300 hover:stroke-red${isFavorite ? ' fill-red stroke-red' : ''}`}
+            className={`stroke-text-500 transition duration-300 hover:stroke-red${isFavorite ? ' fill-red !stroke-red' : ''}`}
           />
         </button>
         <Swiper
