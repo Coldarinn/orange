@@ -36,7 +36,7 @@ function Benefits() {
               key={item.id}
               className="!w-auto min-h-full !h-auto"
             >
-              <div className="w-[460px] md:w-[320px] flex flex-col min-h-full rounded-[24px] overflow-hidden">
+              <div className="w-[414px] md:w-[320px] flex flex-col min-h-full rounded-[24px] overflow-hidden">
                 <div
                   className="text-2xl md:text-xl text-white ubuntu pt-[32px] md:pt-[24px] px-[32px] md:px-[24px] pb-[32px] md:pb-[16px]"
                   style={{ backgroundColor: item.color }}

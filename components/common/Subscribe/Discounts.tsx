@@ -60,7 +60,7 @@ function Discounts() {
           <Button
             type="white"
             text="Подробнее"
-            customStyles="w-full h-[52px] hidden md:block"
+            customStyles="w-full h-[52px] hidden md:flex"
           />
         </div>
       </div>

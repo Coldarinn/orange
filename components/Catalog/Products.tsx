@@ -50,7 +50,7 @@ function Products({ openFilters }: IProducts) {
         </div>
         <button
           type="button"
-          className="flex justify-center items-center w-[40px] h-[40px] bg-white rounded-full border border-stroke-dark"
+          className="hidden md:flex justify-center items-center w-[40px] h-[40px] bg-white rounded-full border border-stroke-dark"
           onClick={openFilters}
         >
           <FiltersIcon />

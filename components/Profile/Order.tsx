@@ -88,9 +88,12 @@ function Order({ order }: IOrder) {
               />
             </Link>
           </div>
-          <div className="flex justify-center items-center w-[48px] h-[48px] rounded-full border border-stroke-dark text-text-600">
+          <Link
+            href="/"
+            className="flex justify-center items-center w-[48px] h-[48px] rounded-full border border-stroke-dark text-text-600 transition duration-300 hover:border-brand-700"
+          >
             +4
-          </div>
+          </Link>
         </div>
         <div className="flex flex-col md:flex-row-reverse min-h-full justify-between items-end md:items-center">
           <div className="text-[32px] ubuntu">

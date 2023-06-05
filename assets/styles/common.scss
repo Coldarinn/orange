@@ -111,6 +111,9 @@ ul li {
   &.right {
     flex-direction: row-reverse;
   }
+  &.hidden {
+    display: none;
+  }
 }
 
 .checkbox {
