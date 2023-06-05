@@ -132,27 +132,39 @@ export default function Delivery() {
         </div>
       </div>
       <div className="container">
-        <div className="mb-[90px] md:px-[24px]">
-          <div className="flex justify-between items-center mb-[33px]">
+        <div className="mb-[90px] md:mb-[40px] md:px-[24px]">
+          <div className="flex justify-between items-center mb-[33px] md:mb-[24px]">
             <div className="text-2xl text-text-900 ubuntu">
               Вам может понравиться
             </div>
             <Button
               type="black"
               text="Посмотреть ещё"
+              customStyles="md:hidden"
             />
           </div>
           <ProductCards id="fir" />
-          <div className="flex justify-between items-center mt-[64px] mb-[33px]">
+          <Button
+            type="black"
+            text="Посмотреть ещё"
+            customStyles="!hidden md:!flex !w-full mt-[20px]"
+          />
+          <div className="flex justify-between items-center mt-[64px] md:mt-[40px] mb-[33px] md:mb-[24px]">
             <div className="text-2xl text-text-900 ubuntu">
               Вы недавно смотрели
             </div>
             <Button
               type="black"
               text="Посмотреть ещё"
+              customStyles="md:hidden"
             />
           </div>
           <ProductCards id="sec" />
+          <Button
+            type="black"
+            text="Посмотреть ещё"
+            customStyles="!hidden md:!flex !w-full mt-[20px]"
+          />
         </div>
       </div>
     </>

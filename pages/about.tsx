@@ -38,7 +38,7 @@ export default function About() {
         />
       </Head>
       <div className="about-background" />
-      <div className="pt-[200px] md:pt-[230px] pb-[60px] md:pb-[72px] border-b md:border-0 border-text-100 mb-[60px] relative md:z-[2]">
+      <div className="pt-[200px] md:pt-[230px] pb-[60px] md:pb-0 border-b md:border-0 border-text-100 mb-[60px] relative md:z-[2]">
         <div className="pb-[120px] md:pb-[72px] border-b border-text-100 mb-[60px] md:mb-[32px] md:px-[24px]">
           <div className="container">
             <Breadcrumbs list={list} />

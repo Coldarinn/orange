@@ -57,6 +57,11 @@ function Layout({ children }: ILayout) {
             />
           </div>
           <ProductCards id="seventh" />
+          <Button
+            type="black"
+            text="Посмотреть ещё"
+            customStyles="!hidden md:!flex !w-full mt-[20px]"
+          />
         </div>
         <div className="mt-[90px] md:mt-[40px]">
           <Discounts />

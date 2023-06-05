@@ -3,8 +3,14 @@ import Checkbox from '@/components/common/UI/Checkbox';
 import Arrow from '@/assets/images/icons/arrow.svg';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
+import CrossIcon from '@/assets/images/icons/cross.svg';
 
-function Filters() {
+interface IFilters {
+  isOpen: boolean,
+  closeFilters: () => void
+}
+
+function Filters({ isOpen, closeFilters }: IFilters) {
   const [value, setValue] = useState<number | number[]>([0, 100000]);
   const [isPriceOpen, setIsPriceOpen] = useState<boolean>(false);
   const [isBrandsOpen, setIsBrandsOpen] = useState<boolean>(false);
@@ -13,7 +19,18 @@ function Filters() {
   const [isCountryOpen, setIsCountryOpen] = useState<boolean>(false);
 
   return (
-    <div className="catalog-filters">
+    <div className={`catalog-filters${isOpen ? ' is-open' : ''}`}>
+      <div className="catalog-filters__header">
+        <div className="catalog-filters__title">
+          Фильтры
+        </div>
+        <button
+          type="button"
+          onClick={closeFilters}
+        >
+          <CrossIcon className="catalog-filters__cross" />
+        </button>
+      </div>
       <div className="catalog-filters__item item-catalog-filters">
         <button
           type="button"

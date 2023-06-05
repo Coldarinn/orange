@@ -90,9 +90,15 @@ export default function Product() {
             <Button
               type="black"
               text="Посмотреть ещё"
+              customStyles="md:hidden"
             />
           </div>
           <ProductCards id="fourth" />
+          <Button
+            type="black"
+            text="Посмотреть ещё"
+            customStyles="!hidden md:!flex !w-full mt-[20px]"
+          />
           <div className="mt-[90px]">
             <Discounts />
           </div>
