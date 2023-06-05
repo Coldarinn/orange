@@ -58,9 +58,9 @@ function CartBody() {
   }, [items]);
 
   return (
-    <div className="flex items-start">
-      <div className="basis-[848px] shrink-0 grow-0 mr-[48px]">
-        <div className="bg-white border border-stroke-dark rounded-[20px] py-[24px]">
+    <div className="flex items-start md:block">
+      <div className="basis-[848px] shrink-0 grow-0 mr-[48px] md:mr-0 md:mb-[24px]">
+        <div className="bg-white border border-stroke-dark rounded-[20px] pt-[24px]">
           <div className="px-[24px] pb-[24px] border-b border-stroke-dark">
             <label
               className="checkbox"

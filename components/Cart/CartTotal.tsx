@@ -19,17 +19,16 @@ function getNoun(number: number, one: string, two: string, five: string) {
   return five;
 }
 
-function CartTotal({
-  totalPrice,
-  count,
-}: {
+interface ICartTotal {
   totalPrice: number;
   count: number;
-}) {
+}
+
+function CartTotal({ totalPrice, count }: ICartTotal) {
   const router = useRouter();
   return (
-    <div className="flex-auto py-[32px] rounded-[20px] bg-white border border-stroke-dark">
-      <div className="flex items-center justify-between font-bold ubuntu pb-[24px] px-[32px] border-b border-stroke-dark">
+    <div className="flex-auto py-[32px] md:py-[24px] rounded-[20px] bg-white border border-stroke-dark">
+      <div className="flex items-center justify-between font-bold ubuntu pb-[24px] px-[32px] md:px-[24px] border-b border-stroke-dark">
         <span className="text-2xl">Итого:</span>
         <span className="text-[32px] text-text-900">
           {totalPrice + 199}
@@ -37,7 +36,7 @@ function CartTotal({
           ₽
         </span>
       </div>
-      <div className="py-[20px] px-[32px] border-b border-stroke-dark text-text-600">
+      <div className="py-[20px] md:py-[16px] px-[32px] md:px-[24px] border-b border-stroke-dark text-text-600">
         <div className="flex items-center justify-between mb-[16px]">
           {count}
           {' '}
@@ -53,7 +52,7 @@ function CartTotal({
           <div className="text-xl pt-sans">199 ₽</div>
         </div>
       </div>
-      <div className="px-[32px] pt-[24px]">
+      <div className="px-[32px] md:px-[24px] pt-[24px] md:pt-[16px]">
         <Button
           type="orange"
           text="Перейти к оформлению"
