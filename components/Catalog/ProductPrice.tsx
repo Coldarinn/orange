@@ -10,8 +10,8 @@ function ProductPrice() {
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const [selectedSize, setSelectedSize] = useState<number>(0);
   return (
-    <div className="flex-auto bg-white rounded-lg border border-stroke-dark pt-[24px] pb-[32px]">
-      <div className="flex items-center justify-between pb-[24px] mb-[24px] border-b border-stroke-dark px-[32px]">
+    <div className="bg-white rounded-lg md:rounded-[30px] border border-stroke-dark pt-[24px] pb-[32px] md:py-[24px]">
+      <div className="flex items-center justify-between pb-[24px] mb-[24px] border-b border-stroke-dark px-[32px] md:px-[24px]">
         <span className="text-[32px] text-text-900 ubuntu">
           1299 ₽
         </span>
@@ -33,7 +33,7 @@ function ProductPrice() {
           </button>
         </div>
       </div>
-      <div className="px-[32px]">
+      <div className="px-[32px] md:px-[24px]">
         <button
           type="button"
           className="flex items-center justify-between w-full bg-white border border-text-700 rounded-[20px] px-[24px] py-[14px] mb-[8px]"
@@ -70,27 +70,27 @@ function ProductPrice() {
             </span>
           </button>
         </div>
-        <div className="flex">
-          <div className="flex items-center px-[24px] py-[21px] bg-brand-200 rounded-[30px] border border-stroke-brand mr-[20px]">
-            <Location />
-            <div className="flex flex-col ml-[15px]">
+        <div className="flex md:justify-between">
+          <div className="flex items-center md:justify-center md:w-[213px] px-[24px] md:px-0 py-[21px] md:py-[12px] bg-brand-200 rounded-[30px] border border-stroke-brand mr-[20px] md:mr-[16px]">
+            <Location className="shrink-0" />
+            <div className="flex flex-col ml-[15px] md:whitespace-nowrap">
               <span className="font-bold mb-[4px]">
                 Пункты выдачи
               </span>
-              <span className="text-text-700">
+              <span className="text-text-700 md:text-sm">
                 Завтра -
                 {' '}
                 <span className="text-brand-700">бесплатно</span>
               </span>
             </div>
           </div>
-          <div className="flex items-center px-[24px] py-[21px] bg-brand-200 rounded-[30px] border border-stroke-brand">
+          <div className="flex items-center md:justify-center md:w-[155px] px-[24px] md:px-0 py-[21px] md:py-[12px] bg-brand-200 rounded-[30px] border border-stroke-brand">
             <Delivery />
-            <div className="flex flex-col ml-[15px]">
+            <div className="flex flex-col ml-[15px] md:whitespace-nowrap">
               <span className="font-bold mb-[4px]">
                 Доставка
               </span>
-              <span className="text-text-700">
+              <span className="text-text-700 md:text-sm">
                 от 2 часов
               </span>
             </div>

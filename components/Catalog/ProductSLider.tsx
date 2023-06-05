@@ -111,9 +111,19 @@ function ProductSLider() {
       <Swiper
         // @ts-ignore
         onSwiper={setThumbsSwiper}
-        spaceBetween={20}
-        slidesPerView={8}
         modules={[Thumbs]}
+        breakpoints={{
+          // when window width is >= 320px
+          320: {
+            spaceBetween: 4,
+            slidesPerView: 'auto',
+          },
+          // when window width is >= 768px
+          768: {
+            spaceBetween: 20,
+            slidesPerView: 8,
+          },
+        }}
         className="product-thumbs-slider"
       >
         <SwiperSlide>

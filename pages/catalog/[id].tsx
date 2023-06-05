@@ -45,8 +45,8 @@ export default function Product() {
           href="/favicon.ico"
         />
       </Head>
-      <div className="pt-[200px] pb-[60px] border-b border-text-100 mb-[60px]">
-        <div className="container !max-w-[1331px]">
+      <div className="pt-[200px] md:pt-[230px] pb-[60px] md:pb-[72px] border-b border-text-100 mb-[60px] md:mb-[32px]">
+        <div className="container !max-w-[1331px] md:px-[24px]">
           <Breadcrumbs list={list} />
           <div className="text-[32px] text-text-900 mb-[18px] ubuntu">
             Конструктор LEGO City Арена для шоу каскадёров 60295
@@ -61,45 +61,58 @@ export default function Product() {
               12 отзывов
             </span>
           </div>
-          <div className="flex items-start">
-            <div className="max-w-[780px] basis-[780px] mr-[46px]">
+          <div className="flex items-start md:block">
+            <div className="max-w-[780px] basis-[780px] mr-[46px] md:mr-0">
               <ProductSLider />
+              <div className="hidden md:block mt-[24px]">
+                <ProductPrice />
+              </div>
               <About />
               <Reviews />
             </div>
-            <ProductPrice />
+            <div className="md:hidden">
+              <ProductPrice />
+            </div>
           </div>
         </div>
       </div>
       <div className="mb-[57px]">
         <div className="container">
-          <div className="flex justify-between items-center mb-[38px]">
-            <div className="text-2xl text-text-900 ubuntu">
-              С этим товаром покупают
+          <div className="md:px-[24px]">
+            <div className="flex justify-between items-center mb-[38px]">
+              <div className="text-2xl text-text-900 ubuntu">
+                С этим товаром покупают
+              </div>
+              <Button
+                type="black"
+                text="Посмотреть ещё"
+                customStyles="md:hidden"
+              />
             </div>
+            <ProductCards id="third" />
             <Button
               type="black"
               text="Посмотреть ещё"
+              customStyles="!hidden md:!flex !w-full mt-[20px]"
             />
-          </div>
-          <ProductCards id="third" />
-          <div className="flex justify-between items-center mt-[64px] mb-[38px]">
-            <div className="text-2xl text-text-900 ubuntu">
-              Вы недавно смотрели
+            <div className="flex justify-between items-center mt-[64px] mb-[38px]">
+              <div className="text-2xl text-text-900 ubuntu">
+                Вы недавно смотрели
+              </div>
+              <Button
+                type="black"
+                text="Посмотреть ещё"
+                customStyles="md:hidden"
+              />
             </div>
+            <ProductCards id="fourth" />
             <Button
               type="black"
               text="Посмотреть ещё"
-              customStyles="md:hidden"
+              customStyles="!hidden md:!flex !w-full mt-[20px]"
             />
           </div>
-          <ProductCards id="fourth" />
-          <Button
-            type="black"
-            text="Посмотреть ещё"
-            customStyles="!hidden md:!flex !w-full mt-[20px]"
-          />
-          <div className="mt-[90px]">
+          <div className="mt-[90px] md:mt-[40px]">
             <Discounts />
           </div>
         </div>

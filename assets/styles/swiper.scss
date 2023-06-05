@@ -62,6 +62,10 @@
   background-color: theme('colors.white');
   border-radius: 20px;
   padding: 40px 0 !important;
+  @media (max-width: theme('screens.md.max')) {
+    padding: 24px 0 !important;
+    margin-bottom: 4px;
+  }
   .product-slider-button-next,
   .product-slider-button-prev {
     position: absolute;

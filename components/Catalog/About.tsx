@@ -1,7 +1,7 @@
 function About() {
   return (
-    <div className="my-[60px] bg-white p-[32px] rounded-[20px] border border-stroke-dark">
-      <div className="mb-[32px] ubuntu text-2xl">
+    <div className="my-[60px] md:my-[24px] bg-white p-[32px] md:p-[24px] rounded-[20px] border border-stroke-dark">
+      <div className="mb-[32px] ubuntu text-2xl md:mb-[16px]">
         О товаре
       </div>
       <p className="text-text-600">

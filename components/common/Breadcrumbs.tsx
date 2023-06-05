@@ -7,9 +7,9 @@ function Breadcrumbs({ list }: { list: Array< { id: Key, title: String, link: St
   const router = useRouter();
 
   return (
-    <div className="flex items-center mb-[24px]">
+    <div className="flex items-center md:flex-wrap md:gap-y-[20px] mb-[24px]">
       <button
-        className="flex justify-center items-center gap-[11px] w-[98px] h-[39px] bg-white border border-stroke-dark
+        className="flex justify-center items-center shrink-0 gap-[11px] w-[98px] h-[39px] bg-white border border-stroke-dark
           rounded-[20px] mr-[16px] transition duration-300 hover:border-brand-700"
         type="button"
         onClick={() => router.back()}
