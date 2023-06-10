@@ -1,33 +1,27 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { RootState } from '@/store';
 
 interface IAuthState {
-  value: number
+  token: string,
+  fingerKey: string,
 }
 
 const initialState: IAuthState = {
-  value: 0,
+  token: '',
+  fingerKey: '',
 };
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    increment: (state) => {
-      state.value += 1;
-    },
-    decrement: (state) => {
-      state.value -= 1;
-    },
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload;
+    setUser: (state, action: PayloadAction<IAuthState>) => {
+      state.token = action.payload.token;
+      state.fingerKey = action.payload.fingerKey;
     },
   },
 });
 
-export const { increment, decrement, incrementByAmount } = authSlice.actions;
-
-export const selectCount = (state: RootState) => state.auth.value;
+export const { setUser } = authSlice.actions;
 
 export default authSlice.reducer;

@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 import Head from 'next/head';
 import BoughtProducts from '@/components/Profile/BoughtProducts';
 import Layout from '@/components/Profile/Layout';
-import Breadcrumbs from '@/components/common/Breadcrumbs';
+import Breadcrumbs from '@/components/common/UI/Breadcrumbs';
 import { countOptions } from '@/constants/catalog';
 import Select, { IOption } from '@/components/common/Select';
 

@@ -1,7 +1,7 @@
 import Layout from '@/components/Profile/Layout';
 import Head from 'next/head';
 import OrdersList from '@/components/Profile/OrdersList';
-import Breadcrumbs from '@/components/common/Breadcrumbs';
+import Breadcrumbs from '@/components/common/UI/Breadcrumbs';
 
 const list = [
   {

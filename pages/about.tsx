@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import Breadcrumbs from '@/components/common/Breadcrumbs';
+import Breadcrumbs from '@/components/common/UI/Breadcrumbs';
 import Image from 'next/image';
 import BgImage from '@/assets/images/about/bg.png';
 import Benefits from '@/components/About/Benefits';

@@ -1,9 +1,10 @@
 import Layout from '@/components/Layout';
-import '@/assets/styles/main.scss';
 import type { AppProps } from 'next/app';
 
 import { Provider } from 'react-redux';
 import { store } from '@/store';
+
+import '@/assets/styles/main.scss';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

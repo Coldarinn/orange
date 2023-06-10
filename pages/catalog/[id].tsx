@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import ProductCards from '@/components/common/Products/ProductCards';
-import Breadcrumbs from '@/components/common/Breadcrumbs';
+import Breadcrumbs from '@/components/common/UI/Breadcrumbs';
 import Discounts from '@/components/common/Subscribe/Discounts';
 import ProductSLider from '@/components/Catalog/ProductSLider';
 import ProductPrice from '@/components/Catalog/ProductPrice';

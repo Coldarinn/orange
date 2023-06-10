@@ -1,7 +1,7 @@
 import Layout from '@/components/Profile/Layout';
 import Head from 'next/head';
 import Form from '@/components/Profile/Form';
-import Breadcrumbs from '@/components/common/Breadcrumbs';
+import Breadcrumbs from '@/components/common/UI/Breadcrumbs';
 
 const list = [
   {

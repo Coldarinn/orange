@@ -7,14 +7,7 @@ import Lego from '@/assets/images/lego.png';
 import LegoMovie from '@/assets/images/lego-movie.png';
 import { useEffect } from 'react';
 
-import { useAppDispatch, useAppSelector } from '@/hooks/store';
-import { decrement, increment } from '@/store/slicers/authSlice';
-import { RootState } from '@/store';
-
 export default function Home() {
-  const count = useAppSelector((state: RootState) => state.auth.value);
-  const dispatch = useAppDispatch();
-
   const getCity = () => fetch('https://api.db-ip.com/v2/free/self').then(async (res) => console.log('res: ', await res.json()));
 
   useEffect(() => {
@@ -40,21 +33,6 @@ export default function Home() {
       </Head>
       <div className="pt-[200px] md:pt-[230px] pb-[60px] md:pb-[72px] border-b border-text-100 mb-[60px] md:mb-[32px]">
         <div className="container">
-          <button
-            type="button"
-            onClick={() => dispatch(increment())}
-          >
-            increment
-          </button>
-          <button
-            type="button"
-            onClick={() => dispatch(decrement())}
-          >
-            decrement
-          </button>
-          <div>
-            { count }
-          </div>
           <div className="flex md:flex-col gap-[40px] md:gap-[20px] md:px-[24px] mb-[51px] md:mb-[20px]">
             <div className="p-[40px] md:p-[32px] rounded-[40px] bg-brand-400">
               <div className="flex justify-between mb-[4px] md:mb-[20px]">

@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Layout from '@/components/Profile/Layout';
-import Breadcrumbs from '@/components/common/Breadcrumbs';
+import Breadcrumbs from '@/components/common/UI/Breadcrumbs';
 import FavoriteProducts from '@/components/Profile/FavoriteProducts';
 
 const list = [
