@@ -9,6 +9,13 @@
     "no-nested-ternary": "off",
     "react/require-default-props": "off",
     "react/jsx-max-props-per-line": [2, { "maximum": 1, "when": "always" }],
-    "react/button-has-type": "off"
+    "react/button-has-type": "off",
+    "no-param-reassign": ["error", {
+      "props": true,
+      "ignorePropertyModificationsFor": [
+        "state"
+      ]
+    }],
+    "react/jsx-props-no-spreading": "off"
   }
 }

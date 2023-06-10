@@ -1,11 +1,12 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios from 'axios';
 import EndpointNames from '../config/api';
 
 const $api = axios.create({
   withCredentials: true,
 });
 
-$api.interceptors.request.use((config: AxiosRequestConfig): AxiosRequestConfig => {
+$api.interceptors.request.use((config) => {
+  // eslint-disable-next-line no-param-reassign
   config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
   return config;
 });
