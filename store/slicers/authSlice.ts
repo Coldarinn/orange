@@ -2,13 +2,15 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 interface IAuthState {
-  token: string,
+  accessToken: string,
   fingerKey: string,
+  roles: string[],
 }
 
 const initialState: IAuthState = {
-  token: '',
+  accessToken: '',
   fingerKey: '',
+  roles: [],
 };
 
 export const authSlice = createSlice({
@@ -16,8 +18,9 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action: PayloadAction<IAuthState>) => {
-      state.token = action.payload.token;
+      state.accessToken = action.payload.accessToken;
       state.fingerKey = action.payload.fingerKey;
+      state.roles = action.payload.roles;
     },
   },
 });

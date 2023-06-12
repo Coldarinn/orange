@@ -13,8 +13,8 @@ function Modal({ isVisible, onClose, children }: IModal) {
   const { width } = useAppSelector((state) => state.scrollbar);
   const dispatch = useAppDispatch();
 
-  const keydownHandler = (key: string) => {
-    switch (key) {
+  const keyDownHandler = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    switch (e.key) {
       case 'Escape':
         onClose();
         break;
@@ -34,23 +34,32 @@ function Modal({ isVisible, onClose, children }: IModal) {
     }
   }, [isVisible]);
 
-  useEffect(() => {
-    document.addEventListener('keydown', (e) => keydownHandler(e.key));
-    return () => document.removeEventListener('keydown', (e) => keydownHandler(e.key));
-  });
-
   return (
     <div className={isVisible ? 'modal active' : 'modal'}>
-      <div className="modal__container">
+      <div
+        className="modal__container"
+        role="button"
+        tabIndex={0}
+        onMouseDown={onClose}
+        onKeyDown={keyDownHandler}
+      >
         <div className="modal__body">
-          <button
-            type="button"
-            className="modal__cross"
-            onClick={onClose}
+          <div
+            className="modal__wrapper"
+            role="button"
+            tabIndex={-1}
+            onMouseDown={(e) => e.stopPropagation()}
+            onKeyDown={keyDownHandler}
           >
-            <CrossIcon />
-          </button>
-          {children}
+            <button
+              type="button"
+              className="modal__cross"
+              onClick={onClose}
+            >
+              <CrossIcon />
+            </button>
+            {children}
+          </div>
         </div>
       </div>
     </div>

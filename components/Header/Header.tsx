@@ -11,7 +11,7 @@ import Heart from 'assets/images/icons/heart.svg';
 import Cart from 'assets/images/icons/cart.svg';
 import { useRouter } from 'next/router';
 import { useAppSelector } from '@/hooks/store';
-import AuthModal from './Modals/AuthModal';
+import AuthModal from '../Modals/AuthModal';
 
 export default function Header() {
   const [selected, setSelected] = useState<number>(0);
@@ -19,10 +19,10 @@ export default function Header() {
   const router = useRouter();
 
   const { width, isHide } = useAppSelector((state) => state.scrollbar);
-  const { token } = useAppSelector((state) => state.auth);
+  const { accessToken } = useAppSelector((state) => state.auth);
 
   const clickProfileButton = () => {
-    if (token) {
+    if (accessToken) {
       router.push('profile');
     } else {
       setIsShowModal(true);
@@ -35,7 +35,10 @@ export default function Header() {
 
   return (
     <>
-      <header className={`fixed left-0 top-0 z-[3] w-full bg-white pr-[${isHide ? width : 0}px]`}>
+      <header
+        className="fixed left-0 top-0 z-[3] w-full bg-white"
+        style={{ paddingRight: `${isHide ? width : 0}px` }}
+      >
         <div className="container pt-[20px] pb-[55px] md:pb-[42px] relative">
           <div className="flex items-center md:px-[24px] md:flex-wrap">
             <Link

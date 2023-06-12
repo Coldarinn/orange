@@ -7,8 +7,32 @@ import User from '@/assets/images/icons/profile-user.svg';
 import Notif from '@/assets/images/icons/notif.svg';
 import Mastercard from '@/assets/images/icons/mastercard.svg';
 import Product from '@/assets/images/products/1.png';
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
+import { setUser } from '@/store/slicers/authSlice';
+import $api from '@/services/api';
+import EndpointNames from '@/config/api';
+import { addAlert } from '@/store/slicers/alertsSlice';
 
 function Profile() {
+  const dispatch = useAppDispatch();
+  const { fingerKey, accessToken } = useAppSelector((state) => state.auth);
+
+  const signOut = () => {
+    $api.post(EndpointNames.SIGN_OUT, { finger_key: fingerKey }, {
+      headers: {
+        AccessToken: accessToken,
+        FingerKey: fingerKey,
+      },
+    })
+      .then(() => {
+        addAlert({ id: Date.now(), type: 'success', text: 'Вы успешно вышли из аккаунта' });
+        dispatch(setUser({ accessToken: '', fingerKey: '', roles: [] }));
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('fingerKey');
+        localStorage.removeItem('roles');
+        localStorage.removeItem('refreshToken');
+      });
+  };
   return (
     <>
       <Head>
@@ -57,6 +81,7 @@ function Profile() {
                     type="black"
                     text="Выйти"
                     customStyles="!w-[76px] !h-[39px]"
+                    onClick={signOut}
                   />
                 </div>
               </div>
