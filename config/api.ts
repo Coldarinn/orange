@@ -4,6 +4,7 @@ const EndpointNames = {
   SIGN_UP: '/sign_up',
   SIGN_OUT: '/sign_out',
   REFRESH: '/refresh',
+  CHANGE_PASSWORD: '/password',
 };
 
 export default EndpointNames;

@@ -5,14 +5,14 @@ import Discounts from '@/components/common/Subscribe/Discounts';
 import Button from '@/components/common/UI/Button';
 import Lego from '@/assets/images/lego.png';
 import LegoMovie from '@/assets/images/lego-movie.png';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
 export default function Home() {
-  const getCity = () => fetch('https://api.db-ip.com/v2/free/self').then(async (res) => console.log('res: ', await res.json()));
+  // const getCity = () => fetch('https://api.db-ip.com/v2/free/self').then(async (res) => console.log('res: ', await res.json()));
 
-  useEffect(() => {
-    getCity();
-  }, []);
+  // useEffect(() => {
+  //   getCity();
+  // }, []);
 
   return (
     <>

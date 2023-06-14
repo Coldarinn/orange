@@ -1,6 +1,8 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import nookies from 'nookies';
 import Layout from '@/components/Profile/Layout';
 import Button from '@/components/common/UI/Button';
 import User from '@/assets/images/icons/profile-user.svg';
@@ -17,6 +19,8 @@ function Profile() {
   const dispatch = useAppDispatch();
   const { fingerKey, accessToken } = useAppSelector((state) => state.auth);
 
+  const router = useRouter();
+
   const signOut = () => {
     $api.post(EndpointNames.SIGN_OUT, { finger_key: fingerKey }, {
       headers: {
@@ -26,11 +30,14 @@ function Profile() {
     })
       .then(() => {
         addAlert({ id: Date.now(), type: 'success', text: 'Вы успешно вышли из аккаунта' });
-        dispatch(setUser({ accessToken: '', fingerKey: '', roles: [] }));
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('fingerKey');
-        localStorage.removeItem('roles');
-        localStorage.removeItem('refreshToken');
+        nookies.destroy(null, 'accessToken');
+        nookies.destroy(null, 'refreshToken');
+        nookies.destroy(null, 'roles');
+        nookies.destroy(null, 'fingerKey');
+        dispatch(setUser({
+          accessToken: '', refreshToken: '', fingerKey: '', roles: [],
+        }));
+        router.push('/');
       });
   };
   return (

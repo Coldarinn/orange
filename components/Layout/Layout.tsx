@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
 import { setUser } from '@/store/slicers/authSlice';
 import { setWidth } from '@/store/slicers/scrollbarSlice';
+import nookies from 'nookies';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Alerts from '../Alerts/Alerts';
@@ -16,10 +17,17 @@ export default function Layout({ children }: ILayout) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const accessToken = localStorage.getItem('accessToken') || '';
-    const fingerKey = localStorage.getItem('fingerKey') || '';
-    const roles = JSON.parse(localStorage.getItem('roles') || '[]');
-    dispatch(setUser({ accessToken, fingerKey, roles }));
+    const accessToken = nookies.get().accessToken || '';
+    const refreshToken = nookies.get().refreshToken || '';
+    const fingerKey = nookies.get().fingerKey || '';
+    const roles = JSON.parse(nookies.get().roles || '[]');
+    console.log('user: ', {
+      accessToken, refreshToken, fingerKey, roles,
+    });
+
+    dispatch(setUser({
+      accessToken, refreshToken, fingerKey, roles,
+    }));
   }, []);
 
   useEffect(() => {

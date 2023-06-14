@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
+import nookies from 'nookies';
 import $api from '@/services/api';
 import EndpointNames from '@/config/api';
 import { setUser } from '@/store/slicers/authSlice';
@@ -26,20 +28,24 @@ function AuthModal({ isVisible, onClose }: IAuthModal) {
 
   const dispatch = useAppDispatch();
 
+  const router = useRouter();
+
   const authIsSuccess = (data: IAuthResponse) => {
     dispatch(setUser({
       accessToken: data.access_token,
+      refreshToken: data.refresh_token,
       fingerKey: data.finger_key,
       roles: data.role,
     }));
-    localStorage.setItem('accessToken', data.access_token);
-    localStorage.setItem('fingerKey', data.finger_key);
-    localStorage.setItem('roles', JSON.stringify(data.role));
-    localStorage.setItem('refreshToken', data.refresh_token);
+    nookies.set(null, 'accessToken', data.access_token);
+    nookies.set(null, 'refreshToken', data.refresh_token);
+    nookies.set(null, 'roles', JSON.stringify(data.role));
+    nookies.set(null, 'fingerKey', data.finger_key);
     setLogin('');
     setPassword('');
     onClose();
-    dispatch(addAlert({ id: Date.now(), type: 'success', text: `Вы успешно${isLogin ? ' зарегистрировались и ' : ' '}вошли в аккаунт` }));
+    dispatch(addAlert({ id: Date.now(), type: 'success', text: `Вы успешно${isLogin ? '' : ' зарегистрировались и '}вошли в аккаунт` }));
+    router.push('/profile');
   };
 
   const submitHandler = (e:React.FormEvent) => {

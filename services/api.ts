@@ -1,7 +1,9 @@
 import axios from 'axios';
+import nookies from 'nookies';
 import { store } from '@/store';
 import { addAlert } from '@/store/slicers/alertsSlice';
-import EndpointNames from '../config/api';
+import { setUser } from '@/store/slicers/authSlice';
+import EndpointNames from '@/config/api';
 
 const $api = axios.create({
   withCredentials: true,
@@ -9,7 +11,9 @@ const $api = axios.create({
 
 $api.interceptors.request.use((config) => {
   // eslint-disable-next-line no-param-reassign
-  config.headers.Authorization = `Bearer ${localStorage.getItem('accessToken')}`;
+  config.headers.Authorization = `Bearer ${store.getState().auth.accessToken}`;
+  // eslint-disable-next-line no-param-reassign
+  config.headers.FingerKey = store.getState().auth.fingerKey;
   return config;
 });
 
@@ -18,13 +22,32 @@ $api.interceptors.response.use((config) => config, async (error) => {
   if (error.response?.status === 401 && originalRequest && !originalRequest.isRetry) {
     originalRequest.isRetry = true;
     try {
-      const response = await axios.get(EndpointNames.REFRESH, { withCredentials: true });
-      localStorage.setItem('token', response.data.accessToken);
+      const response = await axios.post(EndpointNames.REFRESH, null, {
+        headers: {
+          FingerKey: nookies.get().fingerKey || '',
+          RefreshToken: nookies.get().refreshToken || '',
+        },
+      });
+      store.dispatch(setUser({
+        accessToken: response.data.result.access_token,
+        refreshToken: response.data.result.refresh_token,
+        fingerKey: response.data.result.finger_key,
+        roles: store.getState().auth.roles,
+      }));
+      nookies.set(null, 'accessToken', response.data.result.access_token);
+      nookies.set(null, 'refreshToken', response.data.result.refresh_token);
+      nookies.set(null, 'fingerKey', response.data.result.finger_key);
+    } catch {
+      nookies.destroy(null, 'accessToken');
+      nookies.destroy(null, 'roles');
+      nookies.destroy(null, 'refreshToken');
+      nookies.destroy(null, 'fingerKey');
+      store.dispatch(setUser({
+        accessToken: '', refreshToken: '', fingerKey: '', roles: [],
+      }));
       return await $api.request(originalRequest);
-    } catch (e) {
-      localStorage.removeItem('token');
     }
-  } else {
+  } else if (error.response?.data.description) {
     store.dispatch(addAlert({ id: Date.now(), type: 'error', text: error.response.data.description }));
   }
   throw error;
