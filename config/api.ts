@@ -1,15 +1,15 @@
-type TSorts = 'price_asc' | 'price_desc' | 'stars' | 'popularity_asc' | 'popularity_desc';
+export type TSorts = 'price_asc' | 'price_desc' | 'stars' | 'popularity_asc' | 'popularity_desc';
 
-interface IProductGetProducts {
-  category: string,
-  manufacturers: string[],
-  min_price: number,
-  max_price: number,
-  sort: TSorts,
-  show: boolean,
-  limit: number,
-  offset: number,
-  like: boolean
+export interface IProductGetProducts {
+  category: string | null,
+  manufacturers: string[] | null,
+  min_price: number | null,
+  max_price: number | null,
+  sort: TSorts | null,
+  show: boolean | null,
+  limit: number | null,
+  offset: number | null,
+  like: boolean | null
 }
 
 const EndpointNames = {
@@ -35,16 +35,18 @@ const EndpointNames = {
   // Product
   PRODUCT_GET_CATEGORIES: '/product/category',
   PRODUCT_GET_MANUFACTURES: '/product/manufacturer',
-  PRODUCT_GET_PRODUCTS: (params: IProductGetProducts) => `/product
-                                                          ?category=${params.category}
-                                                          &manufacturers=${params.manufacturers}
-                                                          &min_price=${params.min_price}
-                                                          &max_price=${params.max_price}
-                                                          &sort=${params.sort}
-                                                          &show=${params.show}
-                                                          &limit=${params.limit}
-                                                          &offset=${params.offset}
-                                                          &like=${params.like}`,
+  PRODUCT_GET_SEXES: '/product/sex',
+  PRODUCT_GET_COUNTRIES: '/product/country',
+  // PRODUCT_GET_PRODUCTS: (params: IProductGetProducts) => `/product
+  //                                                         ?category=${params.category}
+  //                                                         &manufacturers=${params.manufacturers}
+  //                                                         &min_price=${params.min_price}
+  //                                                         &max_price=${params.max_price}
+  //                                                         &sort=${params.sort}
+  //                                                         &show=${params.show}
+  //                                                         &limit=${params.limit}
+  //                                                         &offset=${params.offset}
+  //                                                         &like=${params.like}`,
   PRODUCT_GET: (internal_id: string | number) => `/product/${internal_id}`,
   PRODUCT_LIKE: (internal_id: string | number) => `/product/${internal_id}/like`,
   PRODUCT_UNLIKE: (internal_id: string | number) => `/product/${internal_id}/unlike`,

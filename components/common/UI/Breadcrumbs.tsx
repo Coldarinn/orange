@@ -3,7 +3,15 @@ import Link from 'next/link';
 import Arrow from '@/assets/images/icons/arrow.svg';
 import { useRouter } from 'next/router';
 
-function Breadcrumbs({ list }: { list: Array< { id: Key, title: String, link: String } > }) {
+export interface IBreadcrumbsItem {
+  id: Key, title: string, link: string
+}
+
+interface IBreadcrumbs {
+  list: IBreadcrumbsItem[]
+}
+
+function Breadcrumbs({ list }: IBreadcrumbs) {
   const router = useRouter();
 
   return (

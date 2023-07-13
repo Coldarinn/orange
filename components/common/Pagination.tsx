@@ -2,11 +2,21 @@ import { useState } from 'react';
 import Button from '@/components/common/UI/Button';
 import Arrow from '@/assets/images/icons/arrow.svg';
 
-const pages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-const pagesLength = pages.length;
+interface IPagination {
+  perPage: number,
+  total: number,
+  changeHandler: (value: number) => void,
+}
 
-function Pagination() {
+function Pagination({ perPage, total, changeHandler }: IPagination) {
   const [selected, setSelected] = useState<number>(1);
+  const pages = Array.from({ length: Math.ceil(total / perPage) });
+  const pagesLength = pages.length;
+
+  const onChange = (value: number) => {
+    changeHandler(value);
+    setSelected(value);
+  };
 
   return (
     <div className="flex justify-center mt-[35px] relative">
@@ -16,7 +26,7 @@ function Pagination() {
           text="предыдущая"
           icon={<Arrow className="stroke-brand-700 rotate-90" />}
           customStyles="absolute left-0 top-0 py-[9px] md:py-[14px] px-[16px] md:px-[11px]"
-          onClick={() => setSelected((prev) => prev - 1)}
+          onClick={() => onChange(selected - 1)}
           hideTextOnMobile
         />
       )}
@@ -25,7 +35,7 @@ function Pagination() {
           <button
             type="button"
             className="text-text-900 px-[16px] py-[10px]"
-            onClick={() => setSelected(1)}
+            onClick={() => onChange(1)}
           >
             1
           </button>
@@ -37,7 +47,7 @@ function Pagination() {
           <button
             type="button"
             className="text-text-900 px-[16px] py-[10px]"
-            onClick={() => setSelected(pagesLength - 2)}
+            onClick={() => onChange(pagesLength - 2)}
           >
             {pagesLength - 2}
           </button>
@@ -46,7 +56,7 @@ function Pagination() {
           <button
             type="button"
             className="text-text-900 px-[16px] py-[10px]"
-            onClick={() => setSelected(selected - 1)}
+            onClick={() => onChange(selected - 1)}
           >
             {selected - 1}
           </button>
@@ -61,7 +71,7 @@ function Pagination() {
           <button
             type="button"
             className="text-text-900 px-[16px] py-[10px]"
-            onClick={() => setSelected(selected + 1)}
+            onClick={() => onChange(selected + 1)}
           >
             {selected + 1}
           </button>
@@ -70,7 +80,7 @@ function Pagination() {
           <button
             type="button"
             className="text-text-900 px-[16px] py-[10px]"
-            onClick={() => setSelected(3)}
+            onClick={() => onChange(3)}
           >
             3
           </button>
@@ -82,7 +92,7 @@ function Pagination() {
           <button
             type="button"
             className="text-text-900 px-[16px] py-[10px]"
-            onClick={() => setSelected(pagesLength)}
+            onClick={() => onChange(pagesLength)}
           >
             {pagesLength}
           </button>
@@ -95,7 +105,7 @@ function Pagination() {
           icon={<Arrow className="stroke-brand-700 -rotate-90" />}
           iconLeft={false}
           customStyles="absolute right-0 top-0 py-[9px] md:py-[14px] px-[16px] md:px-[11px]"
-          onClick={() => setSelected((prev) => prev + 1)}
+          onClick={() => onChange(selected + 1)}
           hideTextOnMobile
         />
       )}

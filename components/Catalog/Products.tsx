@@ -1,35 +1,33 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { sortItems, countOptions } from '@/constants/catalog';
 import FiltersIcon from '@/assets/images/icons/filters.svg';
+import { TSorts } from '@/config/api';
 import Select, { IOption } from '../common/Select';
-import ProductCard from '../common/Products/ProductCard';
+import ProductCard, { IProduct } from '../common/Products/ProductCard';
 import Pagination from '../common/Pagination';
 import 'swiper/css';
 
 interface IProducts {
   openFilters: () => void,
+  products: IProduct[],
+  totalCount: number,
+  applyFilters: (params: any) => void
 }
 
-const arr = [
-  { id: '1' },
-  { id: '2' },
-  { id: '3' },
-  { id: '4' },
-  { id: '5' },
-  { id: '6' },
-  { id: '7' },
-  { id: '8' },
-  { id: '9' },
-  { id: '10' },
-  { id: '11' },
-  { id: '12' },
-  { id: '13' },
-  { id: '14' },
-];
-
-function Products({ openFilters }: IProducts) {
-  const [selected, setSelected] = useState<string>(sortItems[0].title);
+function Products({
+  openFilters, products, totalCount, applyFilters,
+}: IProducts) {
+  const [selected, setSelected] = useState<TSorts>(sortItems[0].value);
   const [count, setCount] = useState<IOption>(countOptions[0]);
+  const [page, setPage] = useState<number>(1);
+
+  useEffect(() => {
+    applyFilters({
+      limit: count.title,
+      offset: page * +count.title,
+      sort: selected,
+    });
+  }, [selected, count, page]);
 
   return (
     <div className="flex-auto pt-[10px]">
@@ -39,10 +37,10 @@ function Products({ openFilters }: IProducts) {
             <button
               type="button"
               className={`text-text-600 transition duration-300 hover:text-brand-700 ${
-                item.title === selected && '!text-brand-700 font-bold'
+                item.value === selected && '!text-brand-700 font-bold'
               }`}
               key={item.id}
-              onClick={() => setSelected(item.title)}
+              onClick={() => setSelected(item.value)}
             >
               {item.title}
             </button>
@@ -60,7 +58,7 @@ function Products({ openFilters }: IProducts) {
             <Select
               title={selected}
               options={sortItems}
-              select={useCallback((item) => setSelected(item.title), [])}
+              select={useCallback((item) => setCount(item), [])}
             />
           </div>
           <Select
@@ -70,20 +68,28 @@ function Products({ openFilters }: IProducts) {
           />
         </div>
       </div>
-      <div className="flex items-start flex-wrap gap-x-[32px] gap-y-[28px] md:gap-[20px]">
-        {arr.slice(0, +count.title).map((item) => (
-          <div
-            key={item.id.toString()}
-            className="catalog-product w-[224px] md:w-[206px] p-[16px] bg-white border border-stroke-dark rounded-[24px]"
-          >
-            <ProductCard
-              showRating
-              sale="-50%"
-            />
-          </div>
-        ))}
-      </div>
-      <Pagination />
+      {products?.length > 0 ? (
+        <div className="flex items-start flex-wrap gap-x-[32px] gap-y-[28px] md:gap-[20px]">
+          {products.map((item) => (
+            <div
+              key={item.internal_id}
+              className="catalog-product w-[224px] md:w-[206px] p-[16px] bg-white border border-stroke-dark rounded-[24px]"
+            >
+              <ProductCard
+                showRating
+                product={item}
+              />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div>nothing</div>
+      )}
+      <Pagination
+        perPage={+count.title}
+        total={totalCount}
+        changeHandler={(value) => setPage(value)}
+      />
     </div>
   );
 }

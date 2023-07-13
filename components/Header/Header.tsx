@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Link from 'next/link';
-import menuItems from '@/constants/menu';
 import profileMenu from '@/constants/profile';
 import Logo from 'assets/images/logo.svg';
 import LogoMobile from 'assets/images/logo-mobile.svg';
@@ -14,16 +13,17 @@ import { useAppSelector } from '@/hooks/store';
 import AuthModal from '../Modals/AuthModal';
 
 export default function Header() {
-  const [selected, setSelected] = useState<number>(0);
+  const [selected, setSelected] = useState<string>('');
   const [isShowModal, setIsShowModal] = useState<boolean>(false);
   const router = useRouter();
 
   const { width, isHide } = useAppSelector((state) => state.scrollbar);
   const { accessToken } = useAppSelector((state) => state.auth);
+  const { categories } = useAppSelector((state) => state.categories);
 
   const clickProfileButton = () => {
     if (accessToken) {
-      router.push('profile');
+      router.push('/profile');
     } else {
       setIsShowModal(true);
     }
@@ -113,27 +113,27 @@ export default function Header() {
             )
             : (
               <div className="header-menu">
-                {menuItems.map((menuItem) => (
+                {categories.map((category) => (
                   <div
-                    key={menuItem.id}
-                    className={`header-menu__item ${selected === menuItem.id ? 'active' : ''}`}
+                    key={category.name}
+                    className={`header-menu__item ${selected === category.name ? 'active' : ''}`}
                   >
                     <button
                       className="header-menu__title"
                       type="button"
-                      onClick={() => setSelected(selected === menuItem.id ? 0 : menuItem.id)}
+                      onClick={() => setSelected(selected === category.name ? '' : category.name)}
                     >
-                      {menuItem.title}
+                      {category.name}
                     </button>
                     <div className="header-submenu">
-                      {menuItem.subMenu.map((subMenuItem) => (
+                      {category.subcategories.map((subcategory) => (
                         <Link
-                          href={`${subMenuItem.link}${subMenuItem.query}`}
-                          key={subMenuItem.id}
+                          href={`/catalog?category=${category.name}&subcategory=${subcategory}`}
+                          key={subcategory}
                           className="header-submenu__item"
-                          onClick={() => setSelected(0)}
+                          onClick={() => setSelected('')}
                         >
-                          {subMenuItem.title}
+                          {subcategory}
                         </Link>
                       ))}
                     </div>

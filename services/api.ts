@@ -11,15 +11,16 @@ const $api = axios.create({
 
 $api.interceptors.request.use((config) => {
   // eslint-disable-next-line no-param-reassign
-  config.headers.Authorization = `Bearer ${store.getState().auth.accessToken}`;
+  config.headers.AccessToken = nookies.get().accessToken;
   // eslint-disable-next-line no-param-reassign
-  config.headers.FingerKey = store.getState().auth.fingerKey;
+  config.headers.FingerKey = nookies.get().fingerKey;
   return config;
 });
 
 $api.interceptors.response.use((config) => config, async (error) => {
   const originalRequest = error.config;
-  if (error.response?.status === 401 && originalRequest && !originalRequest.isRetry) {
+  if (error.response?.status === 500 && originalRequest && !originalRequest.isRetry
+      && error.response?.data.description === 'user not found') {
     originalRequest.isRetry = true;
     try {
       const response = await axios.post(EndpointNames.REFRESH, null, {
