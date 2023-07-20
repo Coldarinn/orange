@@ -9,10 +9,13 @@ import User from 'assets/images/icons/user.svg';
 import Heart from 'assets/images/icons/heart.svg';
 import Cart from 'assets/images/icons/cart.svg';
 import { useRouter } from 'next/router';
-import { useAppSelector } from '@/hooks/store';
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
+import { setCurrentCategory, ICategorie } from '@/store/slicers/categoriesSlice';
 import AuthModal from '../Modals/AuthModal';
 
 export default function Header() {
+  const dispatch = useAppDispatch();
+
   const [selected, setSelected] = useState<string>('');
   const [isShowModal, setIsShowModal] = useState<boolean>(false);
   const router = useRouter();
@@ -31,6 +34,11 @@ export default function Header() {
 
   const closeAuthModal = () => {
     setIsShowModal(false);
+  };
+
+  const selectSubcategory = (category: ICategorie, subcategory: string) => {
+    setSelected('');
+    dispatch(setCurrentCategory({ category, subcategory }));
   };
 
   return (
@@ -128,10 +136,10 @@ export default function Header() {
                     <div className="header-submenu">
                       {category.subcategories.map((subcategory) => (
                         <Link
-                          href={`/catalog?category=${category.name}&subcategory=${subcategory}`}
+                          href="/catalog"
                           key={subcategory}
                           className="header-submenu__item"
-                          onClick={() => setSelected('')}
+                          onClick={() => selectSubcategory(category, subcategory)}
                         >
                           {subcategory}
                         </Link>

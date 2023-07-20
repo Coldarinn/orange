@@ -1,5 +1,5 @@
 import Accept from '@/assets/images/icons/accept.svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface ICheckbox {
   id: string,
@@ -19,6 +19,10 @@ function Checkbox({
       changeHandler(value);
     }
   };
+
+  useEffect(() => {
+    setIsChecked(checked);
+  }, [checked]);
 
   return (
     <label

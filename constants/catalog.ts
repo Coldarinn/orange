@@ -11,7 +11,7 @@ export const sortItems: ISortItems[] = [
   {
     id: 1,
     title: 'по популярности',
-    value: 'stars',
+    value: 'popularity_desc',
   },
   {
     id: 2,
@@ -21,17 +21,22 @@ export const sortItems: ISortItems[] = [
   {
     id: 3,
     title: 'по скидке',
-    value: 'popularity_desc',
+    value: 'discount',
   },
   {
     id: 4,
-    title: 'сначала дорогие',
-    value: 'price_asc',
+    title: 'сначала новые',
+    value: 'newest',
   },
   {
     id: 5,
-    title: 'сначала дешевые',
+    title: 'сначала дорогие',
     value: 'price_desc',
+  },
+  {
+    id: 6,
+    title: 'сначала дешевые',
+    value: 'price_asc',
   },
 ];
 
@@ -51,5 +56,17 @@ export const countOptions: IOption[] = [
   {
     id: 4,
     title: '16',
+  },
+  {
+    id: 5,
+    title: '1',
+  },
+  {
+    id: 6,
+    title: '2',
+  },
+  {
+    id: 7,
+    title: '3',
   },
 ];

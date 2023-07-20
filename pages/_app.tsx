@@ -24,7 +24,7 @@ function MyApp({ Component, ...rest }: AppProps) {
         },
       },
     ).then((response) => {
-      store.dispatch(setCategories({ categories: response.data.result }));
+      store.dispatch(setCategories(response.data.result));
     });
   };
 

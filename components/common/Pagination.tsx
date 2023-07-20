@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '@/components/common/UI/Button';
 import Arrow from '@/assets/images/icons/arrow.svg';
 
@@ -17,6 +17,10 @@ function Pagination({ perPage, total, changeHandler }: IPagination) {
     changeHandler(value);
     setSelected(value);
   };
+
+  if (perPage >= total) {
+    return <span />;
+  }
 
   return (
     <div className="flex justify-center mt-[35px] relative">
@@ -43,7 +47,7 @@ function Pagination({ perPage, total, changeHandler }: IPagination) {
         {selected > 3 && (
           <div className="text-text-900 px-[16px] py-[10px]">...</div>
         )}
-        {selected === pagesLength && (
+        {(selected === pagesLength && pagesLength > 2) && (
           <button
             type="button"
             className="text-text-900 px-[16px] py-[10px]"
@@ -52,7 +56,7 @@ function Pagination({ perPage, total, changeHandler }: IPagination) {
             {pagesLength - 2}
           </button>
         )}
-        {selected - 1 > 0 && (
+        {(selected > 1) && (
           <button
             type="button"
             className="text-text-900 px-[16px] py-[10px]"
@@ -74,15 +78,6 @@ function Pagination({ perPage, total, changeHandler }: IPagination) {
             onClick={() => onChange(selected + 1)}
           >
             {selected + 1}
-          </button>
-        )}
-        {selected === 1 && (
-          <button
-            type="button"
-            className="text-text-900 px-[16px] py-[10px]"
-            onClick={() => onChange(3)}
-          >
-            3
           </button>
         )}
         {selected < pagesLength - 2 && (

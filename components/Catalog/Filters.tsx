@@ -1,26 +1,25 @@
 import { useEffect, useState } from 'react';
+import { useAppSelector } from '@/hooks/store';
 import Checkbox from '@/components/common/UI/Checkbox';
 import Arrow from '@/assets/images/icons/arrow.svg';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import CrossIcon from '@/assets/images/icons/cross.svg';
-import { useRouter } from 'next/router';
 import Button from '../common/UI/Button';
 
 interface IFilters {
   manufacturers: string[],
-  categories: string[],
   sexes: string[],
   countries: string[],
   isOpen: boolean,
   closeFilters: () => void,
-  applyFilters: (params: any) => void
+  getProducts: (queryParams?: any) => void
 }
 
 function Filters({
-  manufacturers, categories, sexes, countries, isOpen, closeFilters, applyFilters,
+  manufacturers, sexes, countries, isOpen, closeFilters, getProducts,
 }: IFilters) {
-  const router = useRouter();
+  const { categories, currentSubcategory } = useAppSelector((state) => state.categories);
 
   const [isPriceOpen, setIsPriceOpen] = useState<boolean>(true);
   const [isManufacturersOpen, setIsManufacturersOpen] = useState<boolean>(true);
@@ -31,7 +30,7 @@ function Filters({
   const [value, setValue] = useState<number[]>([0, 100000]);
 
   const [brand, setBrand] = useState<string[]>([]);
-  const [theme, setTheme] = useState<string[]>();
+  const [theme, setTheme] = useState<string[]>(currentSubcategory ? [currentSubcategory] : []);
 
   const [male, setMale] = useState<string[]>([]);
   const [country, setCountry] = useState<string[]>([]);
@@ -62,23 +61,20 @@ function Filters({
     }
   };
 
-  const apply = () => {
-    applyFilters({
-      min_price: value[0] ?? 0,
-      max_price: value[1] ?? 100000,
-      subcategory: theme,
+  useEffect(() => {
+    setTheme(currentSubcategory ? [currentSubcategory] : []);
+  }, [currentSubcategory]);
+
+  const applyFilters = () => {
+    getProducts({
+      min_price: value[0],
+      max_price: value[1],
       manufacturers: brand,
-      sex: male,
-      country,
+      category: theme,
+      sexes: male,
+      countries: country,
     });
   };
-
-  useEffect(() => {
-    setTheme(router.query.subcategory
-      ? Array.isArray(router.query.subcategory)
-        ? router.query.subcategory
-        : [router.query.subcategory] : []);
-  }, [router.query]);
 
   return (
     <div className={`catalog-filters${isOpen ? ' is-open' : ''}`}>
@@ -172,17 +168,21 @@ function Filters({
           />
         </button>
         <div className={`item-catalog-filters__body${!isCategoriesOpen ? ' hidden' : ''}`}>
-          {categories.map((category) => (
-            <div
-              key={category}
-              className="flex items-center justify-between mb-[16px]"
-            >
-              <Checkbox
-                id={category}
-                title={category}
-                checked={!!theme.find((item) => item === category)}
-                changeHandler={(val) => changeHandler('category', category, val)}
-              />
+          {categories.map((category, idx) => (
+            <div key={category.name + idx}>
+              {category.subcategories.map((subcategory, subidx) => (
+                <div
+                  key={subcategory + subidx}
+                  className="flex items-center justify-between mb-[16px]"
+                >
+                  <Checkbox
+                    id={subcategory + subidx}
+                    title={subcategory}
+                    checked={!!theme.find((item) => item === subcategory)}
+                    changeHandler={(val) => changeHandler('category', subcategory, val)}
+                  />
+                </div>
+              ))}
             </div>
           ))}
         </div>
@@ -247,7 +247,7 @@ function Filters({
         <Button
           type="orange"
           text="применить"
-          onClick={apply}
+          onClick={applyFilters}
           customStyles="w-full h-[32px]"
         />
       </div>

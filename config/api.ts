@@ -1,4 +1,4 @@
-export type TSorts = 'price_asc' | 'price_desc' | 'stars' | 'popularity_asc' | 'popularity_desc';
+export type TSorts = 'price_asc' | 'price_desc' | 'stars' | 'popularity_asc' | 'popularity_desc' | 'discount' | 'newest';
 
 export interface IProductGetProducts {
   category: string | null,
