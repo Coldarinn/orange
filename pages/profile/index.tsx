@@ -1,33 +1,42 @@
+import { useEffect } from 'react';
 import Head from 'next/head';
-import Image from 'next/image';
-import Link from 'next/link';
+// import Image from 'next/image';
+// import Link from 'next/link';
 import { useRouter } from 'next/router';
 import nookies from 'nookies';
-import Layout from '@/components/Profile/Layout';
-import Button from '@/components/common/UI/Button';
-import User from '@/assets/images/icons/profile-user.svg';
-import Notif from '@/assets/images/icons/notif.svg';
-import Mastercard from '@/assets/images/icons/mastercard.svg';
-import Product from '@/assets/images/products/1.png';
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
 import { setUser } from '@/store/slicers/authSlice';
+import { addAlert } from '@/store/slicers/alertsSlice';
+import { setUserInfo } from '@/store/slicers/userSlice';
 import $api from '@/services/api';
 import EndpointNames from '@/config/api';
-import { addAlert } from '@/store/slicers/alertsSlice';
+import Layout from '@/components/Profile/Layout';
+import Breadcrumbs from '@/components/common/UI/Breadcrumbs';
+import Button from '@/components/common/UI/Button';
+import User from '@/assets/images/icons/profile-user.svg';
+// import Notif from '@/assets/images/icons/notif.svg';
+import Mastercard from '@/assets/images/icons/mastercard.svg';
+// import Product from '@/assets/images/products/1.png'
+
+const list = [
+  {
+    id: 1,
+    title: 'Профиль ',
+    link: '/profile',
+  },
+];
 
 function Profile() {
   const dispatch = useAppDispatch();
-  const { fingerKey, accessToken } = useAppSelector((state) => state.auth);
+  const { fingerKey } = useAppSelector((state) => state.auth);
+  const {
+    internal_id, email, name, phone_number,
+  } = useAppSelector((state) => state.user.userInfo);
 
   const router = useRouter();
 
   const signOut = () => {
-    $api.post(EndpointNames.SIGN_OUT, { finger_key: fingerKey }, {
-      headers: {
-        AccessToken: accessToken,
-        FingerKey: fingerKey,
-      },
-    })
+    $api.post(EndpointNames.SIGN_OUT, { finger_key: fingerKey })
       .then(() => {
         addAlert({ id: Date.now(), type: 'success', text: 'Вы успешно вышли из аккаунта' });
         nookies.destroy(null, 'accessToken');
@@ -40,6 +49,16 @@ function Profile() {
         router.push('/');
       });
   };
+
+  useEffect(() => {
+    if (!internal_id) {
+      $api.get(EndpointNames.USER_INFO)
+        .then((res) => {
+          dispatch(setUserInfo(res.data.result));
+        });
+    }
+  }, []);
+
   return (
     <>
       <Head>
@@ -58,6 +77,9 @@ function Profile() {
         />
       </Head>
       <div className="pt-[200px] md:pt-[230px]">
+        <div className="container">
+          <Breadcrumbs list={list} />
+        </div>
         <Layout>
           <div className="flex md:block">
             <div className="w-full max-w-[480px] md:max-w-full md:mb-[24px] md:px-[24px]">
@@ -68,20 +90,20 @@ function Profile() {
                       <User />
                     </div>
                     <div className="ml-[16px] text-2xl ubuntu">
-                      Иванов Максим
+                      {name || 'Не заполнено'}
                     </div>
                   </div>
-                  <Notif />
+                  {/* <Notif /> */}
                 </div>
                 <div className="flex justify-between items-end">
                   <div className="text-text-600">
                     <div className="flex items-center mb-[8px]">
                       <div className="w-[67px] font-medium">Телефон</div>
-                      <div className="ml-[24px]">+7 (952) 305-89-23</div>
+                      <div className="ml-[24px]">{phone_number || 'не заполнено'}</div>
                     </div>
                     <div className="flex items-center">
                       <div className="w-[67px] font-medium">Почта</div>
-                      <div className="ml-[24px]">ivanovmax@mail.ru</div>
+                      <div className="ml-[24px]">{email || 'не заполнено'}</div>
                     </div>
                   </div>
                   <Button
@@ -92,9 +114,9 @@ function Profile() {
                   />
                 </div>
               </div>
-              <div className="md:hidden p-[24px] bg-white border border-stroke-dark rounded-[20px]">
+              {/* <div className="md:hidden p-[24px] bg-white border border-stroke-dark rounded-[20px]">
                 <div className="flex justify-between items-center mb-[24px]">
-                  <div className="text-2xl ubuntu">Иванов Максим</div>
+                  <div className="text-2xl ubuntu">{name}</div>
                   <button
                     type="button"
                     className="font-bold text-brand-700"
@@ -109,8 +131,8 @@ function Profile() {
                   </div>
                   <Mastercard />
                 </div>
-              </div>
-              <div className="hidden md:block w-full ml-0">
+              </div> */}
+              {/* <div className="hidden md:block w-full ml-0">
                 <div className="flex gap-[20px]">
                   <div className="basis-1/2">
                     <div className="p-[24px] bg-white border border-stroke-dark rounded-[20px]">
@@ -187,9 +209,9 @@ function Profile() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
-            <div className="md:hidden w-full max-w-[392px] ml-[24px]">
+            {/* <div className="md:hidden w-full max-w-[392px] ml-[24px]">
               <div className="p-[24px] bg-white border border-stroke-dark rounded-[20px] mb-[24px]">
                 <div className="text-2xl ubuntu mb-[24px]">Купленное</div>
                 <div className="relative h-[80px]">
@@ -308,7 +330,7 @@ function Profile() {
                   </Link>
                 </div>
               </div>
-            </div>
+            </div> */}
             <div className="hidden md:block px-[24px]">
               <div className="p-[24px] bg-white border border-stroke-dark rounded-[20px]">
                 <div className="flex justify-between items-center mb-[24px]">

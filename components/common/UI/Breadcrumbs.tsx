@@ -4,7 +4,7 @@ import Arrow from '@/assets/images/icons/arrow.svg';
 import { useRouter } from 'next/router';
 
 export interface IBreadcrumbsItem {
-  id: Key, title: string, link: string
+  id: Key, title: string, link: string, onClick?: () => void,
 }
 
 interface IBreadcrumbs {
@@ -42,6 +42,7 @@ function Breadcrumbs({ list }: IBreadcrumbs) {
               <Link
                 href={`${item.link}`}
                 className="flex items-center text-text-700 stroke-text-700 mr-[12px] transition duration-300 hover:text-brand-700"
+                onClick={item.onClick && item.onClick}
               >
                 {item.title}
                 <Arrow className="-rotate-90 ml-[12px] stroke-inherit" />

@@ -15,17 +15,8 @@ function MyApp({ Component, ...rest }: AppProps) {
   const { pageProps } = props;
 
   const getCategories = async () => {
-    await $api.get<{ result: ICategorie[] }>(
-      EndpointNames.PRODUCT_GET_CATEGORIES,
-      {
-        proxy: {
-          host: process.env.NEXT_PUBLIC_API_HOST ?? '158.160.13.142',
-          port: +(process.env.NEXT_PUBLIC_API_PORT ?? '7732'),
-        },
-      },
-    ).then((response) => {
-      store.dispatch(setCategories(response.data.result));
-    });
+    await $api.get<{ result: ICategorie[] }>(EndpointNames.PRODUCT_GET_CATEGORIES)
+      .then((response) => store.dispatch(setCategories(response.data.result)));
   };
 
   useEffect(() => {

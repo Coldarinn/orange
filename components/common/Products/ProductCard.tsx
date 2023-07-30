@@ -1,11 +1,13 @@
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Heart from '@/assets/images/icons/heart.svg';
 import Star from '@/assets/images/icons/star.svg';
 import Cart from 'assets/images/icons/cart.svg';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper';
+import $api from '@/services/api';
+import EndpointNames from '@/config/api';
 
 export interface IProduct {
   internal_id: string,
@@ -20,6 +22,7 @@ export interface IProduct {
   buy_count: number,
   show: boolean,
   liked: boolean,
+  in_basket: boolean,
   stars: number,
   feedbacks_count: number,
 }
@@ -29,17 +32,42 @@ interface IProductCard {
   product: IProduct,
 }
 
-// function ProductCard({ showRating = false, sale, isFavorite = false }: IProductCard) {
 function ProductCard({ showRating = false, product }: IProductCard) {
+  const [myProduct, setmyProduct] = useState<IProduct>(product);
+
+  const clickHeart = async () => {
+    if (myProduct.liked) {
+      await $api.put(EndpointNames.PRODUCT_UNLIKE(product.internal_id));
+      setmyProduct((prev: IProduct) => ({ ...prev, liked: false }));
+    } else {
+      await $api.put(EndpointNames.PRODUCT_LIKE(product.internal_id));
+      setmyProduct((prev: IProduct) => ({ ...prev, liked: true }));
+    }
+  };
+
+  const clickCart = async () => {
+    if (myProduct.in_basket) {
+      await $api.put(EndpointNames.BASKET_DEC_COUNT, { product_id: product.internal_id, count: 1 });
+      setmyProduct((prev: IProduct) => ({ ...prev, in_basket: false }));
+    } else {
+      await $api.post(EndpointNames.BASKET_ADD_PRODUCT, {
+        product_id: product.internal_id,
+        count: 1,
+      });
+      setmyProduct((prev: IProduct) => ({ ...prev, in_basket: true }));
+    }
+  };
+
   return (
     <>
       <div className="product-card mb-[12px] relative">
         <button
           type="button"
           className="w-[36px] h-[36px] flex justify-center items-center rounded-full bg-white absolute right-[-8px] cursor-pointer z-[2]"
+          onClick={clickHeart}
         >
           <Heart
-            className={`stroke-text-500 transition duration-300 hover:stroke-red${product?.liked ? ' fill-red !stroke-red' : ''}`}
+            className={`stroke-text-500 transition duration-300 hover:stroke-red${myProduct?.liked ? ' fill-red !stroke-red' : ''}`}
           />
         </button>
         <Swiper
@@ -52,7 +80,7 @@ function ProductCard({ showRating = false, product }: IProductCard) {
               className="pt-[100%]"
             >
               <Link
-                href={`/catalog/${1}`}
+                href={`/catalog/${product.internal_id}`}
                 className="w-full absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
               >
                 <Image
@@ -66,7 +94,7 @@ function ProductCard({ showRating = false, product }: IProductCard) {
               </Link>
             </SwiperSlide>
           ))}
-          <div className="product-card-pagination" />
+          <div className={`product-card-pagination${product?.pictures.length < 2 ? ' opacity-0 pointer-events-none' : ''}`} />
         </Swiper>
       </div>
       <div className="flex items-center mb-[8px]">
@@ -95,7 +123,8 @@ function ProductCard({ showRating = false, product }: IProductCard) {
         )}
       </div>
       <Link
-        href={`/catalog/${product?.internal_id}`}
+        href="/catalog/1"
+        // href={`/catalog/${product?.internal_id}`}
         className="ease-in duration-200 hover:text-brand-700 inline-block max-w-full overflow-hidden text-ellipsis whitespace-nowrap"
       >
         {product?.name}
@@ -116,9 +145,18 @@ function ProductCard({ showRating = false, product }: IProductCard) {
           <button
             type="button"
             className="product-card__button"
+            onClick={clickCart}
           >
-            <Cart className="fill-white" />
-            В корзину
+            {product.in_basket ? (
+              <>
+                В корзине
+              </>
+            ) : (
+              <>
+                <Cart className="fill-white" />
+                В корзину
+              </>
+            )}
           </button>
         </>
       )}

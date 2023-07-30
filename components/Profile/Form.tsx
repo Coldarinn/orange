@@ -1,16 +1,26 @@
+import { useState, useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
+import $api from '@/services/api';
+import EndpointNames from '@/config/api';
+import { setUserInfo } from '@/store/slicers/userSlice';
 import Button from '@/components/common/UI/Button';
 import User from '@/assets/images/icons/profile-user.svg';
-import { useState } from 'react';
+import { addAlert } from '@/store/slicers/alertsSlice';
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PATTERN = /\D/g; // все символы, которые не числа
 
 function Form() {
-  const [name, setName] = useState<string>('Палкин Кирилл');
-  const [email, setEmail] = useState<string>('test@mail.ru');
-  const [phone, setPhone] = useState<string>('');
+  const dispatch = useAppDispatch();
+  const {
+    internal_id, name: username, email: userEmail, phone_number, birth_date,
+  } = useAppSelector((state) => state.user.userInfo);
+
+  const [name, setName] = useState<string>(username || '');
+  const [email, setEmail] = useState<string>(userEmail || '');
+  const [phone, setPhone] = useState<string>(phone_number || '');
   const [phoneError, setPhoneError] = useState<boolean>(false);
-  const [born, setBorn] = useState<string>('2023-01-01');
+  const [born, setBorn] = useState<string>(birth_date?.split('.').reverse().join('-') || '');
 
   const getInputNumbersValue = (value: string) => value.replace(PATTERN, '');
 
@@ -93,8 +103,34 @@ function Form() {
     }
   };
 
+  useEffect(() => {
+    if (!internal_id) {
+      $api.get(EndpointNames.USER_INFO)
+        .then((res) => {
+          dispatch(setUserInfo(res.data.result));
+          setName(res.data.result.name);
+          setEmail(res.data.result.email);
+          setPhone(res.data.result.phone_number);
+          setBorn(res.data.result.birth_date);
+        });
+    }
+  }, []);
+
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const userData = {
+      name,
+      email,
+      phone_number: phone,
+      birth_date: born,
+    };
+    if (name && emailRegex.test(email) && !phoneError && born) {
+      $api.post(EndpointNames.USER_INFO, userData)
+        .then(() => {
+          dispatch(setUserInfo(userData));
+          dispatch(addAlert({ id: Date.now(), type: 'success', text: 'Вы успешно изменили свои личные данные' }));
+        });
+    }
   };
 
   return (

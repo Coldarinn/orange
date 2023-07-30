@@ -1,3 +1,4 @@
+import Router from 'next/router';
 import axios from 'axios';
 import nookies from 'nookies';
 import { store } from '@/store';
@@ -6,7 +7,12 @@ import { setUser } from '@/store/slicers/authSlice';
 import EndpointNames from '@/config/api';
 
 const $api = axios.create({
+  baseURL: '/api',
   withCredentials: true,
+  proxy: {
+    host: process.env.NEXT_PUBLIC_API_HOST ?? '',
+    port: +(process.env.NEXT_PUBLIC_API_PORT ?? ''),
+  },
 });
 
 $api.interceptors.request.use((config) => {
@@ -19,8 +25,8 @@ $api.interceptors.request.use((config) => {
 
 $api.interceptors.response.use((config) => config, async (error) => {
   const originalRequest = error.config;
-  if (error.response?.status === 500 && originalRequest && !originalRequest.isRetry
-      && error.response?.data.description === 'user not found') {
+  if (originalRequest && !originalRequest.isRetry
+      && (error.response?.data.description === 'wrong token' || error.response?.data.description === 'user not found')) {
     originalRequest.isRetry = true;
     try {
       const response = await axios.post(EndpointNames.REFRESH, null, {
@@ -46,8 +52,15 @@ $api.interceptors.response.use((config) => config, async (error) => {
       store.dispatch(setUser({
         accessToken: '', refreshToken: '', fingerKey: '', roles: [],
       }));
+      Router.push('/');
       return await $api.request(originalRequest);
     }
+  } else if (originalRequest.isRetry) {
+    Router.push('/');
+    nookies.destroy(null, 'accessToken');
+    nookies.destroy(null, 'roles');
+    nookies.destroy(null, 'refreshToken');
+    nookies.destroy(null, 'fingerKey');
   } else if (error.response?.data.description) {
     store.dispatch(addAlert({ id: Date.now(), type: 'error', text: error.response.data.description }));
   }

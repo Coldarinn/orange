@@ -1,16 +1,16 @@
 export type TSorts = 'price_asc' | 'price_desc' | 'stars' | 'popularity_asc' | 'popularity_desc' | 'discount' | 'newest';
 
-export interface IProductGetProducts {
-  category: string | null,
-  manufacturers: string[] | null,
-  min_price: number | null,
-  max_price: number | null,
-  sort: TSorts | null,
-  show: boolean | null,
-  limit: number | null,
-  offset: number | null,
-  like: boolean | null
-}
+// interface IProductGetProducts {
+//   category: string | null,
+//   manufacturers: string[] | null,
+//   min_price: number | null,
+//   max_price: number | null,
+//   sort: TSorts | null,
+//   show: boolean | null,
+//   limit: number | null,
+//   offset: number | null,
+//   like: boolean | null
+// }
 
 const EndpointNames = {
   // User
@@ -27,7 +27,7 @@ const EndpointNames = {
   ORDER_ATTACH_PRODUCT: (internal_id: string | number) => `/order/${internal_id}/attach`,
   ORDER_DETACH_PRODUCT: (internal_id: string | number) => `/order/${internal_id}/detach`,
   ORDER_UPDATE_COUNT: (internal_id: string | number) => `/order/${internal_id}/count`,
-  ORDER_GET_ORDERS: (limit: number, offset: number, status: string) => `/order?limit=${limit}&offset=${offset}&status=${status}`,
+  ORDER_GET_ORDERS: (limit: number, offset: number, status?: string) => `/order?limit=${limit}&offset=${offset}&status=${status}`,
   ORDER_GET: (internal_id: string | number) => `/order/${internal_id}`,
   ORDER_GET_PRODUCTS: (internal_id: string | number, limit: number, offset: number) => `/order/${internal_id}/products?limit=${limit}&offset=${offset}`,
   // /Order
@@ -79,6 +79,7 @@ const EndpointNames = {
   SIGN_OUT: '/sign_out',
   REFRESH: '/refresh',
   CHANGE_PASSWORD: '/password',
+  USER_INFO: '/user/info',
   // /Auth
 };
 

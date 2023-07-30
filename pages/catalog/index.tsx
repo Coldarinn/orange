@@ -10,37 +10,41 @@ import Button from '@/components/common/UI/Button';
 import $api from '@/services/api';
 import EndpointNames from '@/config/api';
 import { IProduct } from '@/components/common/Products/ProductCard';
+import axios from 'axios';
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const manufacturersList = await $api.get<{ result: string[] }>(
+  const manufacturersList = await axios.get<{ result: string[] }>(
     EndpointNames.PRODUCT_GET_MANUFACTURES,
     {
       proxy: {
-        host: process.env.NEXT_PUBLIC_API_HOST ?? '158.160.13.142',
-        port: +(process.env.NEXT_PUBLIC_API_PORT ?? '7732'),
+        host: process.env.NEXT_PUBLIC_API_HOST ?? '',
+        port: +(process.env.NEXT_PUBLIC_API_PORT ?? ''),
       },
     },
-  ).then((response) => response.data.result);
+  )
+    .then((response) => response.data.result);
 
-  const sexesList = await $api.get<{ result: string[] }>(
+  const sexesList = await axios.get<{ result: string[] }>(
     EndpointNames.PRODUCT_GET_SEXES,
     {
       proxy: {
-        host: process.env.NEXT_PUBLIC_API_HOST ?? '158.160.13.142',
-        port: +(process.env.NEXT_PUBLIC_API_PORT ?? '7732'),
+        host: process.env.NEXT_PUBLIC_API_HOST ?? '',
+        port: +(process.env.NEXT_PUBLIC_API_PORT ?? ''),
       },
     },
-  ).then((response) => response.data.result);
+  )
+    .then((response) => response.data.result);
 
-  const countriesList = await $api.get<{ result: string[] }>(
+  const countriesList = await axios.get<{ result: string[] }>(
     EndpointNames.PRODUCT_GET_COUNTRIES,
     {
       proxy: {
-        host: process.env.NEXT_PUBLIC_API_HOST ?? '158.160.13.142',
-        port: +(process.env.NEXT_PUBLIC_API_PORT ?? '7732'),
+        host: process.env.NEXT_PUBLIC_API_HOST ?? '',
+        port: +(process.env.NEXT_PUBLIC_API_PORT ?? ''),
       },
     },
-  ).then((response) => response.data.result);
+  )
+    .then((response) => response.data.result);
 
   return {
     props: {
@@ -89,16 +93,8 @@ export default function Catalog({
     setQuery(newQuery);
     const { Products: productsListResp, Count } = await $api.get<{
       result: { Products: IProduct[], Count: number }
-    }>(
-      '/product',
-      {
-        proxy: {
-          host: process.env.NEXT_PUBLIC_API_HOST ?? '158.160.13.142',
-          port: +(process.env.NEXT_PUBLIC_API_PORT ?? '7732'),
-        },
-        params: newQuery,
-      },
-    ).then((response) => response.data.result ?? [])
+    }>('/product', { params: newQuery })
+      .then((response) => response.data.result ?? [])
       .finally(() => setIsLoading(false));
     setProducts(productsListResp);
     setCount(Count);

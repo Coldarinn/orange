@@ -3,13 +3,16 @@ import Button from '@/components/common/UI/Button';
 import Arrow from '@/assets/images/icons/arrow.svg';
 
 interface IPagination {
+  page: number,
   perPage: number,
   total: number,
   changeHandler: (value: number) => void,
 }
 
-function Pagination({ perPage, total, changeHandler }: IPagination) {
-  const [selected, setSelected] = useState<number>(1);
+function Pagination({
+  page = 1, perPage, total, changeHandler,
+}: IPagination) {
+  const [selected, setSelected] = useState<number>(page);
   const pages = Array.from({ length: Math.ceil(total / perPage) });
   const pagesLength = pages.length;
 
@@ -17,6 +20,10 @@ function Pagination({ perPage, total, changeHandler }: IPagination) {
     changeHandler(value);
     setSelected(value);
   };
+
+  useEffect(() => {
+    setSelected(page);
+  }, [page]);
 
   if (perPage >= total) {
     return <span />;

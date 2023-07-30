@@ -2,7 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['84.252.137.132'],
+    // domains: ['84.252.137.132'],
+    domains: [process.env.NEXT_PUBLIC_API_HOST],
   },
   webpack(config) {
     config.module.rules.push({
@@ -15,7 +16,7 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/:path*',
+        source: '/api/:path*',
         destination: `${process.env.NEXT_PUBLIC_API_URL}/:path*`,
       },
     ];

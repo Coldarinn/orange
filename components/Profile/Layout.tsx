@@ -32,15 +32,15 @@ function Layout({ children }: ILayout) {
                   >
                     {item.name}
                   </Link>
-                  {!!item.notifs && (
+                  {/* {!!item.notifs && (
                     <div className="flex items-center justify-center basis-[20px] shrink-0 h-[20px] bg-brand-700 rounded-full text-white text-sm">
                       {item.notifs}
                     </div>
-                  )}
+                  )} */}
                 </div>
               ))}
             </div>
-            <div className="ml-[48px] flex-1 md:m-0">{children}</div>
+            <div className="ml-[32px] flex-1 md:m-0">{children}</div>
           </div>
         </div>
       </div>

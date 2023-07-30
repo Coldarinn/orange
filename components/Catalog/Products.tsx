@@ -9,7 +9,7 @@ import Pagination from '../common/Pagination';
 import 'swiper/css';
 
 interface IProducts {
-  openFilters: () => void,
+  openFilters?: () => void,
   products: IProduct[],
   totalCount: number,
   getProducts: (queryParams?: any) => void,
@@ -105,6 +105,7 @@ function Products({
         </div>
       )}
       <Pagination
+        page={page}
         perPage={+count.title}
         total={totalCount}
         changeHandler={(value) => paginationHandler(value)}

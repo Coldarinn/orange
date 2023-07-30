@@ -1,7 +1,12 @@
 import Head from 'next/head';
+import { useEffect, useState } from 'react';
+import $api from '@/services/api';
+// import EndpointNames from '@/config/api';
+// import { useAppDispatch } from '@/hooks/store';
 import Layout from '@/components/Profile/Layout';
 import Breadcrumbs from '@/components/common/UI/Breadcrumbs';
-import FavoriteProducts from '@/components/Profile/FavoriteProducts';
+import Products from '@/components/Catalog/Products';
+import { IProduct } from '@/components/common/Products/ProductCard';
 
 const list = [
   {
@@ -16,7 +21,36 @@ const list = [
   },
 ];
 
+const defaultParams = {
+  limit: 4,
+  offset: 0,
+  like: true,
+  sort: 'popularity_desc',
+};
+
 function Favorites() {
+  const [products, setProducts] = useState<IProduct[]>([]);
+  const [totalCount, setTotalCount] = useState<number>(0);
+  const [query, setQuery] = useState(defaultParams);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const getProducts = async (queryParams?: any) => {
+    setIsLoading(true);
+    const newQuery = { ...query, ...queryParams };
+    setQuery(newQuery);
+    const { Products: productsListResp, Count } = await $api.get<{
+      result: { Products: IProduct[], Count: number }
+    }>('/product', { params: newQuery })
+      .then((response) => response.data.result ?? [])
+      .finally(() => setIsLoading(false));
+    setProducts(productsListResp);
+    setTotalCount(Count);
+  };
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
   return (
     <>
       <Head>
@@ -42,7 +76,12 @@ function Favorites() {
         </div>
       </div>
       <Layout>
-        <FavoriteProducts />
+        <Products
+          products={products}
+          totalCount={totalCount}
+          getProducts={getProducts}
+          isLoading={isLoading}
+        />
       </Layout>
     </>
   );

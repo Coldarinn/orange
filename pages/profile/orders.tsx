@@ -2,6 +2,9 @@ import Layout from '@/components/Profile/Layout';
 import Head from 'next/head';
 import OrdersList from '@/components/Profile/OrdersList';
 import Breadcrumbs from '@/components/common/UI/Breadcrumbs';
+import { useEffect, useState } from 'react';
+import $api from '@/services/api';
+import EndpointNames from '@/config/api';
 
 const list = [
   {
@@ -17,6 +20,16 @@ const list = [
 ];
 
 function Orders() {
+  const [orders, setOrders] = useState([]);
+
+  const getOrders = () => {
+    $api.get(EndpointNames.ORDER_GET_ORDERS(4, 0, 'CREATED'));
+  };
+
+  useEffect(() => {
+    getOrders();
+  }, []);
+
   return (
     <>
       <Head>
