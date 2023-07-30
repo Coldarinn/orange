@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import Link from 'next/link';
 import ProductCards from '@/components/common/Products/ProductCards';
 import Discounts from '@/components/common/Subscribe/Discounts';

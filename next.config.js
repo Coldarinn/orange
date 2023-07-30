@@ -2,8 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    // domains: ['84.252.137.132'],
-    domains: [process.env.NEXT_PUBLIC_API_HOST],
+    domains: ['158.160.75.134'],
   },
   webpack(config) {
     config.module.rules.push({

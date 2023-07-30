@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { useState, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
 import $api from '@/services/api';

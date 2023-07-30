@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable max-len */
 import { useEffect } from 'react';
 import Head from 'next/head';
 // import Image from 'next/image';

@@ -56,6 +56,7 @@ export default function Product() {
         EndpointNames.PRODUCT_GET(id),
       )
         .then((response) => {
+          // eslint-disable-next-line no-param-reassign
           response.data.result[0].categories = categories
             .find((item) => item.subcategories.includes(response.data.result[0].subcategory))?.name;
 

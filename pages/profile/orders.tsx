@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import Layout from '@/components/Profile/Layout';
 import Head from 'next/head';
 import OrdersList from '@/components/Profile/OrdersList';
