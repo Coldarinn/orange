@@ -25,6 +25,7 @@ function AuthModal({ isVisible, onClose }: IAuthModal) {
   const [login, setLogin] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [isLogin, setIsLogin] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
 
@@ -50,13 +51,16 @@ function AuthModal({ isVisible, onClose }: IAuthModal) {
 
   const submitHandler = (e:React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     if (login && password) {
       if (isLogin) {
         $api.post(EndpointNames.SIGN_IN, { login, password })
-          .then((res) => authIsSuccess(res.data.result));
+          .then((res) => authIsSuccess(res.data.result))
+          .finally(() => setIsLoading(false));
       } else {
         $api.post(EndpointNames.SIGN_UP, { login, password })
-          .then((res) => authIsSuccess(res.data.result));
+          .then((res) => authIsSuccess(res.data.result))
+          .finally(() => setIsLoading(false));
       }
     }
   };
@@ -99,7 +103,7 @@ function AuthModal({ isVisible, onClose }: IAuthModal) {
           buttonType="submit"
           type="orange"
           text={isLogin ? 'Войти' : 'Зарегистрироваться'}
-          customStyles="w-full h-[50px] mb-[24px]"
+          customStyles={`w-full h-[50px] mb-[24px]${isLoading ? ' opacity-70 pointer-events-none' : ''}`}
         />
         {isLogin ? (
           <div className="flex items-center justify-center gap-[5px]">

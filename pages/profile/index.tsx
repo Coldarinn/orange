@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable max-len */
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
 // import Image from 'next/image';
 // import Link from 'next/link';
@@ -35,12 +35,14 @@ function Profile() {
     internal_id, email, name, phone_number,
   } = useAppSelector((state) => state.user.userInfo);
 
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const router = useRouter();
 
   const signOut = () => {
+    setIsLoading(true);
     $api.post(EndpointNames.SIGN_OUT, { finger_key: fingerKey })
       .then(() => {
-        addAlert({ id: Date.now(), type: 'success', text: 'Вы успешно вышли из аккаунта' });
         nookies.destroy(null, 'accessToken');
         nookies.destroy(null, 'refreshToken');
         nookies.destroy(null, 'roles');
@@ -48,8 +50,10 @@ function Profile() {
         dispatch(setUser({
           accessToken: '', refreshToken: '', fingerKey: '', roles: [],
         }));
+        dispatch(addAlert({ id: Date.now(), type: 'success', text: 'Вы успешно вышли из аккаунта' }));
         router.push('/');
-      });
+      })
+      .finally(() => setIsLoading(false));
   };
 
   useEffect(() => {
@@ -111,7 +115,7 @@ function Profile() {
                   <Button
                     type="black"
                     text="Выйти"
-                    customStyles="!w-[76px] !h-[39px]"
+                    customStyles={`!w-[76px] !h-[39px]${isLoading ? ' opacity-70 pointer-events-none' : ''}`}
                     onClick={signOut}
                   />
                 </div>
