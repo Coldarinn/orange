@@ -1,40 +1,66 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import Cart from 'assets/images/icons/cart.svg';
 import Heart from 'assets/images/icons/heart.svg';
 import Location from 'assets/images/icons/duble-location.svg';
 import Delivery from 'assets/images/icons/delivery.svg';
-import Arrow from 'assets/images/icons/arrow.svg';
+import { IProductInfo } from '@/store/slicers/userSlice';
+// import Arrow from 'assets/images/icons/arrow.svg';
 
-function ProductPrice() {
-  const [inBasket, setInBasket] = useState<boolean>(false);
-  const [isOpen, setIsOpen] = useState<boolean>(true);
-  const [selectedSize, setSelectedSize] = useState<number>(0);
+interface IProductPrice {
+  myProduct: IProductInfo,
+  clickHeart: () => void,
+  clickCart: () => void,
+}
+
+function ProductPrice({ myProduct, clickHeart, clickCart }: IProductPrice) {
+  // const [isOpen, setIsOpen] = useState<boolean>(true);
+  // const [selectedSize, setSelectedSize] = useState<number>(0);
   return (
     <div className="bg-white rounded-lg md:rounded-[30px] border border-stroke-dark pt-[24px] pb-[32px] md:py-[24px]">
       <div className="flex items-center justify-between pb-[24px] mb-[24px] border-b border-stroke-dark px-[32px] md:px-[24px]">
-        <span className="text-[32px] text-text-900 ubuntu">
-          1299 ₽
-        </span>
+        {myProduct?.old_price ? (
+          <div>
+            <span className="font-bold text-xl mr-[8px]">
+              {myProduct.price}
+              {' '}
+              ₽
+            </span>
+            <span className="text-sm text-text-400 line-through mr-[13px] pt-[5px]">
+              {myProduct.old_price}
+              {' '}
+              ₽
+            </span>
+          </div>
+        ) : (
+          <span className="text-[32px] text-text-900 ubuntu">
+            {myProduct.price}
+            {' '}
+            ₽
+          </span>
+        )}
         <div className="flex items-center">
           <button
             type="button"
             className={`w-[182px] h-[60px] flex justify-center items-center gap-[10px] border rounded-[30px] 
-              ${inBasket ? 'bg-white border-brand-700 text-brand-700 fill-brand-700' : 'bg-brand-700 border-stroke-dark text-white fill-white'}`}
-            onClick={() => setInBasket((prev) => !prev)}
+              ${myProduct.in_basket ? 'bg-white border-brand-700 text-brand-700 fill-brand-700' : 'bg-brand-700 border-stroke-dark text-white fill-white'}`}
+            onClick={clickCart}
           >
             <Cart className="fill-inherit" />
-            <span className="text-inherit font-bold text-xl">{inBasket ? 'В корзине' : 'В корзину'}</span>
+            <span className="text-inherit font-bold text-xl">{myProduct.in_basket ? 'В корзине' : 'В корзину'}</span>
           </button>
           <button
             type="button"
             className="w-[60px] h-[60px] flex items-center justify-center rounded-full border border-stroke-dark ml-[16px]"
+            onClick={clickHeart}
           >
-            <Heart className="stroke-text-500" />
+            <Heart
+              className={`stroke-text-500 transition duration-300 hover:stroke-red${myProduct.liked ? ' fill-red !stroke-red' : ''}`}
+            />
           </button>
         </div>
       </div>
       <div className="px-[32px] md:px-[24px]">
-        <button
+        {/* <button
           type="button"
           className="flex items-center justify-between w-full bg-white border border-text-700 rounded-[20px] px-[24px] py-[14px] mb-[8px]"
           onClick={() => setIsOpen((prev) => !prev)}
@@ -69,7 +95,7 @@ function ProductPrice() {
               108
             </span>
           </button>
-        </div>
+        </div> */}
         <div className="flex md:justify-between">
           <div className="flex items-center md:justify-center md:w-[213px] px-[24px] md:px-0 py-[21px] md:py-[12px] bg-brand-200 rounded-[30px] border border-stroke-brand mr-[20px] md:mr-[16px]">
             <Location className="shrink-0" />

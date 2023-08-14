@@ -4,6 +4,7 @@ import Breadcrumbs from '@/components/common/UI/Breadcrumbs';
 import Discounts from '@/components/common/Subscribe/Discounts';
 import ProductSLider from '@/components/Catalog/ProductSLider';
 import ProductPrice from '@/components/Catalog/ProductPrice';
+import { IProductInfo, setUserInfo } from '@/store/slicers/userSlice';
 import Star from '@/assets/images/icons/star.svg';
 import Reviews from '@/components/Catalog/Reviews';
 import About from '@/components/Catalog/About';
@@ -11,31 +12,11 @@ import Button from '@/components/common/UI/Button';
 import $api from '@/services/api';
 import EndpointNames from '@/config/api';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import { Router, useRouter } from 'next/router';
 import Loader from '@/components/common/Loader';
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
-import { setCurrentCategory } from '@/store/slicers/categoriesSlice';
-
-export interface IProductInfo {
-  internal_id: string,
-  name: string,
-  price: number,
-  old_price: number | null,
-  count: number,
-  manufacturer: string,
-  categories: null,
-  description: string,
-  pictures: string[],
-  buy_count: number,
-  show: boolean,
-  stars: number,
-  liked: boolean,
-  in_basket: boolean,
-  feedbacks_count: number,
-  sex: string,
-  country: string,
-  subcategory: string
-}
+import { ICategorie, setCurrentCategory } from '@/store/slicers/categoriesSlice';
+import { IReviewInfo } from '.';
 
 export default function Product() {
   const dispatch = useAppDispatch();
@@ -43,6 +24,8 @@ export default function Product() {
   const { categories } = useAppSelector((state) => state.categories);
 
   const [productInfo, setProductInfo] = useState<IProductInfo>({});
+  const [reviews, setReviews] = useState<IReviewInfo[]>([]);
+  const [reviwsCount, setReviewsCount] = useState<number>(0);
   const [list, setList] = useState(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -64,7 +47,7 @@ export default function Product() {
           const crumbs = [
             {
               id: 1,
-              title: response.data.result[0].categories,
+              title: response.data.result[0]?.categories ?? '',
               link: '/catalog',
               onClick: () => {
                 dispatch(setCurrentCategory({
@@ -78,7 +61,7 @@ export default function Product() {
             },
             {
               id: 2,
-              title: response.data.result[0].subcategory,
+              title: response.data.result[0]?.subcategory ?? '',
               link: '/catalog',
               onClick: () => {
                 dispatch(setCurrentCategory({
@@ -102,9 +85,56 @@ export default function Product() {
     }
   };
 
+  const getReviews = async (limit = 4) => {
+    if (id) {
+      await $api.get(EndpointNames.FEEDBACKS_GET(id, limit, 0, false))
+        .then((res) => {
+          setReviews(res.data.result.feedback);
+          setReviewsCount(res.data.result.count);
+        });
+    }
+  };
+
+  const getRecentlyProducts = async () => {
+    await $api.get<{ result: ICategorie[] }>(EndpointNames.PRODUCT_RECENTLY_VIEWED(8))
+      .then((response) => {
+        dispatch(setUserInfo({ viewedProducts: response.data.result }));
+      });
+  };
+
   useEffect(() => {
     getProductInfo();
+    getReviews();
+    getRecentlyProducts();
   }, [id]);
+
+  const clickHeart = async () => {
+    if (productInfo.liked) {
+      await $api.put(EndpointNames.PRODUCT_UNLIKE(productInfo.internal_id));
+      setProductInfo((prev: IProductInfo) => ({ ...prev, liked: false }));
+    } else {
+      await $api.put(EndpointNames.PRODUCT_LIKE(productInfo.internal_id));
+      setProductInfo((prev: IProductInfo) => ({ ...prev, liked: true }));
+    }
+  };
+
+  const clickCart = async () => {
+    if (productInfo.in_basket) {
+      await $api.put(EndpointNames.BASKET_DEC_COUNT, {
+        product_id: productInfo.internal_id,
+        count: 1,
+      });
+      const newProduct = { ...productInfo, in_basket: false };
+      setProductInfo(newProduct);
+    } else {
+      await $api.post(EndpointNames.BASKET_ADD_PRODUCT, {
+        product_id: productInfo.internal_id,
+        count: 1,
+      });
+      const newProduct = { ...productInfo, in_basket: true };
+      setProductInfo(newProduct);
+    }
+  };
 
   return (
     <>
@@ -124,7 +154,7 @@ export default function Product() {
         />
       </Head>
       <div className="pt-[200px] md:pt-[230px] pb-[60px] md:pb-[72px] border-b border-text-100 mb-[60px] md:mb-[32px]">
-        {isLoading ? (
+        {(isLoading || !(list?.length > 0)) ? (
           <div className="container !max-w-[1331px] md:px-[24px] text-center">
             <Loader />
           </div>
@@ -149,15 +179,29 @@ export default function Product() {
             </div>
             <div className="flex items-start md:block">
               <div className="max-w-[780px] basis-[780px] mr-[46px] md:mr-0">
-                <ProductSLider />
+                <ProductSLider images={productInfo.pictures} />
                 <div className="hidden md:block mt-[24px]">
-                  <ProductPrice />
+                  <ProductPrice
+                    myProduct={productInfo}
+                    clickHeart={clickHeart}
+                    clickCart={clickCart}
+                  />
                 </div>
-                <About />
-                <Reviews />
+                <About text={productInfo.description} />
+                <Reviews
+                  productInfo={productInfo}
+                  reviews={reviews}
+                  reviwsCount={reviwsCount}
+                  setReviews={setReviews}
+                  getReviews={getReviews}
+                />
               </div>
               <div className="md:hidden">
-                <ProductPrice />
+                <ProductPrice
+                  myProduct={productInfo}
+                  clickHeart={clickHeart}
+                  clickCart={clickCart}
+                />
               </div>
             </div>
           </div>
@@ -166,7 +210,7 @@ export default function Product() {
       <div className="mb-[57px]">
         <div className="container">
           <div className="md:px-[24px]">
-            <div className="flex justify-between items-center mb-[38px]">
+            {/* <div className="flex justify-between items-center mb-[38px]">
               <div className="text-2xl text-text-900 ubuntu">
                 С этим товаром покупают
               </div>
@@ -181,7 +225,7 @@ export default function Product() {
               type="black"
               text="Посмотреть ещё"
               customStyles="!hidden md:!flex !w-full mt-[20px]"
-            />
+            /> */}
             <div className="flex justify-between items-center mt-[64px] mb-[38px]">
               <div className="text-2xl text-text-900 ubuntu">
                 Вы недавно смотрели
@@ -190,6 +234,7 @@ export default function Product() {
                 type="black"
                 text="Посмотреть ещё"
                 customStyles="md:hidden"
+                onClick={() => router.push('/catalog')}
               />
             </div>
             <ProductCards id="fourth" />
@@ -197,6 +242,7 @@ export default function Product() {
               type="black"
               text="Посмотреть ещё"
               customStyles="!hidden md:!flex !w-full mt-[20px]"
+              onClick={() => router.push('/catalog')}
             />
           </div>
           <div className="mt-[90px] md:mt-[40px]">

@@ -11,6 +11,20 @@ import $api from '@/services/api';
 import EndpointNames from '@/config/api';
 import { IProduct } from '@/components/common/Products/ProductCard';
 import axios from 'axios';
+import { useRouter } from 'next/router';
+
+export interface IReviewInfo {
+  internalId: string,
+  user_name: string,
+  product_internal_id: string,
+  create_date: string,
+  update_date: string,
+  stars: number,
+  message: string,
+  pictures: string[],
+  likes: number,
+  liked: boolean
+}
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const manufacturersList = await axios.get<{ result: string[] }>(
@@ -70,6 +84,8 @@ interface ICatalog {
 export default function Catalog({
   manufacturersList, sexesList, countriesList,
 }: ICatalog) {
+  const router = useRouter();
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [products, setProducts] = useState<IProduct[]>([]);
   const [count, setCount] = useState<number>(0);
@@ -155,6 +171,7 @@ export default function Catalog({
                 type="black"
                 text="Посмотреть ещё"
                 customStyles="md:hidden"
+                onClick={() => router.push('/catalog')}
               />
             </div>
             <ProductCards id="third" />
@@ -162,6 +179,7 @@ export default function Catalog({
               type="black"
               text="Посмотреть ещё"
               customStyles="!hidden md:!flex !w-full mt-[20px]"
+              onClick={() => router.push('/catalog')}
             />
           </div>
           <div className="mt-[90px] md:mt-[40px]">

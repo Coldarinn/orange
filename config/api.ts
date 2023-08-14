@@ -50,7 +50,16 @@ const EndpointNames = {
   PRODUCT_GET: (internal_id: string | number) => `/product/${internal_id}`,
   PRODUCT_LIKE: (internal_id: string | number) => `/product/${internal_id}/like`,
   PRODUCT_UNLIKE: (internal_id: string | number) => `/product/${internal_id}/unlike`,
+  PRODUCT_RECENTLY_VIEWED: (limit: string | number) => `/product/recently?limit=${limit}`,
+
   // /Product
+
+  // Feedbacks
+  FEEDBACK: '/feedback',
+  FEEDBACKS_GET: (product_id: string, limit: number, offset: number, only_my?: boolean) => `/feedback?product_id=${product_id}&limit=${limit}&offset=${offset}&only_my=${only_my}`,
+  FEEDBACK_LIKE: (internal_id: string | number) => `/feedback/${internal_id}/like`,
+  FEEDBACK_UNLIKE: (internal_id: string | number) => `/feedback/${internal_id}/unlike`,
+  // /Feedbacks
   // /User
 
   // Admin

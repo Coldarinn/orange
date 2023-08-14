@@ -30,7 +30,7 @@ export default function Cart() {
       </div>
       <div className="mb-[57px]">
         <div className="container">
-          <div className="md:px-[24px]">
+          {/* <div className="md:px-[24px]">
             <div className="flex justify-between items-center mb-[33px] md:mb-[24px]">
               <div className="text-2xl text-text-900 ubuntu">
                 Вам может понравиться
@@ -47,7 +47,7 @@ export default function Cart() {
               text="Посмотреть ещё"
               customStyles="!hidden md:!flex !w-full mt-[20px]"
             />
-          </div>
+          </div> */}
           <div className="mt-[90px] md:mt-[32px]">
             <Discounts />
           </div>

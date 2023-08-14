@@ -4,8 +4,11 @@ import Button from '@/components/common/UI/Button';
 import { useState } from 'react';
 import Location from '@/assets/images/icons/duble-location.svg';
 import CarIcon from '@/assets/images/icons/delivery.svg';
+import { useRouter } from 'next/router';
 
 export default function Delivery() {
+  const router = useRouter();
+
   const [selected, setSelected] = useState<{ id: number; city: string }>({
     id: 0,
     city: 'Москва',
@@ -133,7 +136,7 @@ export default function Delivery() {
       </div>
       <div className="container">
         <div className="mb-[90px] md:mb-[40px] md:px-[24px]">
-          <div className="flex justify-between items-center mb-[33px] md:mb-[24px]">
+          {/* <div className="flex justify-between items-center mb-[33px] md:mb-[24px]">
             <div className="text-2xl text-text-900 ubuntu">
               Вам может понравиться
             </div>
@@ -148,7 +151,7 @@ export default function Delivery() {
             type="black"
             text="Посмотреть ещё"
             customStyles="!hidden md:!flex !w-full mt-[20px]"
-          />
+          /> */}
           <div className="flex justify-between items-center mt-[64px] md:mt-[40px] mb-[33px] md:mb-[24px]">
             <div className="text-2xl text-text-900 ubuntu">
               Вы недавно смотрели
@@ -157,6 +160,7 @@ export default function Delivery() {
               type="black"
               text="Посмотреть ещё"
               customStyles="md:hidden"
+              onClick={() => router.push('/catalog')}
             />
           </div>
           <ProductCards id="sec" />
@@ -164,6 +168,7 @@ export default function Delivery() {
             type="black"
             text="Посмотреть ещё"
             customStyles="!hidden md:!flex !w-full mt-[20px]"
+            onClick={() => router.push('/catalog')}
           />
         </div>
       </div>

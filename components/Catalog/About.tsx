@@ -1,10 +1,18 @@
-function About() {
+interface IAbout {
+  text: string,
+}
+
+function About({ text }: IAbout) {
   return (
     <div className="my-[60px] md:my-[24px] bg-white p-[32px] md:p-[24px] rounded-[20px] border border-stroke-dark">
       <div className="mb-[32px] ubuntu text-2xl md:mb-[16px]">
         О товаре
       </div>
+
       <p className="text-text-600">
+        { text }
+      </p>
+      {/* <p className="text-text-600">
         Подготовьтесь к незабываемым приключениям с конструктором LEGO City Stuntz
         60295 «Арена для шоу каскадёров».
         Набирайте скорость на мотоцикле с маховиком, переноситесь на
@@ -27,7 +35,7 @@ function About() {
         Конструктор с каскадерами – лучший подарок ребенку от 6 лет и
         старше на Новый год, 8 Марта,
         23 Февраля, день рождения или любой другой праздник.
-      </p>
+      </p> */}
     </div>
   );
 }

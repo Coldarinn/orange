@@ -1,22 +1,13 @@
 import Arrow from 'assets/images/icons/arrow.svg';
-
+import { useAppSelector } from '@/hooks/store';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 import ProductCard from './ProductCard';
 import 'swiper/css';
 
-const arr = [
-  { id: '1' },
-  { id: '2' },
-  { id: '3' },
-  { id: '4' },
-  { id: '5' },
-  { id: '6' },
-  { id: '7' },
-  { id: '8' },
-];
-
 function ProductCards({ id }: { id: String }) {
+  const { userInfo } = useAppSelector((store) => store.user);
+
   return (
     <div className="relative">
       <button
@@ -38,13 +29,13 @@ function ProductCards({ id }: { id: String }) {
         spaceBetween={21}
         slidesPerView="auto"
       >
-        {arr.map((item) => (
+        {userInfo.viewedProducts.map((item) => (
           <SwiperSlide
-            key={item.id.toString()}
+            key={item.internal_id}
             className="!w-auto"
           >
             <div className="w-[224px] md:w-[206px] p-[16px] bg-white border border-stroke-dark rounded-[24px]">
-              <ProductCard />
+              <ProductCard product={item} />
             </div>
           </SwiperSlide>
         ))}

@@ -10,7 +10,11 @@ import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 
-function ProductSLider() {
+export interface IProductSlider {
+  images: string[]
+}
+
+function ProductSLider({ images }: IProductSlider) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
     <>
@@ -23,90 +27,36 @@ function ProductSLider() {
         modules={[Navigation, Thumbs]}
         className="product-slider"
       >
-        <button
-          className="product-slider-button-prev"
-          type="button"
-        >
-          <Arrow />
-        </button>
-        <button
-          className="product-slider-button-next"
-          type="button"
-        >
-          <Arrow />
-        </button>
-        <SwiperSlide>
-          <div className="max-w-[480px] mx-auto">
-            <Image
-              src={ProductImage}
-              alt="Картинка продукта"
-              style={{ width: '100%' }}
-            />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="max-w-[480px] mx-auto">
-            <Image
-              src={ProductImage}
-              alt="Картинка продукта"
-              style={{ width: '100%' }}
-            />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="max-w-[480px] mx-auto">
-            <Image
-              src={ProductImage}
-              alt="Картинка продукта"
-              style={{ width: '100%' }}
-            />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="max-w-[480px] mx-auto">
-            <Image
-              src={ProductImage}
-              alt="Картинка продукта"
-              style={{ width: '100%' }}
-            />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="max-w-[480px] mx-auto">
-            <Image
-              src={ProductImage}
-              alt="Картинка продукта"
-              style={{ width: '100%' }}
-            />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="max-w-[480px] mx-auto">
-            <Image
-              src={ProductImage}
-              alt="Картинка продукта"
-              style={{ width: '100%' }}
-            />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="max-w-[480px] mx-auto">
-            <Image
-              src={ProductImage}
-              alt="Картинка продукта"
-              style={{ width: '100%' }}
-            />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="max-w-[480px] mx-auto">
-            <Image
-              src={ProductImage}
-              alt="Картинка продукта"
-              style={{ width: '100%' }}
-            />
-          </div>
-        </SwiperSlide>
+        {images.length > 1 && (
+          <>
+            <button
+              className="product-slider-button-prev"
+              type="button"
+            >
+              <Arrow />
+            </button>
+            <button
+              className="product-slider-button-next"
+              type="button"
+            >
+              <Arrow />
+            </button>
+          </>
+        )}
+        {images.map((image, index) => (
+          <SwiperSlide key={index}>
+            <div className="max-w-[480px] mx-auto">
+              <Image
+                unoptimized
+                src={`data:image/jpeg;base64,${image}`}
+                alt="Изображение товара"
+                width={0}
+                height={0}
+                className="w-full object-contain"
+              />
+            </div>
+          </SwiperSlide>
+        ))}
       </Swiper>
       <Swiper
         // @ts-ignore
@@ -126,62 +76,18 @@ function ProductSLider() {
         }}
         className="product-thumbs-slider"
       >
-        <SwiperSlide>
-          <Image
-            src={ProductImage}
-            alt="Картинка продукта"
-            style={{ width: '100%' }}
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            src={ProductImage}
-            alt="Картинка продукта"
-            style={{ width: '100%' }}
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            src={ProductImage}
-            alt="Картинка продукта"
-            style={{ width: '100%' }}
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            src={ProductImage}
-            alt="Картинка продукта"
-            style={{ width: '100%' }}
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            src={ProductImage}
-            alt="Картинка продукта"
-            style={{ width: '100%' }}
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            src={ProductImage}
-            alt="Картинка продукта"
-            style={{ width: '100%' }}
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            src={ProductImage}
-            alt="Картинка продукта"
-            style={{ width: '100%' }}
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            src={ProductImage}
-            alt="Картинка продукта"
-            style={{ width: '100%' }}
-          />
-        </SwiperSlide>
+        {images.map((image, index) => (
+          <SwiperSlide key={index}>
+            <Image
+              unoptimized
+              src={`data:image/jpeg;base64,${image}`}
+              alt="Изображение товара"
+              width={0}
+              height={0}
+              className="w-full object-contain"
+            />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </>
   );

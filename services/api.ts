@@ -25,11 +25,9 @@ $api.interceptors.request.use((config) => {
 
 $api.interceptors.response.use((config) => config, async (error) => {
   const originalRequest = error.config;
-  console.log('eror data: ', error.response?.data);
-  if (originalRequest && !originalRequest.isRetry && error.response?.data.description === 'wrong token') {
+  if (originalRequest && !originalRequest.isRetry && (error.response?.data.description === 'wrong token' || error.response?.data.description === 'user not found')) {
     originalRequest.isRetry = true;
     try {
-      console.log('send request');
       const response = await axios.post(
         `/api${EndpointNames.REFRESH}`,
         null,
@@ -44,7 +42,6 @@ $api.interceptors.response.use((config) => config, async (error) => {
           },
         },
       );
-      console.log('request response: ', response);
       store.dispatch(setUser({
         accessToken: response.data.result.access_token,
         refreshToken: response.data.result.refresh_token,
@@ -54,7 +51,6 @@ $api.interceptors.response.use((config) => config, async (error) => {
       nookies.set(null, 'accessToken', response.data.result.access_token);
       nookies.set(null, 'refreshToken', response.data.result.refresh_token);
       nookies.set(null, 'fingerKey', response.data.result.finger_key);
-      console.log('after set cookies');
     } catch {
       nookies.destroy(null, 'accessToken');
       nookies.destroy(null, 'roles');
@@ -63,18 +59,15 @@ $api.interceptors.response.use((config) => config, async (error) => {
       store.dispatch(setUser({
         accessToken: '', refreshToken: '', fingerKey: '', roles: [],
       }));
-      console.log('after destroy cookies');
       Router.push('/');
       return await $api.request(originalRequest);
     }
   } else if (originalRequest.isRetry) {
-    console.log('in else-if');
     nookies.destroy(null, 'accessToken');
     nookies.destroy(null, 'roles');
     nookies.destroy(null, 'refreshToken');
     nookies.destroy(null, 'fingerKey');
     if (error.response?.data.description) {
-      console.log('in if: ', error.response?.data);
       store.dispatch(addAlert({ id: Date.now(), type: 'error', text: error.response.data?.description ?? 'Возникла непредвиденная ошибка ошибка' }));
     }
     Router.push('/');

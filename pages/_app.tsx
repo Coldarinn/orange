@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
 import { wrapper } from '@/store';
 import { setUser } from '@/store/slicers/authSlice';
+import { setUserInfo } from '@/store/slicers/userSlice';
 import { setCategories, ICategorie } from '@/store/slicers/categoriesSlice';
 import nookies from 'nookies';
 import { useEffect } from 'react';
@@ -18,6 +19,12 @@ function MyApp({ Component, ...rest }: AppProps) {
     await $api.get<{ result: ICategorie[] }>(EndpointNames.PRODUCT_GET_CATEGORIES)
       .then((response) => store.dispatch(setCategories(response.data.result)));
   };
+  const getRecentlyProducts = async () => {
+    await $api.get<{ result: ICategorie[] }>(EndpointNames.PRODUCT_RECENTLY_VIEWED(8))
+      .then((response) => {
+        store.dispatch(setUserInfo({ viewedProducts: response.data.result }));
+      });
+  };
 
   useEffect(() => {
     const accessToken = nookies.get().accessToken ?? '';
@@ -30,6 +37,7 @@ function MyApp({ Component, ...rest }: AppProps) {
     }));
 
     getCategories();
+    getRecentlyProducts();
   }, []);
 
   return (

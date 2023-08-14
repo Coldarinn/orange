@@ -1,6 +1,27 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
+export interface IProductInfo {
+  internal_id: string,
+  name: string,
+  price: number,
+  old_price: number,
+  count: number,
+  manufacturer: string,
+  categories: string[],
+  description: string,
+  pictures: string[],
+  buy_count: number,
+  show: boolean,
+  stars: number,
+  liked: boolean,
+  in_basket: boolean,
+  feedbacks_count: number,
+  sex: string,
+  country: string,
+  subcategory: string
+}
+
 interface IUserState {
   userInfo: {
     internal_id: string | null,
@@ -9,7 +30,8 @@ interface IUserState {
     name:string | null,
     phone_number: string | null,
     birth_date: string | null,
-    contact_data: string | null
+    contact_data: string | null,
+    viewedProducts: IProductInfo[]
   }
 }
 
@@ -22,6 +44,7 @@ const initialState: IUserState = {
     phone_number: '',
     birth_date: '',
     contact_data: '',
+    viewedProducts: [],
   },
 };
 
@@ -40,6 +63,7 @@ export const userSlice = createSlice({
       state.userInfo.phone_number = '';
       state.userInfo.birth_date = '';
       state.userInfo.contact_data = '';
+      state.userInfo.viewedProducts = [];
     },
   },
 });

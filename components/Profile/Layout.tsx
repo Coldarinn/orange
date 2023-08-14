@@ -11,7 +11,7 @@ interface ILayout {
 }
 
 function Layout({ children }: ILayout) {
-  const { pathname } = useRouter();
+  const router = useRouter();
   return (
     <div className="pb-[60px] border-b border-text-100 mb-[60px] md:mb-[32px]">
       <div className="pb-[120px] md:pb-[72px] border-b border-text-100">
@@ -26,7 +26,7 @@ function Layout({ children }: ILayout) {
                   <Link
                     href={item.link}
                     className={`transition duration-300 hover:text-brand-700 ${
-                      pathname === item.link
+                      router.pathname === item.link
                         ? 'text-brand-700 pointer-events-none'
                         : 'text-text-700'
                     }`}
@@ -55,6 +55,7 @@ function Layout({ children }: ILayout) {
               type="black"
               text="Посмотреть ещё"
               customStyles="md:hidden"
+              onClick={() => router.push('/catalog')}
             />
           </div>
           <ProductCards id="seventh" />
@@ -62,6 +63,7 @@ function Layout({ children }: ILayout) {
             type="black"
             text="Посмотреть ещё"
             customStyles="!hidden md:!flex !w-full mt-[20px]"
+            onClick={() => router.push('/catalog')}
           />
         </div>
         <div className="mt-[90px] md:mt-[40px]">

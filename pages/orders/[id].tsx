@@ -147,7 +147,7 @@ export default function Order() {
           </div>
         </div>
         <div className="container">
-          <div className="md:px-[24px]">
+          {/* <div className="md:px-[24px]">
             <div className="flex justify-between items-center mt-[64px] md:mt-[32px] mb-[38px] md:mb-[24px]">
               <div className="text-2xl text-text-900 ubuntu">
                 Вам может понравиться
@@ -164,7 +164,7 @@ export default function Order() {
               text="Посмотреть ещё"
               customStyles="!hidden md:!flex !w-full mt-[20px]"
             />
-          </div>
+          </div> */}
           <div className="mt-[90px] md:mt-[40px]">
             <Discounts />
           </div>
