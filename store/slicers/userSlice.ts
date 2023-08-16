@@ -19,7 +19,8 @@ export interface IProductInfo {
   feedbacks_count: number,
   sex: string,
   country: string,
-  subcategory: string
+  subcategory: string,
+  isSelected: boolean,
 }
 
 interface IUserState {

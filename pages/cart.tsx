@@ -1,10 +1,29 @@
 import Head from 'next/head';
-import ProductCards from '@/components/common/Products/ProductCards';
+import { useState, useEffect } from 'react';
+// import ProductCards from '@/components/common/Products/ProductCards';
 import Discounts from '@/components/common/Subscribe/Discounts';
-import CartBody from '@/components/Cart/CartBody';
-import Button from '@/components/common/UI/Button';
+import CartBody, { ICartItem } from '@/components/Cart/CartBody';
+// import Button from '@/components/common/UI/Button';
+import $api from '@/services/api';
+import EndpointNames from '@/config/api';
 
 export default function Cart() {
+  const [products, setProducts] = useState<ICartItem[]>([]);
+
+  const getproducts = async () => {
+    await $api.get<{ result: { products: ICartItem[] } }>(EndpointNames.BASKET_GET)
+      .then((response) => {
+        console.log(response);
+        response.data.result.products.forEach((item) => {
+          item.product.isSelected = true;
+        });
+        setProducts(response.data.result.products);
+      });
+  };
+
+  useEffect(() => {
+    getproducts();
+  }, []);
   return (
     <>
       <Head>
@@ -25,7 +44,7 @@ export default function Cart() {
       <div className="pt-[200px] md:pt-[230px] pb-[60px] md:pb-[72px] border-b border-text-100 mb-[60px] md:mb-[32px]">
         <div className="container md:px-[24px]">
           <h2 className="text-[32px] font-bold mb-[32px] md:mb-[20px] ubuntu">Корзина</h2>
-          <CartBody />
+          <CartBody products={products} />
         </div>
       </div>
       <div className="mb-[57px]">
