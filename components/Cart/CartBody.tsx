@@ -6,6 +6,9 @@ import Accept from '@/assets/images/icons/accept.svg';
 import $api from '@/services/api';
 import EndpointNames from '@/config/api';
 import { ICartItem } from '@/pages/cart';
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
+import { addAlert } from '@/store/slicers/alertsSlice';
+import { useRouter } from 'next/router';
 import CartItem from './CartItem';
 import CartTotal from './CartTotal';
 
@@ -14,6 +17,11 @@ export interface ICartBody {
 }
 
 function CartBody({ products }: ICartBody) {
+  const router = useRouter();
+
+  const { userInfo } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
+
   const [items, setItems] = useState<ICartItem[]>(products);
   const [count, setCount] = useState<number>(0);
   const [totalPrice, setTotalPrice] = useState<number>(
@@ -67,6 +75,25 @@ function CartBody({ products }: ICartBody) {
     }));
   };
 
+  const createdOrder = async (address: string) => {
+    if (!(userInfo.email && userInfo.name && userInfo.phone_number)) {
+      dispatch(addAlert({ id: Date.now(), type: 'error', text: 'Для оформления заказа необходимо заполнить контактную информацию (Имя, Почта, Телефон)' }));
+    } else {
+      await $api.post(EndpointNames.ORDER_CREATE, {
+        address,
+        contact_data: `Имя: ${userInfo.name}, Почта: ${userInfo.email}, Телефон: ${userInfo.phone_number}`,
+        products: items.map((item) => ({
+          count: item.count,
+          product_id: item.product.internal_id,
+        })),
+      })
+        .then(() => {
+          dispatch(addAlert({ id: Date.now(), type: 'error', text: 'Заказ успешно создан' }));
+          router.push('profile/orders');
+        });
+    }
+  };
+
   useEffect(() => {
     let newPrice = 0;
     let newCount = 0;
@@ -118,6 +145,7 @@ function CartBody({ products }: ICartBody) {
       <CartTotal
         totalPrice={totalPrice}
         count={count}
+        createdOrder={createdOrder}
       />
     </div>
   );
