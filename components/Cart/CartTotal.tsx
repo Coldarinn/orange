@@ -27,7 +27,7 @@ interface ICartTotal {
 function CartTotal({ totalPrice, count }: ICartTotal) {
   const router = useRouter();
   return (
-    <div className="flex-auto py-[32px] md:py-[24px] rounded-[20px] bg-white border border-stroke-dark">
+    <div className="flex-auto py-[32px] md:py-[24px] rounded-[20px] bg-white border border-stroke-dark sticky top-[125px]">
       <div className="flex items-center justify-between font-bold ubuntu pb-[24px] px-[32px] md:px-[24px] border-b border-stroke-dark">
         <span className="text-2xl">Итого:</span>
         <span className="text-[32px] text-text-900">

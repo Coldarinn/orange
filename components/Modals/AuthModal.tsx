@@ -6,6 +6,7 @@ import EndpointNames from '@/config/api';
 import { setUser } from '@/store/slicers/authSlice';
 import { useAppDispatch } from '@/hooks/store';
 import { addAlert } from '@/store/slicers/alertsSlice';
+import { setUserInfo } from '@/store/slicers/userSlice';
 import Modal from '../common/UI/Modal';
 import Button from '../common/UI/Button';
 
@@ -49,13 +50,23 @@ function AuthModal({ isVisible, onClose }: IAuthModal) {
     router.push('/profile');
   };
 
+  const getRecentlyProducts = async () => {
+    await $api.get(EndpointNames.PRODUCT_RECENTLY_VIEWED(8))
+      .then((response) => {
+        dispatch(setUserInfo({ viewedProducts: response.data.result }));
+      });
+  };
+
   const submitHandler = (e:React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     if (login && password) {
       if (isLogin) {
         $api.post(EndpointNames.SIGN_IN, { login, password })
-          .then((res) => authIsSuccess(res.data.result))
+          .then((res) => {
+            authIsSuccess(res.data.result);
+            getRecentlyProducts();
+          })
           .finally(() => setIsLoading(false));
       } else {
         $api.post(EndpointNames.SIGN_UP, { login, password })

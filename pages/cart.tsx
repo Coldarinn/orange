@@ -2,10 +2,16 @@ import Head from 'next/head';
 import { useState, useEffect } from 'react';
 // import ProductCards from '@/components/common/Products/ProductCards';
 import Discounts from '@/components/common/Subscribe/Discounts';
-import CartBody, { ICartItem } from '@/components/Cart/CartBody';
+import CartBody from '@/components/Cart/CartBody';
 // import Button from '@/components/common/UI/Button';
 import $api from '@/services/api';
 import EndpointNames from '@/config/api';
+import { IProductInfo } from '@/store/slicers/userSlice';
+
+export interface ICartItem {
+  count: number,
+  product: IProductInfo
+}
 
 export default function Cart() {
   const [products, setProducts] = useState<ICartItem[]>([]);
@@ -13,7 +19,6 @@ export default function Cart() {
   const getproducts = async () => {
     await $api.get<{ result: { products: ICartItem[] } }>(EndpointNames.BASKET_GET)
       .then((response) => {
-        console.log(response);
         response.data.result.products.forEach((item) => {
           item.product.isSelected = true;
         });

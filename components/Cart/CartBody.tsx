@@ -3,22 +3,17 @@ import {
 } from 'react';
 import Accept from '@/assets/images/icons/accept.svg';
 // import cartItems, { ICartItem } from '@/constants/cart';
-import { IProductInfo } from '@/store/slicers/userSlice';
+import $api from '@/services/api';
+import EndpointNames from '@/config/api';
+import { ICartItem } from '@/pages/cart';
 import CartItem from './CartItem';
 import CartTotal from './CartTotal';
-
-export interface ICartItem {
-  count: number,
-  product: IProductInfo
-}
 
 export interface ICartBody {
   products: ICartItem[]
 }
 
 function CartBody({ products }: ICartBody) {
-  console.log('products: ', products);
-
   const [items, setItems] = useState<ICartItem[]>(products);
   const [count, setCount] = useState<number>(0);
   const [totalPrice, setTotalPrice] = useState<number>(
@@ -26,10 +21,20 @@ function CartBody({ products }: ICartBody) {
       ? accumulator + currentValue.product.price * currentValue.count : accumulator), 0),
   );
 
+  const setCountReq = async (isDec: boolean, productId: string, countProducts: number) => {
+    await $api.put(isDec ? EndpointNames.BASKET_DEC_COUNT : EndpointNames.BASKET_INC_COUNT, {
+      product_id: productId,
+      count: countProducts,
+    });
+  };
+
   const changeCount = (id:string, newValue:number) => {
     setItems(items.map((item) => {
       if (item.product.internal_id === id) {
-        return { ...item, count: newValue, totalPrice: newValue * item.product.price };
+        if (newValue > 0) {
+          setCountReq(newValue < item.count, id, newValue);
+        }
+        return { ...item, count: newValue };
       }
       return item;
     }));
@@ -38,7 +43,7 @@ function CartBody({ products }: ICartBody) {
   const changeStatus = (id:string) => {
     setItems(items.map((item) => {
       if (item.product.internal_id === id) {
-        return { ...item, isSelected: !item.product.isSelected };
+        return { ...item, product: { ...item.product, isSelected: !item.product.isSelected } };
       }
       return item;
     }));
@@ -46,14 +51,20 @@ function CartBody({ products }: ICartBody) {
 
   const changeAllStatus = (status:boolean) => {
     if (status) {
-      setItems(items.map((item) => ({ ...item, isSelected: true })));
+      setItems(items.map((item) => ({ ...item, product: { ...item.product, isSelected: true } })));
     } else {
-      setItems(items.map((item) => ({ ...item, isSelected: false })));
+      setItems(items.map((item) => ({ ...item, product: { ...item.product, isSelected: false } })));
     }
   };
 
   const deleteItem = (id:string) => {
-    setItems(items.filter((item) => item.product.internal_id !== id));
+    setItems(items.filter((item) => {
+      if (item.product.internal_id === id) {
+        setCountReq(true, item.product.internal_id, 0);
+        return false;
+      }
+      return true;
+    }));
   };
 
   useEffect(() => {

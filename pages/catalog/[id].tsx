@@ -12,7 +12,7 @@ import Button from '@/components/common/UI/Button';
 import $api from '@/services/api';
 import EndpointNames from '@/config/api';
 import { useEffect, useState } from 'react';
-import { Router, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import Loader from '@/components/common/Loader';
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
 import { ICategorie, setCurrentCategory } from '@/store/slicers/categoriesSlice';

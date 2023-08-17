@@ -37,7 +37,9 @@ function MyApp({ Component, ...rest }: AppProps) {
     }));
 
     getCategories();
-    getRecentlyProducts();
+    if (accessToken && fingerKey) {
+      getRecentlyProducts();
+    }
   }, []);
 
   return (

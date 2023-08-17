@@ -1,11 +1,11 @@
 import Image from 'next/image';
-import Product from '@/assets/images/products/1.png';
 import Plus from '@/assets/images/icons/plus.svg';
 import Minus from '@/assets/images/icons/minus.svg';
 import Trash from '@/assets/images/icons/trash.svg';
 import Accept from '@/assets/images/icons/accept.svg';
 // import { ICartItem } from '@/constants/cart';
-import { ICartItem } from './CartBody';
+import Link from 'next/link';
+import { ICartItem } from '@/pages/cart';
 
 function CartItem({
   item, changeCount, changeStatus, deleteItem,
@@ -33,13 +33,24 @@ function CartItem({
           <Accept className="fill-white" />
         </label>
       </div>
-      <div className="basis-[140px] md:basis-[110px] h-[140px] md:h-[110px] shrink-0 mx-[32px] md:mx-[20px] relative">
-        <Image
+      <Link
+        href={`/catalog/${item.product.internal_id}`}
+        className="basis-[140px] md:basis-[110px] h-[140px] md:h-[110px] shrink-0 mx-[32px] md:mx-[20px] relative"
+      >
+        {/* <Image
           src={Product}
           alt="Картинка продукта"
           fill
+        /> */}
+        <Image
+          unoptimized
+          src={`data:image/jpeg;base64,${item.product.pictures[0]}`}
+          alt="Изображение товара"
+          width={0}
+          height={0}
+          className="w-full object-contain"
         />
-      </div>
+      </Link>
       <div className="basis-[396px] md:basis-auto">
         <div className="mb-[12px] md:mb-[16px]">
           {item.product.name}
