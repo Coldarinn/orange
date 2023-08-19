@@ -5,6 +5,12 @@ import $api from '@/services/api';
 import EndpointNames from '@/config/api';
 import { cloneDeep } from 'lodash';
 import { IProductInfo } from '@/store/slicers/userSlice';
+import { useState } from 'react';
+import { addAlert } from '@/store/slicers/alertsSlice';
+import { useAppDispatch } from '@/hooks/store';
+import Image from 'next/image';
+import AddReviewsModal from './AddReviewsModal';
+import ReviewImageModal from './ReviewImageModal';
 
 interface IReviews {
   productInfo: IProductInfo,
@@ -17,11 +23,21 @@ interface IReviews {
 function Reviews({
   productInfo, reviews, reviwsCount, setReviews, getReviews,
 }: IReviews) {
+  const dispatch = useAppDispatch();
+
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [selectedImage, setSelectedImage] = useState<string>('');
+
   const likeHandler = async (index: number) => {
     const copy = cloneDeep(reviews);
-    copy[index].likes += 1;
-    await $api.put(EndpointNames.FEEDBACK_LIKE(copy[index].internalId));
-    setReviews(copy);
+    await $api.put(EndpointNames.FEEDBACK_LIKE(copy[index].internalId))
+      .then(() => {
+        copy[index].likes += 1;
+        setReviews(copy);
+      })
+      .catch(() => {
+        dispatch(addAlert({ id: Date.now(), type: 'error', text: 'Это Ваш отзыв' }));
+      });
   };
   return (
     <>
@@ -42,6 +58,7 @@ function Reviews({
             <button
               type="button"
               className="w-full h-[52px] flex items-center justify-center text-white font-bold gap-[10px] bg-brand-700 border border-stroke-dark rounded-[30px]"
+              onClick={() => setIsOpen(true)}
             >
               Оставить отзыв
             </button>
@@ -122,6 +139,26 @@ function Reviews({
                 <p className="text-text-600 leading-[19px] mb-[15px]">
                   {item.message}
                 </p>
+                {item.pictures.length > 0 && (
+                  <div className="flex flex-wrap gap-[10px] mb-[15px]">
+                    {item.pictures.map((pic) => (
+                      <div
+                        key={pic}
+                        className="flex items-center justify-center w-[80px] h-[80px] p-[4px] rounded-lg cursor-pointer duration-200 border border-white hover:border-stroke-dark"
+                        onClick={() => setSelectedImage(pic)}
+                      >
+                        <Image
+                          unoptimized
+                          src={pic}
+                          alt="Изображение товара"
+                          width={0}
+                          height={0}
+                          className="w-full object-contain"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
                 <div className="flex items-center justify-between">
                   <span className="font-bold">
                     {item.user_name}
@@ -143,12 +180,12 @@ function Reviews({
             ))}
           </>
         ) : (
-          <div className="text-[24px] text-center">
-            Нет данных
+          <div className="text-[24px] text-center mt-[20px]">
+            Пока что не оставляли отзывы
           </div>
         )}
       </div>
-      {reviwsCount > 4 && (
+      {reviwsCount > reviews?.length && (
         <button
           type="button"
           className="w-full h-[52px] flex items-center justify-center text-text-900 bg-white rounded-[62px] border border-stroke-dark cursor-pointer"
@@ -159,6 +196,18 @@ function Reviews({
           )
         </button>
       )}
+      <AddReviewsModal
+        isVisible={isOpen}
+        productId={productInfo.internal_id}
+        productName={productInfo.name}
+        onClose={() => setIsOpen(false)}
+        getReviews={() => getReviews(4)}
+      />
+      <ReviewImageModal
+        isVisible={!!selectedImage}
+        picture={selectedImage}
+        onClose={() => setSelectedImage('')}
+      />
     </>
   );
 }

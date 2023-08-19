@@ -14,6 +14,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 
 export interface IReviewInfo {
+  product: any;
   internalId: string,
   user_name: string,
   product_internal_id: string,
