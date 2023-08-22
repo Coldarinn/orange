@@ -47,7 +47,6 @@ function ProductSLider({ images }: IProductSlider) {
           <SwiperSlide key={index}>
             <div className="max-w-[480px] mx-auto">
               <Image
-                unoptimized
                 src={`data:image/jpeg;base64,${image}`}
                 alt="Изображение товара"
                 width={0}

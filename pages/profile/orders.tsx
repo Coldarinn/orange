@@ -6,6 +6,7 @@ import Breadcrumbs from '@/components/common/UI/Breadcrumbs';
 import { useEffect, useState } from 'react';
 import $api from '@/services/api';
 import EndpointNames from '@/config/api';
+import { IProduct } from '@/components/common/Products/ProductCard';
 
 const list = [
   {
@@ -20,11 +21,47 @@ const list = [
   },
 ];
 
-function Orders() {
-  const [orders, setOrders] = useState([]);
+export interface IOrder {
+  internal_id: string,
+  user_id: number,
+  cost: number,
+  status: string,
+  address: string,
+  contact_data: string,
+  create_time: string,
+  update_time: string,
+  complete_time: string,
+  products: {
+    internal_id: string,
+    picture: string,
+  }[],
+  products_count: number,
+}
 
-  const getOrders = () => {
-    $api.get(EndpointNames.ORDER_GET_ORDERS(4, 0, 'CREATED'));
+function Orders() {
+  const [orders, setOrders] = useState<IOrder[]>([]);
+  const [totalCount, setTotalCount] = useState<number>(0);
+
+  const getOrders = async () => {
+    $api.get<{ result:{ count: number, orders: IOrder[] } }>(EndpointNames.ORDER_GET_ORDERS)
+      .then((res) => {
+        const updateOrdersPromises = res.data.result.orders.map(async (item) => {
+          const resp = await $api.get(EndpointNames.ORDER_GET_PRODUCTS(item.internal_id));
+          return {
+            ...item,
+            products: resp.data.result.Products.map((elem: IProduct) => ({
+              internal_id: elem.internal_id,
+              picture: elem.pictures[0],
+            })),
+          };
+        });
+
+        Promise.all(updateOrdersPromises)
+          .then((updatedOrders) => {
+            setOrders(updatedOrders);
+            setTotalCount(res.data.result.count);
+          });
+      });
   };
 
   useEffect(() => {
@@ -55,7 +92,9 @@ function Orders() {
         </div>
       </div>
       <Layout>
-        <OrdersList />
+        <OrdersList
+          orders={orders}
+        />
       </Layout>
     </>
   );

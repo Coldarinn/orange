@@ -49,12 +49,14 @@ function CartBody({ products }: ICartBody) {
   };
 
   const changeStatus = (id:string) => {
-    setItems(items.map((item) => {
+    const newItems = items.map((item) => {
       if (item.product.internal_id === id) {
         return { ...item, product: { ...item.product, isSelected: !item.product.isSelected } };
       }
       return item;
-    }));
+    });
+
+    setItems(newItems);
   };
 
   const changeAllStatus = (status:boolean) => {
@@ -79,18 +81,24 @@ function CartBody({ products }: ICartBody) {
     if (!(userInfo.email && userInfo.name && userInfo.phone_number)) {
       dispatch(addAlert({ id: Date.now(), type: 'error', text: 'Для оформления заказа необходимо заполнить контактную информацию (Имя, Почта, Телефон)' }));
     } else {
-      await $api.post(EndpointNames.ORDER_CREATE, {
-        address,
-        contact_data: `Имя: ${userInfo.name}, Почта: ${userInfo.email}, Телефон: ${userInfo.phone_number}`,
-        products: items.map((item) => ({
-          count: item.count,
-          product_id: item.product.internal_id,
-        })),
-      })
-        .then(() => {
-          dispatch(addAlert({ id: Date.now(), type: 'error', text: 'Заказ успешно создан' }));
-          router.push('profile/orders');
-        });
+      const itemsForOrder = items.filter((item) => item.product.isSelected).map((item) => ({
+        count: item.count,
+        product_id: item.product.internal_id,
+      }));
+
+      if (itemsForOrder.length !== 0) {
+        await $api.post(EndpointNames.ORDER_CREATE, {
+          address,
+          contact_data: `Имя: ${userInfo.name}, Почта: ${userInfo.email}, Телефон: ${userInfo.phone_number}`,
+          products: itemsForOrder,
+        })
+          .then(() => {
+            dispatch(addAlert({ id: Date.now(), type: 'success', text: 'Заказ успешно создан' }));
+            router.push('profile/orders');
+          });
+      } else {
+        dispatch(addAlert({ id: Date.now(), type: 'error', text: 'Для оформления заказа необходимо выбрать хотя бы один товар' }));
+      }
     }
   };
 

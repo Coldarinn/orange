@@ -27,9 +27,11 @@ const EndpointNames = {
   ORDER_ATTACH_PRODUCT: (internal_id: string | number) => `/order/${internal_id}/attach`,
   ORDER_DETACH_PRODUCT: (internal_id: string | number) => `/order/${internal_id}/detach`,
   ORDER_UPDATE_COUNT: (internal_id: string | number) => `/order/${internal_id}/count`,
-  ORDER_GET_ORDERS: (limit: number, offset: number, status?: string) => `/order?limit=${limit}&offset=${offset}&status=${status}`,
+  // ORDER_GET_ORDERS: (limit: number, offset: number, status?: string) => `/order?limit=${limit}&offset=${offset}&status=${status}`,
+  ORDER_GET_ORDERS: '/order',
   ORDER_GET: (internal_id: string | number) => `/order/${internal_id}`,
-  ORDER_GET_PRODUCTS: (internal_id: string | number, limit: number, offset: number) => `/order/${internal_id}/products?limit=${limit}&offset=${offset}`,
+  // ORDER_GET_PRODUCTS: (internal_id: string | number, limit: number, offset: number) => `/order/${internal_id}/products?limit=${limit}&offset=${offset}`,
+  ORDER_GET_PRODUCTS: (internal_id: string | number) => `/order/${internal_id}/products`,
   // /Order
 
   // Product
@@ -51,6 +53,7 @@ const EndpointNames = {
   PRODUCT_LIKE: (internal_id: string | number) => `/product/${internal_id}/like`,
   PRODUCT_UNLIKE: (internal_id: string | number) => `/product/${internal_id}/unlike`,
   PRODUCT_RECENTLY_VIEWED: (limit: string | number) => `/product/recently?limit=${limit}`,
+  PRODUCT_BOUGHT: (limit: string | number, offset: string | number) => `/product/bought?limit=${limit}&offset=${offset}`,
 
   // /Product
 
