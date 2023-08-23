@@ -7,6 +7,7 @@ import Layout from '@/components/Profile/Layout';
 import Breadcrumbs from '@/components/common/UI/Breadcrumbs';
 import Products from '@/components/Catalog/Products';
 import { IProduct } from '@/components/common/Products/ProductCard';
+import getNoun from '@/utils/getNoun';
 
 const list = [
   {
@@ -72,7 +73,11 @@ function Favorites() {
         <Breadcrumbs list={list} />
         <div className="flex items-center mb-[32px] md:px-[24px]">
           <div className="text-[32px] ubuntu text-text-900">Избранное</div>
-          <div className="ml-[16px] mt-[8px] text-text-600">16 товаров</div>
+          <div className="ml-[16px] mt-[8px] text-text-600">
+            {totalCount}
+            {' '}
+            {getNoun(totalCount, 'товар', 'товара', 'товаров')}
+          </div>
         </div>
       </div>
       <Layout>

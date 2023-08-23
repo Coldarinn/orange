@@ -1,17 +1,5 @@
 export type TSorts = 'price_asc' | 'price_desc' | 'stars' | 'popularity_asc' | 'popularity_desc' | 'discount' | 'newest';
 
-// interface IProductGetProducts {
-//   category: string | null,
-//   manufacturers: string[] | null,
-//   min_price: number | null,
-//   max_price: number | null,
-//   sort: TSorts | null,
-//   show: boolean | null,
-//   limit: number | null,
-//   offset: number | null,
-//   like: boolean | null
-// }
-
 const EndpointNames = {
   // User
   // Basket
@@ -27,10 +15,8 @@ const EndpointNames = {
   ORDER_ATTACH_PRODUCT: (internal_id: string | number) => `/order/${internal_id}/attach`,
   ORDER_DETACH_PRODUCT: (internal_id: string | number) => `/order/${internal_id}/detach`,
   ORDER_UPDATE_COUNT: (internal_id: string | number) => `/order/${internal_id}/count`,
-  // ORDER_GET_ORDERS: (limit: number, offset: number, status?: string) => `/order?limit=${limit}&offset=${offset}&status=${status}`,
   ORDER_GET_ORDERS: '/order',
   ORDER_GET: (internal_id: string | number) => `/order/${internal_id}`,
-  // ORDER_GET_PRODUCTS: (internal_id: string | number, limit: number, offset: number) => `/order/${internal_id}/products?limit=${limit}&offset=${offset}`,
   ORDER_GET_PRODUCTS: (internal_id: string | number) => `/order/${internal_id}/products`,
   // /Order
 
@@ -39,16 +25,6 @@ const EndpointNames = {
   PRODUCT_GET_MANUFACTURES: '/product/manufacturer',
   PRODUCT_GET_SEXES: '/product/sex',
   PRODUCT_GET_COUNTRIES: '/product/country',
-  // PRODUCT_GET_PRODUCTS: (params: IProductGetProducts) => `/product
-  //                                                         ?category=${params.category}
-  //                                                         &manufacturers=${params.manufacturers}
-  //                                                         &min_price=${params.min_price}
-  //                                                         &max_price=${params.max_price}
-  //                                                         &sort=${params.sort}
-  //                                                         &show=${params.show}
-  //                                                         &limit=${params.limit}
-  //                                                         &offset=${params.offset}
-  //                                                         &like=${params.like}`,
   PRODUCT_GET: (internal_id: string | number) => `/product/${internal_id}`,
   PRODUCT_LIKE: (internal_id: string | number) => `/product/${internal_id}/like`,
   PRODUCT_UNLIKE: (internal_id: string | number) => `/product/${internal_id}/unlike`,

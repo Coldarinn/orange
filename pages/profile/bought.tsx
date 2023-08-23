@@ -1,13 +1,11 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import BoughtProducts from '@/components/Profile/BoughtProducts';
 import Layout from '@/components/Profile/Layout';
 import Breadcrumbs from '@/components/common/UI/Breadcrumbs';
-import { countOptions } from '@/constants/catalog';
-import Select, { IOption } from '@/components/common/Select';
-import { IProductInfo } from '@/store/slicers/userSlice';
 import $api from '@/services/api';
-import EndpointNames from '@/config/api';
+import getNoun from '@/utils/getNoun';
+import { IProduct } from '@/components/common/Products/ProductCard';
 
 const list = [
   {
@@ -23,15 +21,28 @@ const list = [
 ];
 
 function Bought() {
-  const [count, setCount] = useState<IOption>(countOptions[0]);
+  const [products, setProducts] = useState<IProduct[]>([]);
   const [totalCount, setTotalCount] = useState<number>(0);
-  const [products, setProducts] = useState<IProductInfo[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const getProducts = (limit = 4, offset = 0) => {
+    console.log(limit);
+    console.log(offset);
+
+    setIsLoading(true);
+    $api.get<{ result: { Products: IProduct[], Count: number } }>(
+      '/product',
+      { params: { limit, offset } },
+    )
+      .then((res) => {
+        setProducts(res.data.result.Products);
+        setTotalCount(res.data.result.Count);
+      })
+      .finally(() => { setIsLoading(false); });
+  };
 
   useEffect(() => {
-    $api.get(EndpointNames.PRODUCT_BOUGHT(+count.title, 0))
-      .then((res) => {
-        console.log(res);
-      });
+    getProducts();
   }, []);
 
   return (
@@ -53,22 +64,22 @@ function Bought() {
       </Head>
       <div className="container pt-[200px] md:pt-[230px] md:px-[24px]">
         <Breadcrumbs list={list} />
-        <div className="flex items-center justify-between mb-[32px]">
-          <div className="flex items-center">
-            <div className="text-[32px] ubuntu text-text-900">Купленное</div>
-            <div className="ml-[16px] mt-[8px] text-text-600">16 товаров</div>
-          </div>
-          <div className="md:hidden">
-            <Select
-              title={count.title}
-              options={countOptions}
-              select={useCallback((item) => setCount(item), [])}
-            />
+        <div className="flex items-center mb-[32px]">
+          <div className="text-[32px] ubuntu text-text-900">Купленное</div>
+          <div className="ml-[16px] mt-[8px] text-text-600">
+            {totalCount}
+            {' '}
+            {getNoun(totalCount, 'товар', 'товара', 'товаров')}
           </div>
         </div>
       </div>
       <Layout>
-        <BoughtProducts count={+count.title} />
+        <BoughtProducts
+          products={products}
+          totalCount={totalCount}
+          getProducts={getProducts}
+          isLoading={isLoading}
+        />
       </Layout>
     </>
   );

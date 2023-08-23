@@ -5,22 +5,7 @@ import Accept from '@/assets/images/icons/accept.svg';
 import Button from '@/components/common/UI/Button';
 import { addAlert } from '@/store/slicers/alertsSlice';
 import { useAppDispatch } from '@/hooks/store';
-
-function getNoun(number: number, one: string, two: string, five: string) {
-  let n = Math.abs(number);
-  n %= 100;
-  if (n >= 5 && n <= 20) {
-    return five;
-  }
-  n %= 10;
-  if (n === 1) {
-    return one;
-  }
-  if (n >= 2 && n <= 4) {
-    return two;
-  }
-  return five;
-}
+import getNoun from '@/utils/getNoun';
 
 interface ICartTotal {
   totalPrice: number;
