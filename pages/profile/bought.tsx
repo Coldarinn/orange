@@ -26,12 +26,9 @@ function Bought() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const getProducts = (limit = 4, offset = 0) => {
-    console.log(limit);
-    console.log(offset);
-
     setIsLoading(true);
     $api.get<{ result: { Products: IProduct[], Count: number } }>(
-      '/product',
+      '/product/bought',
       { params: { limit, offset } },
     )
       .then((res) => {

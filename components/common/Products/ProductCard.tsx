@@ -86,7 +86,6 @@ function ProductCard({ showRating = false, product }: IProductCard) {
                   className="w-full absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
                 >
                   <Image
-                    unoptimized
                     src={`data:image/jpeg;base64,${picture}`}
                     alt="Изображение товара"
                     width={0}

@@ -53,7 +53,11 @@ function BoughtProducts({
                     key={item.internal_id}
                     className="catalog-product w-[224px] md:w-[206px] p-[16px] bg-white border border-stroke-dark rounded-[24px]"
                   >
-                    <BoughtProduct />
+                    <BoughtProduct
+                      id={item.internal_id}
+                      name={item.name}
+                      pictures={item.pictures}
+                    />
                   </div>
                 ))}
               </div>
