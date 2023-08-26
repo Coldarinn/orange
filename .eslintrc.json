@@ -1,6 +1,7 @@
 {
   "plugins": ["@typescript-eslint"],
   "extends": ["next/core-web-vitals", "airbnb", "airbnb-typescript"],
+  "emitWarning": true,
   "parserOptions": {
     "project": "./tsconfig.json"
   },
