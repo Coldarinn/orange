@@ -5,12 +5,15 @@ import Discounts from '@/components/common/Subscribe/Discounts';
 import Button from '@/components/common/UI/Button';
 import profileMenu from '@/constants/profile';
 import { useRouter } from 'next/router';
+import { useAppSelector } from '@/hooks/store';
 
 interface ILayout {
   children: JSX.Element;
 }
 
 function Layout({ children }: ILayout) {
+  const { viewedProducts } = useAppSelector((store) => store.user.userInfo);
+  
   const router = useRouter();
   return (
     <div className="pb-[60px] border-b border-text-100 mb-[60px] md:mb-[32px]">
@@ -46,26 +49,28 @@ function Layout({ children }: ILayout) {
         </div>
       </div>
       <div className="container">
-        <div className="md:px-[24px]">
-          <div className="flex justify-between items-center mt-[64px] md:mt-[32px] mb-[38px] md:mb-[24px]">
-            <div className="text-2xl text-text-900 ubuntu">
-              Вы недавно смотрели
+        {viewedProducts?.length > 0 && (
+          <div className="md:px-[24px]">
+            <div className="flex justify-between items-center mt-[64px] md:mt-[32px] mb-[38px] md:mb-[24px]">
+              <div className="text-2xl text-text-900 ubuntu">
+                Вы недавно смотрели
+              </div>
+              <Button
+                type="black"
+                text="Посмотреть ещё"
+                customStyles="md:hidden"
+                onClick={() => router.push('/catalog')}
+              />
             </div>
+            <ProductCards id="seventh" />
             <Button
               type="black"
               text="Посмотреть ещё"
-              customStyles="md:hidden"
+              customStyles="!hidden md:!flex !w-full mt-[20px]"
               onClick={() => router.push('/catalog')}
             />
           </div>
-          <ProductCards id="seventh" />
-          <Button
-            type="black"
-            text="Посмотреть ещё"
-            customStyles="!hidden md:!flex !w-full mt-[20px]"
-            onClick={() => router.push('/catalog')}
-          />
-        </div>
+        )}
         <div className="mt-[90px] md:mt-[40px]">
           <Discounts />
         </div>

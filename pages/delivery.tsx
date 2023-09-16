@@ -5,8 +5,11 @@ import { useState } from 'react';
 import Location from '@/assets/images/icons/duble-location.svg';
 import CarIcon from '@/assets/images/icons/delivery.svg';
 import { useRouter } from 'next/router';
+import { useAppSelector } from '@/hooks/store';
 
 export default function Delivery() {
+  const { viewedProducts } = useAppSelector((store) => store.user.userInfo);
+  
   const router = useRouter();
 
   const [selected, setSelected] = useState<{ id: number; city: string }>({
@@ -134,44 +137,46 @@ export default function Delivery() {
           </div>
         </div>
       </div>
-      <div className="container">
-        <div className="mb-[90px] md:mb-[40px] md:px-[24px]">
-          {/* <div className="flex justify-between items-center mb-[33px] md:mb-[24px]">
-            <div className="text-2xl text-text-900 ubuntu">
-              Вам может понравиться
+      {viewedProducts?.length > 0 && (
+        <div className="container">
+          <div className="mb-[90px] md:mb-[40px] md:px-[24px]">
+            {/* <div className="flex justify-between items-center mb-[33px] md:mb-[24px]">
+              <div className="text-2xl text-text-900 ubuntu">
+                Вам может понравиться
+              </div>
+              <Button
+                type="black"
+                text="Посмотреть ещё"
+                customStyles="md:hidden"
+              />
             </div>
+            <ProductCards id="fir" />
             <Button
               type="black"
               text="Посмотреть ещё"
-              customStyles="md:hidden"
-            />
-          </div>
-          <ProductCards id="fir" />
-          <Button
-            type="black"
-            text="Посмотреть ещё"
-            customStyles="!hidden md:!flex !w-full mt-[20px]"
-          /> */}
-          <div className="flex justify-between items-center mt-[64px] md:mt-[40px] mb-[33px] md:mb-[24px]">
-            <div className="text-2xl text-text-900 ubuntu">
-              Вы недавно смотрели
+              customStyles="!hidden md:!flex !w-full mt-[20px]"
+            /> */}
+            <div className="flex justify-between items-center mt-[64px] md:mt-[40px] mb-[33px] md:mb-[24px]">
+              <div className="text-2xl text-text-900 ubuntu">
+                Вы недавно смотрели
+              </div>
+              <Button
+                type="black"
+                text="Посмотреть ещё"
+                customStyles="md:hidden"
+                onClick={() => router.push('/catalog')}
+              />
             </div>
+            <ProductCards id="sec" />
             <Button
               type="black"
               text="Посмотреть ещё"
-              customStyles="md:hidden"
+              customStyles="!hidden md:!flex !w-full mt-[20px]"
               onClick={() => router.push('/catalog')}
             />
           </div>
-          <ProductCards id="sec" />
-          <Button
-            type="black"
-            text="Посмотреть ещё"
-            customStyles="!hidden md:!flex !w-full mt-[20px]"
-            onClick={() => router.push('/catalog')}
-          />
         </div>
-      </div>
+      )}
     </>
   );
 }

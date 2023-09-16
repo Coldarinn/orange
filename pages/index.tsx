@@ -6,9 +6,12 @@ import Button from '@/components/common/UI/Button';
 import Lego from '@/assets/images/lego.png';
 import LegoMovie from '@/assets/images/lego-movie.png';
 import { useRouter } from 'next/router';
+import { useAppSelector } from '@/hooks/store';
 // import { useEffect } from 'react';
 
 export default function Home() {
+  const { viewedProducts } = useAppSelector((store) => store.user.userInfo);
+  
   const router = useRouter();
   // const getCity = () => fetch('https://api.db-ip.com/v2/free/self').then(async (res) => console.log('res: ', await res.json()));
 
@@ -104,46 +107,48 @@ export default function Home() {
           <Discounts />
         </div>
       </div>
-      <div className="container md:px-[24px]">
-        {/* <div className="mb-[64px] md:mb-[40px]">
-          <div className="flex justify-between items-center mb-[33px] md:mb-[24px]">
-            <div className="text-2xl text-text-900 ubuntu">
-              Вам может понравиться
+      {viewedProducts?.length > 0 && (
+        <div className="container md:px-[24px]">
+          {/* <div className="mb-[64px] md:mb-[40px]">
+            <div className="flex justify-between items-center mb-[33px] md:mb-[24px]">
+              <div className="text-2xl text-text-900 ubuntu">
+                Вам может понравиться
+              </div>
+              <Button
+                type="black"
+                text="Посмотреть ещё"
+                customStyles="block md:hidden"
+              />
             </div>
+            <ProductCards id="fir" />
             <Button
               type="black"
               text="Посмотреть ещё"
-              customStyles="block md:hidden"
+              customStyles="!w-full mt-[20px] !hidden md:!flex"
             />
-          </div>
-          <ProductCards id="fir" />
-          <Button
-            type="black"
-            text="Посмотреть ещё"
-            customStyles="!w-full mt-[20px] !hidden md:!flex"
-          />
-        </div> */}
-        <div className="mb-[90px] md:mb-[40px]">
-          <div className="flex justify-between items-center mb-[33px] md:mb-[24px]">
-            <div className="text-2xl text-text-900 ubuntu">
-              Вы недавно смотрели
+          </div> */}
+          <div className="mb-[90px] md:mb-[40px]">
+            <div className="flex justify-between items-center mb-[33px] md:mb-[24px]">
+              <div className="text-2xl text-text-900 ubuntu">
+                Вы недавно смотрели
+              </div>
+              <Button
+                type="black"
+                text="Посмотреть ещё"
+                customStyles="block md:hidden"
+                onClick={() => router.push('/catalog')}
+              />
             </div>
+            <ProductCards id="sec" />
             <Button
               type="black"
               text="Посмотреть ещё"
-              customStyles="block md:hidden"
+              customStyles="!w-full mt-[20px] !hidden md:!flex"
               onClick={() => router.push('/catalog')}
             />
           </div>
-          <ProductCards id="sec" />
-          <Button
-            type="black"
-            text="Посмотреть ещё"
-            customStyles="!w-full mt-[20px] !hidden md:!flex"
-            onClick={() => router.push('/catalog')}
-          />
         </div>
-      </div>
+      )}
     </>
   );
 }

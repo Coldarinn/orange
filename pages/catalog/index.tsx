@@ -12,6 +12,7 @@ import EndpointNames from '@/config/api';
 import { IProduct } from '@/components/common/Products/ProductCard';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import { useAppSelector } from '@/hooks/store';
 
 export interface IReviewInfo {
   product: any;
@@ -85,6 +86,8 @@ interface ICatalog {
 export default function Catalog({
   manufacturersList, sexesList, countriesList,
 }: ICatalog) {
+  const { viewedProducts } = useAppSelector((store) => store.user.userInfo);
+  
   const router = useRouter();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -163,26 +166,28 @@ export default function Catalog({
       </div>
       <div className="mb-[57px]">
         <div className="container">
-          <div className="md:px-[24px]">
-            <div className="flex justify-between items-center mb-[33px] md:mb-[24px]">
-              <div className="text-2xl text-text-900 ubuntu">
-                Вы недавно смотрели
+          {viewedProducts?.length > 0 && (
+            <div className="md:px-[24px]">
+              <div className="flex justify-between items-center mb-[33px] md:mb-[24px]">
+                <div className="text-2xl text-text-900 ubuntu">
+                  Вы недавно смотрели
+                </div>
+                <Button
+                  type="black"
+                  text="Посмотреть ещё"
+                  customStyles="md:hidden"
+                  onClick={() => router.push('/catalog')}
+                />
               </div>
+              <ProductCards id="third" />
               <Button
                 type="black"
                 text="Посмотреть ещё"
-                customStyles="md:hidden"
+                customStyles="!hidden md:!flex !w-full mt-[20px]"
                 onClick={() => router.push('/catalog')}
               />
             </div>
-            <ProductCards id="third" />
-            <Button
-              type="black"
-              text="Посмотреть ещё"
-              customStyles="!hidden md:!flex !w-full mt-[20px]"
-              onClick={() => router.push('/catalog')}
-            />
-          </div>
+          )}
           <div className="mt-[90px] md:mt-[40px]">
             <Discounts />
           </div>

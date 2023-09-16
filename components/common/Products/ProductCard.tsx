@@ -8,6 +8,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper';
 import $api from '@/services/api';
 import EndpointNames from '@/config/api';
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
+import { addAlert } from '@/store/slicers/alertsSlice';
 
 export interface IProduct {
   internal_id: string,
@@ -33,6 +35,9 @@ interface IProductCard {
 }
 
 function ProductCard({ showRating = false, product }: IProductCard) {
+  const dispatch = useAppDispatch();
+
+  const { fingerKey } = useAppSelector((state) => state.auth);
   const [myProduct, setMyProduct] = useState<IProduct>(product);
 
   const clickHeart = async () => {
@@ -46,6 +51,10 @@ function ProductCard({ showRating = false, product }: IProductCard) {
   };
 
   const clickCart = async () => {
+    if (!fingerKey) {
+      dispatch(addAlert({id: Date.now(), type: 'info', text: 'Необходимо авторизоваться для добавления товаров в корзину'}));
+      return;
+    }
     if (myProduct.in_basket) {
       await $api.put(EndpointNames.BASKET_DEC_COUNT, { product_id: product.internal_id, count: 1 });
       const newProduct = { ...myProduct, in_basket: false };

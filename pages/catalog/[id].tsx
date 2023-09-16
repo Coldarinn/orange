@@ -17,12 +17,17 @@ import Loader from '@/components/common/Loader';
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
 import { ICategorie, setCurrentCategory } from '@/store/slicers/categoriesSlice';
 import { IReviewInfo } from '.';
+import { addAlert } from '@/store/slicers/alertsSlice';
 
 export default function Product() {
   const dispatch = useAppDispatch();
 
+  const { viewedProducts } = useAppSelector((store) => store.user.userInfo);
+
   const { categories } = useAppSelector((state) => state.categories);
 
+  const { fingerKey } = useAppSelector((state) => state.auth);
+  
   const [productInfo, setProductInfo] = useState<IProductInfo>({});
   const [reviews, setReviews] = useState<IReviewInfo[]>([]);
   const [reviwsCount, setReviewsCount] = useState<number>(0);
@@ -119,6 +124,10 @@ export default function Product() {
   };
 
   const clickCart = async () => {
+    if (!fingerKey) {
+      dispatch(addAlert({id: Date.now(), type: 'info', text: 'Необходимо авторизоваться для добавления товаров в корзину'}));
+      return;
+    }
     if (productInfo.in_basket) {
       await $api.put(EndpointNames.BASKET_DEC_COUNT, {
         product_id: productInfo.internal_id,
@@ -207,49 +216,51 @@ export default function Product() {
           </div>
         )}
       </div>
-      <div className="mb-[57px]">
-        <div className="container">
-          <div className="md:px-[24px]">
-            {/* <div className="flex justify-between items-center mb-[38px]">
-              <div className="text-2xl text-text-900 ubuntu">
-                С этим товаром покупают
+        <div className="mb-[57px]">
+          <div className="container">
+           {viewedProducts?.length > 0 && (
+              <div className="md:px-[24px]">
+                {/* <div className="flex justify-between items-center mb-[38px]">
+                  <div className="text-2xl text-text-900 ubuntu">
+                    С этим товаром покупают
+                  </div>
+                  <Button
+                    type="black"
+                    text="Посмотреть ещё"
+                    customStyles="md:hidden"
+                  />
+                </div>
+                <ProductCards id="third" />
+                <Button
+                  type="black"
+                  text="Посмотреть ещё"
+                  customStyles="!hidden md:!flex !w-full mt-[20px]"
+                /> */}
+                <div className="flex justify-between items-center mt-[64px] mb-[38px]">
+                  <div className="text-2xl text-text-900 ubuntu">
+                    Вы недавно смотрели
+                  </div>
+                  <Button
+                    type="black"
+                    text="Посмотреть ещё"
+                    customStyles="md:hidden"
+                    onClick={() => router.push('/catalog')}
+                  />
+                </div>
+                <ProductCards id="fourth" />
+                <Button
+                  type="black"
+                  text="Посмотреть ещё"
+                  customStyles="!hidden md:!flex !w-full mt-[20px]"
+                  onClick={() => router.push('/catalog')}
+                />
               </div>
-              <Button
-                type="black"
-                text="Посмотреть ещё"
-                customStyles="md:hidden"
-              />
+            )}
+            <div className="mt-[90px] md:mt-[40px]">
+              <Discounts />
             </div>
-            <ProductCards id="third" />
-            <Button
-              type="black"
-              text="Посмотреть ещё"
-              customStyles="!hidden md:!flex !w-full mt-[20px]"
-            /> */}
-            <div className="flex justify-between items-center mt-[64px] mb-[38px]">
-              <div className="text-2xl text-text-900 ubuntu">
-                Вы недавно смотрели
-              </div>
-              <Button
-                type="black"
-                text="Посмотреть ещё"
-                customStyles="md:hidden"
-                onClick={() => router.push('/catalog')}
-              />
-            </div>
-            <ProductCards id="fourth" />
-            <Button
-              type="black"
-              text="Посмотреть ещё"
-              customStyles="!hidden md:!flex !w-full mt-[20px]"
-              onClick={() => router.push('/catalog')}
-            />
-          </div>
-          <div className="mt-[90px] md:mt-[40px]">
-            <Discounts />
           </div>
         </div>
-      </div>
     </>
   );
 }
