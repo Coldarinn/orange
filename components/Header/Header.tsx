@@ -24,9 +24,9 @@ export default function Header() {
   const { accessToken } = useAppSelector((state) => state.auth);
   const { categories } = useAppSelector((state) => state.categories);
 
-  const clickProfileButton = () => {
+  const onClickButton = (link: string) => {
     if (accessToken) {
-      router.push('/profile');
+      router.push(link);
     } else {
       setIsShowModal(true);
     }
@@ -76,25 +76,27 @@ export default function Header() {
               <button
                 type="button"
                 className="flex items-center md:justify-center h-[48px] md:w-[48px] px-[24.5px] md:px-0 border-2 border-[#F2F2F2] rounded-[24px]"
-                onClick={clickProfileButton}
+                onClick={() => onClickButton('/profile')}
               >
                 <User className="fill-[#FF8700]" />
                 <span className="ml-[10px] pt-sans md:hidden">Профиль</span>
               </button>
-              <Link
-                href="/profile/favorites"
+              <button
+                type="button"
                 className="flex items-center md:justify-center h-[48px] md:w-[48px] px-[24.5px] md:px-0 border-2 border-[#F2F2F2] rounded-[24px]"
+                onClick={() => onClickButton('/profile/favorites')}
               >
                 <Heart className="fill-[#FF8700]" />
                 <span className="ml-[10px] pt-sans md:hidden">Избранное</span>
-              </Link>
-              <Link
-                href="/cart"
+              </button>
+              <button
+                type="button"
                 className="flex items-center md:justify-center h-[48px] md:w-[48px] px-[24.5px] md:px-0 bg-[#FF8700] rounded-[24px]"
+                onClick={() => onClickButton('/cart')}
               >
                 <Cart className="fill-white" />
                 <span className="ml-[10px] text-white font-bold md:hidden">Корзина</span>
-              </Link>
+              </button>
             </div>
           </div>
           {router.pathname.includes('profile')

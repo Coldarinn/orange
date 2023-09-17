@@ -114,6 +114,10 @@ export default function Product() {
   }, [id]);
 
   const clickHeart = async () => {
+    if (!fingerKey) {
+      dispatch(addAlert({id: Date.now(), type: 'info', text: 'Необходимо авторизоваться для добавления товаров в избранное'}));
+      return;
+    }
     if (productInfo.liked) {
       await $api.put(EndpointNames.PRODUCT_UNLIKE(productInfo.internal_id));
       setProductInfo((prev: IProductInfo) => ({ ...prev, liked: false }));

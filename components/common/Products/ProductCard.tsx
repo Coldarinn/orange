@@ -41,6 +41,10 @@ function ProductCard({ showRating = false, product }: IProductCard) {
   const [myProduct, setMyProduct] = useState<IProduct>(product);
 
   const clickHeart = async () => {
+    if (!fingerKey) {
+      dispatch(addAlert({id: Date.now(), type: 'info', text: 'Необходимо авторизоваться для добавления товаров в избранное'}));
+      return;
+    }
     if (myProduct.liked) {
       await $api.put(EndpointNames.PRODUCT_UNLIKE(product.internal_id));
       setMyProduct((prev: IProduct) => ({ ...prev, liked: false }));
